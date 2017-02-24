@@ -46,21 +46,21 @@ public class MenuScreen implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen();
+                changeScreen("level1.tmx");
             }
         });
 
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen();
+                changeScreen("level2.tmx");
             }
         });
-    }
+        }
 
 
-    public void changeScreen(){
-        game.setScreen(new PlayScreen(game));
+    public void changeScreen(String level){
+        game.setScreen(new PlayScreen(game, level));
     }
 
 

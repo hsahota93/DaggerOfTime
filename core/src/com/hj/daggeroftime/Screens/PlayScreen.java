@@ -21,18 +21,25 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gameCamera;
     private Hud hud;
     private  Viewport gamePort;
-
+    private String level;
     private TmxMapLoader mapLoader; // load map to game
     private TiledMap map; // map itself
     private OrthogonalTiledMapRenderer renderer; // render map into the screen
-    // @param passing game class
-    public PlayScreen(DaggerOfTIme game){
+    /*
+     @param game : passing game class
+      @param
+      */
+    public PlayScreen(DaggerOfTIme game, String level){
         this.game = game;
+        this.level = level;
         gameCamera = new OrthographicCamera();
         gamePort = new FillViewport(DaggerOfTIme.screenWidth, DaggerOfTIme.screenHeight, gameCamera); //width, height, gameCamera
         hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Levels/level2.tmx");
+
+        System.out.println(""+ level);
+        map = mapLoader.load("Levels\\" +level.toString());
+
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);
     }
