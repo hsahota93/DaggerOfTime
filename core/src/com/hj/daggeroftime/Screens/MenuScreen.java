@@ -20,7 +20,7 @@ public class MenuScreen implements Screen {
     private Stage stage;
     private TextButton levelOneButton;
     private TextButton levelTwoButton;
-    private  static final int buttonWidth = 500;
+    private  static final int  buttonWidth = 500;
     private  static final int buttonHeight = 100;
 
     public MenuScreen(DaggerOfTime game){
@@ -47,16 +47,14 @@ public class MenuScreen implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("Levels/level1.tmx");
-                dispose();
+                changeScreen("level1.tmx");
             }
         });
 
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("Levels/level2.tmx");
-                dispose();
+                changeScreen("level2.tmx");
             }
         });
         }
@@ -66,9 +64,9 @@ public class MenuScreen implements Screen {
     *   Set the screen to the 'PlayScreen'
     *   and load the proper sprite sheet.
     * */
-    public void changeScreen(String level) {
-
+    public void changeScreen(String level){
         game.setScreen(new PlayScreen(game, level));
+        this.dispose();
     }
 
 
@@ -109,7 +107,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
         stage.dispose();
     }
 

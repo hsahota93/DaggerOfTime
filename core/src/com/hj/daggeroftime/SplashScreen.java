@@ -32,7 +32,6 @@ public class SplashScreen implements Screen {
     public void render(float delta) {
 
         timeElapsed +=1;
-        System.out.println("Deltime  " + delta + "Time Elapsed " + timeElapsed);
         Gdx.gl.glClearColor(23,100,200,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin(); // open batch file
@@ -41,7 +40,6 @@ public class SplashScreen implements Screen {
 
         if(timeElapsed > 200){
 
-            System.out.println("Hello");
             game.setScreen(new MenuScreen(game));
             this.dispose();
         }
