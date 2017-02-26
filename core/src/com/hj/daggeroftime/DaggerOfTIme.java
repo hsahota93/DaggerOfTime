@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class DaggerOfTime extends Game {
 
 	public SpriteBatch batch;
-	public static final int screenWidth = 800;
-	public static final int screenHeight = 480;
-
+	public static final int screenWidth = 400;
+	public static final int screenHeight = 300;
+	public static final float PPM = 100;
 
 	@Override
 	public void create() {
