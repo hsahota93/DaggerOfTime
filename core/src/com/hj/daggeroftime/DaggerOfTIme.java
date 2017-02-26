@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.Screens.PlayScreen;
 
-public class DaggerOfTIme extends Game {
+public class DaggerOfTime extends Game {
 
 	public SpriteBatch batch;
 	public static final int screenWidth = 800;

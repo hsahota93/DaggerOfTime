@@ -1,23 +1,15 @@
 package com.hj.daggeroftime.Scenes;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.hj.daggeroftime.DaggerOfTIme;
-import com.hj.daggeroftime.Screens.PlayScreen;
-
-import java.util.ArrayList;
+import com.hj.daggeroftime.DaggerOfTime;
 
 /**
  * Created by jacob on 2/23/2017.
@@ -40,7 +32,7 @@ public class Hud {
         worldTimer = 300;
         timeCount = 0;
         score = 0;
-        viewport = new FitViewport(DaggerOfTIme.screenWidth, DaggerOfTIme.screenHeight, new OrthographicCamera());
+        viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
 
         stage = new Stage(viewport,sb);
         Table table = new Table(); // creating table to keep items inside the stage organized

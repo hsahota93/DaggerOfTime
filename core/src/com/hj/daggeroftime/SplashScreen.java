@@ -7,16 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hj.daggeroftime.Screens.MenuScreen;
-import com.hj.daggeroftime.Screens.PlayScreen;
 
 public class SplashScreen implements Screen {
 
     private SpriteBatch spriteBatch;
     private Texture texture;
-    private DaggerOfTIme game;
+    private DaggerOfTime game;
     public static int timeElapsed ;
 
-    public SplashScreen(DaggerOfTIme game){
+    public SplashScreen(DaggerOfTime game){
 
         this.game = game;
         spriteBatch = new SpriteBatch();
@@ -33,7 +32,6 @@ public class SplashScreen implements Screen {
     public void render(float delta) {
 
         timeElapsed +=1;
-        System.out.println("Deltime  " + delta + "Time Elapsed " + timeElapsed);
         Gdx.gl.glClearColor(23,100,200,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin(); // open batch file
@@ -42,7 +40,6 @@ public class SplashScreen implements Screen {
 
         if(timeElapsed > 200){
 
-            System.out.println("Hello");
             game.setScreen(new MenuScreen(game));
             this.dispose();
         }

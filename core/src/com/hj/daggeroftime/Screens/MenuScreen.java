@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.hj.daggeroftime.DaggerOfTIme;
+import com.hj.daggeroftime.DaggerOfTime;
 
 
 /**
@@ -17,14 +16,14 @@ import com.hj.daggeroftime.DaggerOfTIme;
  */
 public class MenuScreen implements Screen {
 
-    private  DaggerOfTIme game;
+    private DaggerOfTime game;
     private Stage stage;
     private TextButton levelOneButton;
     private TextButton levelTwoButton;
     private  static final int  buttonWidth = 500;
     private  static final int buttonHeight = 100;
 
-    public MenuScreen(DaggerOfTIme game){
+    public MenuScreen(DaggerOfTime game){
         this.game = game;
         stage = new Stage();
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
@@ -67,6 +66,7 @@ public class MenuScreen implements Screen {
     * */
     public void changeScreen(String level){
         game.setScreen(new PlayScreen(game, level));
+        this.dispose();
     }
 
 
@@ -107,7 +107,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
 }
