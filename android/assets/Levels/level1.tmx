@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="26">
  <tileset firstgid="1" name="DaggerOfTime" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="3136" columns="56">
-  <image source="../AndroidStudioProjects/DaggerOfTime/android/assets/Pictures/DaggerOfTime.png" trans="ff00ff" width="1024" height="1024"/>
+  <image source="../Pictures/DaggerOfTime.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="3137" name="Tiny Rose Diamond" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../AndroidStudioProjects/DaggerOfTime/android/assets/Pictures/Diamond_small.png" trans="ff00ff" width="16" height="16"/>
+  <image source="../Pictures/Diamond_small.png" trans="ff00ff" width="16" height="16"/>
  </tileset>
  <tileset firstgid="3138" name="Door" tilewidth="16" tileheight="16" tilecount="3408" columns="48">
-  <image source="../AndroidStudioProjects/DaggerOfTime/android/assets/Pictures/Door.png" trans="ff00ff" width="768" height="1151"/>
+  <image source="../Pictures/Door.png" trans="ff00ff" width="768" height="1151"/>
  </tileset>
  <tileset firstgid="6546" name="Fire" tilewidth="16" tileheight="16" tilecount="144" columns="12">
-  <image source="../AndroidStudioProjects/DaggerOfTime/android/assets/Pictures/Fire.png" trans="ff00ff" width="200" height="200"/>
+  <image source="../Pictures/Fire.png" trans="ff00ff" width="200" height="200"/>
  </tileset>
  <layer name="Background" width="240" height="13">
   <data encoding="csv">
