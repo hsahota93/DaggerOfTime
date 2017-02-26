@@ -30,7 +30,7 @@ public class MenuScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
          levelOneButton = new TextButton("Level One",skin);
-         levelTwoButton = new TextButton("Second Level", skin);
+         levelTwoButton = new TextButton("Level Two", skin);
 
         // positioning the buttons on the screen
         levelOneButton.setPosition( (Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) );
@@ -47,14 +47,14 @@ public class MenuScreen implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("level1.tmx");
+                changeScreen("Levels/level1.tmx");
             }
         });
 
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("level2.tmx");
+                changeScreen("Levels/level2.tmx");
             }
         });
         }

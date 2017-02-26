@@ -37,10 +37,9 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gameCamera;
     private Hud hud;
     private  Viewport gamePort;
-    private String level;
-    private TmxMapLoader mapLoader; // load map to game
-    private TiledMap map; // map itself
-    private OrthogonalTiledMapRenderer renderer; // render map into the screen
+    private TmxMapLoader mapLoader;                     // load map to game
+    private TiledMap map;                               // map itself
+    private OrthogonalTiledMapRenderer renderer;        // render map into the screen
 
     //Box2d varibles
     private World world;
@@ -50,15 +49,14 @@ public class PlayScreen implements Screen {
      @param level: passing level
      */
     public PlayScreen(DaggerOfTime game, String level){
+
         this.game = game;
-        this.level = level;
         gameCamera = new OrthographicCamera();
         gamePort = new FillViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, gameCamera); //width, height, gameCamera
         hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
-        System.out.println(""+ level);
-        map = mapLoader.load("Levels\\" +level.toString());
+        map = mapLoader.load(level);
 
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);
@@ -68,16 +66,16 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0,0), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        BodyDef bodyDef = new BodyDef(); // defining body
-       PolygonShape polygonShape = new PolygonShape(); //polygon shape for the fixture
-        FixtureDef fixtureDef = new FixtureDef(); //define fiture before add to the body
+        BodyDef bodyDef = new BodyDef();                        // defining body
+       PolygonShape polygonShape = new PolygonShape();          //polygon shape for the fixture
+        FixtureDef fixtureDef = new FixtureDef();               //define fiture before add to the body
         Body body;
         CircleShape circleShape = new CircleShape();
         for(MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
-            System.out.println("Circle : ~~~~~~~~~~~~~~~ ");
+            //System.out.println("Circle : ~~~~~~~~~~~~~~~ ");
 
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-            System.out.println("Circle : " + ellipse.x);
+            //System.out.println("Circle : " + ellipse.x);
 
             bodyDef.type = BodyDef.BodyType.StaticBody;
             bodyDef.position.set(ellipse.x + ellipse.width/2  , ellipse.y + ellipse.height/2);
@@ -102,9 +100,6 @@ public class PlayScreen implements Screen {
                 body.createFixture(fixtureDef);
 
             }
-
-
-
     }
 
     @Override
@@ -112,13 +107,13 @@ public class PlayScreen implements Screen {
 
     }
     /*To handle interactions*/
-    public void handleInput(float dt){
+    public void handleInput(float dt) {
         if(Gdx.input.isTouched()){
-            gameCamera.position.x +=100*dt;
+            gameCamera.position.x +=500*dt;
         }
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         handleInput(dt);
         gameCamera.update();
         renderer.setView(gameCamera);
