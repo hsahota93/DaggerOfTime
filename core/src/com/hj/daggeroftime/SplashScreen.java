@@ -45,7 +45,6 @@ public class SplashScreen implements Screen {
             System.out.println("Hello");
             game.setScreen(new MenuScreen(game));
             this.dispose();
-
         }
 
     }

@@ -33,9 +33,11 @@ public class MenuScreen implements Screen {
          levelOneButton = new TextButton("Level One",skin);
          levelTwoButton = new TextButton("Second Level", skin);
 
+        // positioning the buttons on the screen
         levelOneButton.setPosition( (Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) );
         levelTwoButton.setPosition((Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) - (buttonHeight+10));
 
+        // setting the size of the buttons
         levelOneButton.setSize(buttonWidth,buttonHeight);
         levelTwoButton.setSize(buttonWidth,buttonHeight);
 
@@ -46,21 +48,25 @@ public class MenuScreen implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen();
+                changeScreen("level1.tmx");
             }
         });
 
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen();
+                changeScreen("level2.tmx");
             }
         });
-    }
+        }
 
 
-    public void changeScreen(){
-        game.setScreen(new PlayScreen(game));
+    /* @param level: name of the sprite sheet
+    *   Set the screen to the 'PlayScreen'
+    *   and load the proper sprite sheet.
+    * */
+    public void changeScreen(String level){
+        game.setScreen(new PlayScreen(game, level));
     }
 
 
