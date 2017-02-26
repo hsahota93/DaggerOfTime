@@ -9,7 +9,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.hj.daggeroftime.DaggerOfTIme;
+import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
 
 /**
@@ -17,28 +17,24 @@ import com.hj.daggeroftime.Scenes.Hud;
  */
 public class PlayScreen implements Screen {
 
-    private DaggerOfTIme game;
+    private DaggerOfTime game;
     private OrthographicCamera gameCamera;
     private Hud hud;
     private  Viewport gamePort;
-    private String level;
     private TmxMapLoader mapLoader; // load map to game
     private TiledMap map; // map itself
     private OrthogonalTiledMapRenderer renderer; // render map into the screen
     /*
      @param game : passing game class
-      @param
       */
-    public PlayScreen(DaggerOfTIme game, String level){
+    public PlayScreen(DaggerOfTime game, String level){
         this.game = game;
-        this.level = level;
         gameCamera = new OrthographicCamera();
-        gamePort = new FillViewport(DaggerOfTIme.screenWidth, DaggerOfTIme.screenHeight, gameCamera); //width, height, gameCamera
+        gamePort = new FillViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, gameCamera); //width, height, gameCamera
         hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
-        System.out.println(""+ level);
-        map = mapLoader.load("Levels\\" +level.toString());
+        map = mapLoader.load(level);
 
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);

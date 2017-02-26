@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.hj.daggeroftime.DaggerOfTIme;
+import com.hj.daggeroftime.DaggerOfTime;
 
 
 /**
@@ -17,14 +16,14 @@ import com.hj.daggeroftime.DaggerOfTIme;
  */
 public class MenuScreen implements Screen {
 
-    private  DaggerOfTIme game;
+    private DaggerOfTime game;
     private Stage stage;
     private TextButton levelOneButton;
     private TextButton levelTwoButton;
-    private  static final int  buttonWidth = 500;
+    private  static final int buttonWidth = 500;
     private  static final int buttonHeight = 100;
 
-    public MenuScreen(DaggerOfTIme game){
+    public MenuScreen(DaggerOfTime game){
         this.game = game;
         stage = new Stage();
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
@@ -48,14 +47,16 @@ public class MenuScreen implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("level1.tmx");
+                changeScreen("Levels/level1.tmx");
+                dispose();
             }
         });
 
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                changeScreen("level2.tmx");
+                changeScreen("Levels/level2.tmx");
+                dispose();
             }
         });
         }
@@ -65,7 +66,8 @@ public class MenuScreen implements Screen {
     *   Set the screen to the 'PlayScreen'
     *   and load the proper sprite sheet.
     * */
-    public void changeScreen(String level){
+    public void changeScreen(String level) {
+
         game.setScreen(new PlayScreen(game, level));
     }
 
@@ -108,6 +110,7 @@ public class MenuScreen implements Screen {
     @Override
     public void dispose() {
 
+        stage.dispose();
     }
 
 }
