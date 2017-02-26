@@ -1,32 +1,41 @@
 package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Ellipse;
+import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
+import com.sun.org.apache.bcel.internal.Constants;
+import com.sun.org.apache.bcel.internal.generic.FLOAD;
+
 
 /**
  * Created by jacob on 2/22/2017.
@@ -73,11 +82,10 @@ public class PlayScreen implements Screen {
         FixtureDef fixtureDef = new FixtureDef(); //define fiture before add to the body
         Body body;
         CircleShape circleShape = new CircleShape();
+
         for(MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
-            System.out.println("Circle : ~~~~~~~~~~~~~~~ ");
 
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-            System.out.println("Circle : " + ellipse.x);
 
             bodyDef.type = BodyDef.BodyType.StaticBody;
             bodyDef.position.set(ellipse.x + ellipse.width/2  , ellipse.y + ellipse.height/2);
@@ -100,11 +108,36 @@ public class PlayScreen implements Screen {
                 polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
                 fixtureDef.shape = polygonShape;
                 body.createFixture(fixtureDef);
-
             }
 
+        for(MapObject object : map.getLayers().get(12).getObjects().getByType(PolylineMapObject.class)) {
+            Shape shape = createPolyLine((PolylineMapObject) object);
+
+            bodyDef.type = BodyDef.BodyType.StaticBody;
+
+            body = world.createBody(bodyDef);
+
+            body.createFixture(shape, 1.0f);
+          //  shape.dispose();
+        }
 
 
+
+
+    }
+
+    public static ChainShape createPolyLine(PolylineMapObject polyline){
+        // getting the vertices of the polyline objects
+        float[] vertices = polyline.getPolyline().getTransformedVertices();
+        Vector2[] worldVertices = new Vector2[vertices.length/2];
+        for(int i = 0; i < worldVertices.length; i++){
+            worldVertices[i] = new Vector2(vertices[i*2] /2 , vertices[i *2  + 1]/2);
+            System.out.println("x : " + worldVertices[i]);
+
+        }
+        ChainShape cs = new ChainShape();
+        cs.createChain(worldVertices);
+        return cs;
     }
 
     @Override
