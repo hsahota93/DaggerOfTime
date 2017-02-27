@@ -32,6 +32,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
 import com.hj.daggeroftime.Sprites.Prince;
+import com.hj.daggeroftime.Tools.B2WorldCreator;
 
 /**
  * Created by jacob on 2/22/2017.
@@ -75,155 +76,10 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
+        new B2WorldCreator(world, map, level);
+
         player = new Prince(world);
 
-        //Stuff to make the ground, water, key, etc...
-        BodyDef bodyDef = new BodyDef();                        //defining body
-        PolygonShape polygonShape = new PolygonShape();         //polygon shape for the fixture
-        FixtureDef fixtureDef = new FixtureDef();               //define fixture before add to the body
-
-        Body body;
-        CircleShape circleShape = new CircleShape();
-
-        if(level.compareTo("Levels/level2.tmx") == 0) {
-
-/*
-            //For coin
-            for (MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
-
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((ellipse.x + ellipse.width / 2) / DaggerOfTime.PPM,
-                        (ellipse.y + ellipse.height / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                circleShape.setRadius((ellipse.width / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = circleShape;
-                body.createFixture(fixtureDef);
-            }
-*/
-            //For ground
-            for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-
-            }
-        } else {            //If level1 is selected
-
-    /*
-            //For coins
-            for (MapObject object : map.getLayers().get(9).getObjects().getByType(EllipseMapObject.class)) {
-
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((ellipse.x + ellipse.width / 2) / DaggerOfTime.PPM,
-                        (ellipse.y + ellipse.height / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                circleShape.setRadius((ellipse.width / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = circleShape;
-                body.createFixture(fixtureDef);
-            }
-    */
-
-            //For the ground
-            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-/*
-            //For the Water/Acid
-            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-            //For the spikes
-            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-
-            //For the fire
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-
-            }
-
-            //For the key
-            for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set((rectangle.getX() + rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getY() + rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox((rectangle.getWidth() / 2) / DaggerOfTime.PPM,
-                        (rectangle.getHeight() / 2) / DaggerOfTime.PPM);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-*/
-        }  //End if-else
     }  //End constructor
 
     @Override
@@ -288,5 +144,10 @@ public class PlayScreen implements Screen {
     @Override
     public void dispose() {
 
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+        hud.dispose();
     }
 }
