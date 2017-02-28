@@ -28,6 +28,8 @@ public abstract class InteractiveTileObject {
         this.map = map;
         this.bounds = bounds;
 
+        //Stupid GitHub
+
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape polygonShape = new PolygonShape();
