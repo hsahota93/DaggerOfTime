@@ -9,13 +9,19 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
+
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Ellipse;
+
 import com.badlogic.gdx.math.Polyline;
+
+import com.badlogic.gdx.math.Polygon;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -45,11 +51,10 @@ public class PlayScreen implements Screen {
     private DaggerOfTime game;
     private OrthographicCamera gameCamera;
     private Hud hud;
-    private  Viewport gamePort;
-    private String level;
-    private TmxMapLoader mapLoader; // load map to game
-    private TiledMap map; // map itself
-    private OrthogonalTiledMapRenderer renderer; // render map into the screen
+    private Viewport gamePort;
+    private TmxMapLoader mapLoader;                     // load map to game
+    private TiledMap map;                               // map itself
+    private OrthogonalTiledMapRenderer renderer;        // render map into the screen
 
     //Box2d varibles
     private World world;
@@ -58,16 +63,15 @@ public class PlayScreen implements Screen {
      @param game : passing game class
      @param level: passing level
      */
-    public PlayScreen(DaggerOfTime game, String level){
+    public PlayScreen(DaggerOfTime game, String level) {
+
         this.game = game;
-        this.level = level;
         gameCamera = new OrthographicCamera();
         gamePort = new FillViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, gameCamera); //width, height, gameCamera
         hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
-        System.out.println(""+ level);
-        map = mapLoader.load("Levels\\" +level.toString());
+        map = mapLoader.load(level);
 
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);
@@ -77,31 +81,78 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0,0), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        BodyDef bodyDef = new BodyDef(); // defining body
-       PolygonShape polygonShape = new PolygonShape(); //polygon shape for the fixture
-        FixtureDef fixtureDef = new FixtureDef(); //define fiture before add to the body
+        BodyDef bodyDef = new BodyDef();                        // defining body
+        PolygonShape polygonShape = new PolygonShape();         //polygon shape for the fixture
+        FixtureDef fixtureDef = new FixtureDef();               //define fiture before add to the body
+
         Body body;
         CircleShape circleShape = new CircleShape();
 
-        for(MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
 
-            Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+        if(level.compareTo("Levels/level2.tmx") == 0) {
+            // floor
+            for (MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
 
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set(ellipse.x + ellipse.width/2  , ellipse.y + ellipse.height/2);
+                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
 
-            body = world.createBody(bodyDef);
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(ellipse.x + ellipse.width / 2, ellipse.y + ellipse.height / 2);
 
-            circleShape.setRadius(ellipse.width/2);
-            fixtureDef.shape = circleShape;
-            body.createFixture(fixtureDef);
-        }
+                body = world.createBody(bodyDef);
 
-        for(MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
+                circleShape.setRadius(ellipse.width / 2);
+                fixtureDef.shape = circleShape;
+                body.createFixture(fixtureDef);
+            }
+            // for coins
+            for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth()/2 , rectangle.getY() + rectangle.getHeight()/2);
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
+
+                body = world.createBody(bodyDef);
+
+                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = polygonShape;
+                body.createFixture(fixtureDef);
+
+            }
+            //spikes
+            for(MapObject object : map.getLayers().get(12).getObjects().getByType(PolylineMapObject.class)) {
+                Shape shape = createPolyLine((PolylineMapObject) object);
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+
+                body = world.createBody(bodyDef);
+
+                body.createFixture(shape, 1.0f);
+                //  shape.dispose();
+            }
+
+        } else {            //If level1 is selected
+
+            //For coins
+            for (MapObject object : map.getLayers().get(9).getObjects().getByType(EllipseMapObject.class)) {
+
+                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(ellipse.x + ellipse.width / 2, ellipse.y + ellipse.height / 2);
+
+                body = world.createBody(bodyDef);
+
+                circleShape.setRadius(ellipse.width / 2);
+                fixtureDef.shape = circleShape;
+                body.createFixture(fixtureDef);
+            }
+
+            //For the ground
+            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
 
                 body = world.createBody(bodyDef);
 
@@ -110,20 +161,63 @@ public class PlayScreen implements Screen {
                 body.createFixture(fixtureDef);
             }
 
-        for(MapObject object : map.getLayers().get(12).getObjects().getByType(PolylineMapObject.class)) {
-            Shape shape = createPolyLine((PolylineMapObject) object);
+            //For the Water/Acid
+            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-            bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
 
-            body = world.createBody(bodyDef);
+                body = world.createBody(bodyDef);
 
-            body.createFixture(shape, 1.0f);
-          //  shape.dispose();
+                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = polygonShape;
+                body.createFixture(fixtureDef);
+            }
+
+            //For the spikes
+            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
+
+                body = world.createBody(bodyDef);
+
+                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = polygonShape;
+                body.createFixture(fixtureDef);
+            }
+
+            //For the fire
+            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
+
+                body = world.createBody(bodyDef);
+
+                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = polygonShape;
+                body.createFixture(fixtureDef);
+            }
+
+
+            //For the key
+            for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
+
+                body = world.createBody(bodyDef);
+
+                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = polygonShape;
+                body.createFixture(fixtureDef);
+            }
         }
-
-
-
-
     }
 
     public static ChainShape createPolyLine(PolylineMapObject polyline){
@@ -145,13 +239,13 @@ public class PlayScreen implements Screen {
 
     }
     /*To handle interactions*/
-    public void handleInput(float dt){
+    public void handleInput(float dt) {
         if(Gdx.input.isTouched()){
-            gameCamera.position.x +=100*dt;
+            gameCamera.position.x +=500*dt;
         }
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         handleInput(dt);
         gameCamera.update();
         renderer.setView(gameCamera);

@@ -101,12 +101,14 @@ project(":html") {
 project(":core") {
     apply plugin: "java"
 
-
     dependencies {
+        testCompile "junit:junit:+"
+        //testCompile "org.mockito:mockito-core:1.9.5"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
     }
 }
+
 
 tasks.eclipse.doLast {
     delete ".project"
