@@ -60,7 +60,7 @@ public class Hud implements Disposable {
         table.add(countdoenLabel).expandX();
 
 
-        stage.addActor(table); // adding the tabel to the stage
+        stage.addActor(table); // adding the table to the stage
     }
 
 

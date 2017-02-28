@@ -25,7 +25,7 @@ public class DaggerOfTime extends Game {
 	
 	@Override
 	public void dispose () {
-	//	batch.dispose();
-		//img.dispose();
+
+		batch.dispose();
 	}
 }
