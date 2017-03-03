@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
@@ -39,26 +40,33 @@ import com.hj.daggeroftime.Tools.B2WorldCreator;
  */
 public class PlayScreen implements Screen {
 
+    //Reference to our Game, used to set Screens
     private DaggerOfTime game;
+    private TextureAtlas atlas;
+
+    //Basic playscreen variables
     private OrthographicCamera gameCamera;
     private Hud hud;
     private Viewport gamePort;
+
+    //Tiled map variables
     private TmxMapLoader mapLoader;                     // load map to game
     private TiledMap map;                               // map itself
     private OrthogonalTiledMapRenderer renderer;        // render map into the screen
+
     private Prince player;
 
     private int maxPlayerSpeed = 2;
 
-    //Box2d varibles
+    //Box2d variables
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;  // represent the body and fixtures of box 2d world
-    /*
-     @param game : passing game class
-     @param level: passing level
-     */
+
+
+     //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
 
+        atlas = new TextureAtlas("Pictures/RunningPrince.pack");
         this.game = game;
         gameCamera = new OrthographicCamera();
         gamePort = new FitViewport(DaggerOfTime.screenWidth / DaggerOfTime.PPM,
@@ -78,9 +86,14 @@ public class PlayScreen implements Screen {
 
         new B2WorldCreator(world, map, level);
 
-        player = new Prince(world);
+        player = new Prince(world, this);
 
     }  //End constructor
+
+    public TextureAtlas getAtlas() {
+
+        return atlas;
+    }
 
     @Override
     public void show() {
@@ -103,6 +116,9 @@ public class PlayScreen implements Screen {
         handleInput(dt);
 
         world.step(1/60f, 6, 2);
+
+        player.update(dt);
+
         gameCamera.position.x = player.b2body.getPosition().x;
 
         gameCamera.update();
@@ -117,6 +133,13 @@ public class PlayScreen implements Screen {
         renderer.render(); // rendering the map
         box2DDebugRenderer.render(world, gameCamera.combined);
 
+        //Draws the sprite
+        game.batch.setProjectionMatrix(gameCamera.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
+
+        //Draws the hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
