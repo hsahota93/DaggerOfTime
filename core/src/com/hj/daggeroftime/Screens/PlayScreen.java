@@ -2,9 +2,11 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
@@ -36,6 +38,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
@@ -43,226 +46,123 @@ import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.FLOAD;
 
 
+import com.hj.daggeroftime.Sprites.Prince;
+import com.hj.daggeroftime.Tools.B2WorldCreator;
+
 /**
  * Created by jacob on 2/22/2017.
  */
 public class PlayScreen implements Screen {
 
+    //Reference to our Game, used to set Screens
     private DaggerOfTime game;
+    private TextureAtlas atlas;
+
+    //Basic playscreen variables
     private OrthographicCamera gameCamera;
     private Hud hud;
     private Viewport gamePort;
+
+    //Tiled map variables
     private TmxMapLoader mapLoader;                     // load map to game
     private TiledMap map;                               // map itself
     private OrthogonalTiledMapRenderer renderer;        // render map into the screen
 
-    //Box2d varibles
+    private Prince player;
+
+    private int maxPlayerSpeed = 2;
+
+    //Box2d variables
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;  // represent the body and fixtures of box 2d world
-    /*
-     @param game : passing game class
-     @param level: passing level
-     */
+
+
+     //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
 
+        atlas = new TextureAtlas("Pictures/RunningPrince.pack");
         this.game = game;
         gameCamera = new OrthographicCamera();
-        gamePort = new FillViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, gameCamera); //width, height, gameCamera
+        gamePort = new FitViewport(DaggerOfTime.screenWidth / DaggerOfTime.PPM,
+                DaggerOfTime.screenHeight / DaggerOfTime.PPM, gameCamera); //width, height, gameCamera
         hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
         map = mapLoader.load(level);
 
-        renderer = new OrthogonalTiledMapRenderer(map);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / DaggerOfTime.PPM);
         gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);
 
         /*@param1 vector2: for gravity,
           @param2 true: sleep object at the rest */
-        world = new World(new Vector2(0,0), true);
+        world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        BodyDef bodyDef = new BodyDef();                        // defining body
-        PolygonShape polygonShape = new PolygonShape();         //polygon shape for the fixture
-        FixtureDef fixtureDef = new FixtureDef();               //define fiture before add to the body
 
-        Body body;
-        CircleShape circleShape = new CircleShape();
+        new B2WorldCreator(world, map, level);
 
+        player = new Prince(world, this);
 
-        if(level.compareTo("Levels/level2.tmx") == 0) {
-            // floor
-            for (MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
+    }  //End constructor
 
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+    public TextureAtlas getAtlas() {
 
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(ellipse.x + ellipse.width / 2, ellipse.y + ellipse.height / 2);
-
-                body = world.createBody(bodyDef);
-
-                circleShape.setRadius(ellipse.width / 2);
-                fixtureDef.shape = circleShape;
-                body.createFixture(fixtureDef);
-            }
-            // for coins
-            for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-
-            }
-            //spikes
-            for(MapObject object : map.getLayers().get(12).getObjects().getByType(PolylineMapObject.class)) {
-                Shape shape = createPolyLine((PolylineMapObject) object);
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-
-                body = world.createBody(bodyDef);
-
-                body.createFixture(shape, 1.0f);
-                //  shape.dispose();
-            }
-
-        } else {            //If level1 is selected
-
-            //For coins
-            for (MapObject object : map.getLayers().get(9).getObjects().getByType(EllipseMapObject.class)) {
-
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(ellipse.x + ellipse.width / 2, ellipse.y + ellipse.height / 2);
-
-                body = world.createBody(bodyDef);
-
-                circleShape.setRadius(ellipse.width / 2);
-                fixtureDef.shape = circleShape;
-                body.createFixture(fixtureDef);
-            }
-
-            //For the ground
-            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-            //For the Water/Acid
-            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-            //For the spikes
-            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-            //For the fire
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-
-
-            //For the key
-            for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                bodyDef.type = BodyDef.BodyType.StaticBody;
-                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
-
-                body = world.createBody(bodyDef);
-
-                polygonShape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
-                fixtureDef.shape = polygonShape;
-                body.createFixture(fixtureDef);
-            }
-        }
-    }
-
-    public static ChainShape createPolyLine(PolylineMapObject polyline){
-        // getting the vertices of the polyline objects
-        float[] vertices = polyline.getPolyline().getTransformedVertices();
-        Vector2[] worldVertices = new Vector2[vertices.length/2];
-        for(int i = 0; i < worldVertices.length; i++){
-            worldVertices[i] = new Vector2(vertices[i*2] /2 , vertices[i *2  + 1]/2);
-            System.out.println("x : " + worldVertices[i]);
-
-        }
-        ChainShape cs = new ChainShape();
-        cs.createChain(worldVertices);
-        return cs;
+        return atlas;
     }
 
     @Override
     public void show() {
 
     }
+
     /*To handle interactions*/
     public void handleInput(float dt) {
-        if(Gdx.input.isTouched()){
-            gameCamera.position.x +=500*dt;
-        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed)
+
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed)
+
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
     }
 
     public void update(float dt) {
+
         handleInput(dt);
+
+        world.step(1/60f, 6, 2);
+
+        player.update(dt);
+
+        gameCamera.position.x = player.b2body.getPosition().x;
+
+
         gameCamera.update();
         renderer.setView(gameCamera);
     }
 
     @Override
     public void render(float delta) {
+
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
         box2DDebugRenderer.render(world, gameCamera.combined);
 
+        //Draws the sprite
+        game.batch.setProjectionMatrix(gameCamera.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
+
+        //Draws the hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
-
 
     @Override
     public void resize(int width, int height) {
@@ -287,5 +187,10 @@ public class PlayScreen implements Screen {
     @Override
     public void dispose() {
 
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+        hud.dispose();
     }
 }

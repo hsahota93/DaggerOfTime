@@ -20,10 +20,11 @@ public class MenuScreen implements Screen {
     private Stage stage;
     private TextButton levelOneButton;
     private TextButton levelTwoButton;
-    private  static final int  buttonWidth = 500;
+    private  static final int buttonWidth = 500;
     private  static final int buttonHeight = 100;
 
-    public MenuScreen(DaggerOfTime game){
+    public MenuScreen(DaggerOfTime game) {
+
         this.game = game;
         stage = new Stage();
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
@@ -66,7 +67,8 @@ public class MenuScreen implements Screen {
     *   Set the screen to the 'PlayScreen'
     *   and load the proper sprite sheet.
     * */
-    public void changeScreen(String level){
+    public void changeScreen(String level) {
+
         game.setScreen(new PlayScreen(game, level));
         this.dispose();
     }
