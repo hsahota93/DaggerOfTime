@@ -104,10 +104,13 @@ public class PlayScreen implements Screen {
     public void handleInput(float dt) {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed)
+
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed)
+
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
     }
 
@@ -127,6 +130,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

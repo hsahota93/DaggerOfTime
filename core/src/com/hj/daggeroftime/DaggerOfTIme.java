@@ -12,9 +12,9 @@ public class DaggerOfTime extends Game {
 
 	@Override
 	public void create() {
+
 		batch = new SpriteBatch();
 		setScreen(new SplashScreen(this));
-		//setScreen(new PlayScreen(this)); // passing class to the playScreen. That class set will handle with screen
 	}
 
 	/*Game logic updates are usually performed here*/
