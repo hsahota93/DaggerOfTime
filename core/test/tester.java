@@ -20,6 +20,7 @@ public class tester {
     @Ignore
     public void thisIsIgnored()
     {
+
     }
 
     @Test

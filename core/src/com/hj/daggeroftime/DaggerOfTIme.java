@@ -2,6 +2,7 @@ package com.hj.daggeroftime;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.hj.daggeroftime.Screens.SplashScreen;
 
 public class DaggerOfTime extends Game {
 
