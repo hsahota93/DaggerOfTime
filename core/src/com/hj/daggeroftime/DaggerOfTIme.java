@@ -14,7 +14,6 @@ public class DaggerOfTime extends Game {
 	//Creates splash screen
 	@Override
 	public void create() {
-
 		batch = new SpriteBatch();
 		setScreen(new SplashScreen(this));
 	}
@@ -27,6 +26,7 @@ public class DaggerOfTime extends Game {
 
 	//For testing
 	public int add(){
+
 		return 7;
 	}
 
