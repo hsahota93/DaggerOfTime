@@ -17,9 +17,6 @@ public class B2WorldCreator {
 
     public B2WorldCreator(World world, TiledMap map, String level) {
 
-        Body body;
-        CircleShape circleShape = new CircleShape();
-
         if(level.compareTo("Levels/level2.tmx") == 0) {
 
             //For ground

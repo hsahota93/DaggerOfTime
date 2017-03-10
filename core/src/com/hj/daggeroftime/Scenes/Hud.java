@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Disableable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -23,14 +22,15 @@ public class Hud implements Disposable {
     private float timeCount;
     private Integer score;
 
-    Label countdoenLabel;
-    Label scoreLabel;
-    Label timeLabel;
-    Label levelLabel;
-    Label worldLabel;
-    Label DaggerofTimeLabel;
+    private Label countDownLabel;
+    private Label scoreLabel;
+    private Label timeLabel;
+    private Label levelLabel;
+    private Label worldLabel;
+    private Label DaggerofTimeLabel;
 
-    public Hud(SpriteBatch sb){
+    public Hud(SpriteBatch sb, String level) {
+        
         worldTimer = 300;
         timeCount = 0;
         score = 0;
@@ -41,10 +41,10 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        countdoenLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        countDownLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         scoreLabel = new Label(String.format("%6d",score ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        levelLabel = new Label("2-2", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("World", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         DaggerofTimeLabel  = new Label("Dagger Of Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
 
@@ -57,12 +57,11 @@ public class Hud implements Disposable {
 
         table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
-        table.add(countdoenLabel).expandX();
+        table.add(countDownLabel).expandX();
 
 
         stage.addActor(table); // adding the table to the stage
     }
-
 
     @Override
     public void dispose() {
