@@ -44,7 +44,7 @@ public class MenuScreen implements Screen {
         stage.addActor(levelOneButton); // adding to the stage
         stage.addActor(levelTwoButton);
 
-        //click event listener
+        //click event listener for levelone button
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -52,9 +52,11 @@ public class MenuScreen implements Screen {
             }
         });
 
+        // click event listeber for leveltwo button
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
                 changeScreen("Levels/level2.tmx");
             }
         });

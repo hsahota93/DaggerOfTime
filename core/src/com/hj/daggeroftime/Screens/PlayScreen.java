@@ -1,11 +1,13 @@
 package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -16,6 +18,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
+
+
 import com.hj.daggeroftime.Sprites.Prince;
 import com.hj.daggeroftime.Tools.B2WorldCreator;
 
@@ -55,7 +59,7 @@ public class PlayScreen implements Screen {
         gameCamera = new OrthographicCamera();
         gamePort = new FitViewport(DaggerOfTime.screenWidth / DaggerOfTime.PPM,
                 DaggerOfTime.screenHeight / DaggerOfTime.PPM, gameCamera); //width, height, gameCamera
-        hud = new Hud(game.batch, level); // calling the Hud class to display scores and timer
+        hud = new Hud(game.batch); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
         map = mapLoader.load(level);
@@ -67,6 +71,7 @@ public class PlayScreen implements Screen {
           @param2 true: sleep object at the rest */
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
+
 
         new B2WorldCreator(world, map, level);
 
@@ -108,6 +113,7 @@ public class PlayScreen implements Screen {
 
         gameCamera.position.x = player.b2body.getPosition().x;
 
+
         gameCamera.update();
         renderer.setView(gameCamera);
     }
@@ -119,7 +125,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        box2DDebugRenderer.render(world, gameCamera.combined);
+     //   box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);

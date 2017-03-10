@@ -11,6 +11,7 @@ public class DaggerOfTime extends Game {
 	public static final int screenHeight = 300;
 	public static final float PPM = 100;
 
+
 	@Override
 	public void create() {
 
@@ -23,7 +24,11 @@ public class DaggerOfTime extends Game {
 	public void render () {
 		super.render();
 	}
-	
+
+	public int add(){
+		return 7;
+	}
+
 	@Override
 	public void dispose () {
 		batch.dispose();

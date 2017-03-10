@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "24.0.2"
-    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+    compileSdkVersion 23
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -16,11 +16,12 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
+        exclude 'LICENSE.txt'
     }
     defaultConfig {
         applicationId "com.hj.daggeroftime"
         minSdkVersion 8
-        targetSdkVersion 24
+        targetSdkVersion 23
     }
 }
 
@@ -91,7 +92,8 @@ eclipse {
 
     classpath {
         plusConfigurations += [ project.configurations.compile ]        
-        containers 'com.android.ide.eclipse.adt.ANDROID_FRAMEWORK', 'com.android.ide.eclipse.adt.LIBRARIES'       
+        containers 'com.android.ide.eclipse.adt.ANDROID_FRAMEWORK', 'com.android.ide.eclipse.adt.LIBRARIES'
+
     }
 
     project {
