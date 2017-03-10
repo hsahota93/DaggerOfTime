@@ -19,14 +19,20 @@ public class SplashScreen implements Screen {
     private DaggerOfTime game;
     public static int timeElapsed ;
     private Sprite sprite;
+    private float userScreenWidth;
+    private float userScreenHeight;
+
+    public SplashScreen(){}
+
     public SplashScreen(DaggerOfTime game){
-
         this.game = game;
-
-         texture = new Texture("splash.png");
-         sprite = new Sprite(texture);
-         sprite.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        texture = new Texture("splash.png");
+        sprite = new Sprite(texture);
+        setScreenWidth();
+        setUserScreenHeight();
+        sprite.setSize(getScreenWidth(),getHeight());
     }
+
 
     @Override
     public void show() {
@@ -76,5 +82,21 @@ public class SplashScreen implements Screen {
     public void dispose() {
      //   spriteBatch.dispose();
         texture.dispose();
+    }
+
+    public void setScreenWidth(){
+        userScreenWidth = Gdx.graphics.getWidth();
+        System.out.println(userScreenWidth);
+    }
+
+    public float getScreenWidth(){
+        return userScreenWidth;
+    }
+
+    public void setUserScreenHeight(){
+        userScreenHeight = Gdx.graphics.getHeight();
+    }
+    public float getHeight(){
+        return userScreenHeight;
     }
 }
