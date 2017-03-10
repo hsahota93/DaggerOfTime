@@ -4,8 +4,6 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.Sprites.Ground;
 
@@ -19,21 +17,25 @@ public class B2WorldCreator {
 
         if(level.compareTo("Levels/level2.tmx") == 0) {
 
-            //For ground
+            //For ground, gets all the objects in layer "11"
             for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
+                //Creates all the rectangle objects in layer "11"
                 new Ground(world, map, rectangle);
 
             }
-        } else {            //If level1 is selected
 
-            //For the ground
+            //If level1 is selected
+        } else {
+
+            //For ground, gets all the objects in layer "4"
             for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
+                //Creates all the rectangle objects in layer "4"
                 new Ground(world, map, rectangle);
             } //End for
         }  //End if-else
     } //End constructor
-}
+} //End B2WorldCreator

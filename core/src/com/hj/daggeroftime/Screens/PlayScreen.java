@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
         gameCamera = new OrthographicCamera();
         gamePort = new FitViewport(DaggerOfTime.screenWidth / DaggerOfTime.PPM,
                 DaggerOfTime.screenHeight / DaggerOfTime.PPM, gameCamera); //width, height, gameCamera
-        hud = new Hud(game.batch); // calling the Hud class to display scores and timer
+        hud = new Hud(game.batch, level); // calling the Hud class to display scores and timer
         mapLoader = new TmxMapLoader();
 
         map = mapLoader.load(level);
