@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Screens.MenuScreen;
+
+import java.security.PrivateKey;
 
 public class SplashScreen implements Screen {
 
@@ -15,13 +18,14 @@ public class SplashScreen implements Screen {
     private Texture texture;
     private DaggerOfTime game;
     public static int timeElapsed ;
-
+    private Sprite sprite;
     public SplashScreen(DaggerOfTime game){
 
         this.game = game;
-        spriteBatch = new SpriteBatch();
-        texture = new Texture("splash.png");
 
+         texture = new Texture("splash.png");
+         sprite = new Sprite(texture);
+         sprite.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     }
 
     @Override
@@ -35,8 +39,9 @@ public class SplashScreen implements Screen {
         timeElapsed +=1;
         Gdx.gl.glClearColor(23,100,200,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         game.batch.begin(); // open batch file
-        game.batch.draw(texture,0,0); // source , x, y
+        sprite.draw(game.batch);
         game.batch.end(); // close the batch
 
         if(timeElapsed > 200){
@@ -69,7 +74,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
-        spriteBatch.dispose();
+     //   spriteBatch.dispose();
         texture.dispose();
     }
 }
