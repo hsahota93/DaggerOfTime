@@ -22,6 +22,7 @@ public abstract class InteractiveTileObject {
     protected Rectangle bounds;
     protected Body body;
 
+    //Creates any rectangle TileObject in the world (i.e Ground)
     public InteractiveTileObject(World world, TiledMap map, Rectangle bounds) {
 
         this.world = world;

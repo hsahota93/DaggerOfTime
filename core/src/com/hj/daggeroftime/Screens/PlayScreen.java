@@ -42,8 +42,10 @@ public class PlayScreen implements Screen {
     private TiledMap map;                               // map itself
     private OrthogonalTiledMapRenderer renderer;        // render map into the screen
 
+    //The body that will be controlled by the player (the main actor)
     private Prince player;
 
+    //Max speed 'player' can travel in x-axis
     private int maxPlayerSpeed = 2;
 
     //Box2d variables
@@ -80,7 +82,6 @@ public class PlayScreen implements Screen {
     }  //End constructor
 
     public TextureAtlas getAtlas() {
-
         return atlas;
     }
 
@@ -92,16 +93,21 @@ public class PlayScreen implements Screen {
     /*To handle interactions*/
     public void handleInput(float dt) {
 
+        //If the 'UP' key is pressed apply linear impulse upwards
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
 
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+
+        //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed)
 
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+
+        //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed)
 
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
-    }
+    } //End handleInput
 
     public void update(float dt) {
 
@@ -112,7 +118,6 @@ public class PlayScreen implements Screen {
         player.update(dt);
 
         gameCamera.position.x = player.b2body.getPosition().x;
-
 
         gameCamera.update();
         renderer.setView(gameCamera);
@@ -125,7 +130,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-     //   box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);

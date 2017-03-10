@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="101">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="108">
  <tileset firstgid="1" name="DaggerOfTime" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="3136" columns="56">
   <image source="../Pictures/DaggerOfTime.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
@@ -98,9 +98,6 @@
   <object id="17" x="1151.84" y="160.462" width="32" height="32.8442"/>
   <object id="18" x="1630.73" y="128.804" width="32" height="64"/>
   <object id="19" x="1728.22" y="80.5628" width="175.216" height="15.7588"/>
-  <object id="21" x="2192" y="96">
-   <polyline points="0,0 -32,0 -32,32 -64,32 -64,64 -96,64 -96,96 0,96 0,0"/>
-  </object>
   <object id="22" x="2272.44" y="80.0603" width="158.633" height="15.7588"/>
   <object id="23" x="2479.48" y="127.296" width="15.9196" height="64"/>
   <object id="43" x="2816" y="160" width="32" height="16"/>
@@ -113,12 +110,15 @@
   <object id="51" x="3152" y="128" width="32" height="16"/>
   <object id="52" x="3232" y="192" width="608" height="16"/>
   <object id="53" x="1984" y="192" width="816" height="16"/>
-  <object id="94" x="1.21051" y="1.21051" height="208"/>
-  <object id="95" x="3840" y="0" width="6.99189" height="206.997"/>
-  <object id="96" x="0" y="0" width="3840"/>
   <object id="97" x="2800" y="208" width="432"/>
   <object id="98" x="1664" y="208" width="319.416" height="3.83876"/>
   <object id="100" x="443.158" y="208" width="154.227" height="3.83876"/>
+  <object id="101" x="1.21051" y="-72.2663" height="278.658"/>
+  <object id="102" x="-8.47355" y="-64" width="3864.47"/>
+  <object id="104" x="3840.94" y="-75.8978" height="283.5"/>
+  <object id="105" x="2160" y="96" width="32" height="96"/>
+  <object id="106" x="2128" y="128" width="32" height="64"/>
+  <object id="107" x="2096" y="160" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Spikes">
   <object id="26" x="703.5" y="171.141" width="160" height="19.5"/>

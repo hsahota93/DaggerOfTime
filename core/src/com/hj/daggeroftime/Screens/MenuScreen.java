@@ -113,5 +113,4 @@ public class MenuScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
-
 }

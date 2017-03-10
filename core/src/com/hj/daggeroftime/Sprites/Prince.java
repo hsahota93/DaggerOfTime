@@ -2,7 +2,6 @@ package com.hj.daggeroftime.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -23,6 +22,7 @@ public class Prince extends Sprite {
 
     //Constructor
     public Prince(World world, PlayScreen screen) {
+
         super(screen.getAtlas().findRegion("runningPrince"));
         this.world = world;
         definePrince();
@@ -48,10 +48,10 @@ public class Prince extends Sprite {
         //Telling the world to create the body
         b2body = world.createBody(bodyDef);
 
-
+        //Defining the shape and radius of the body
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(5 / DaggerOfTime.PPM);
+        shape.setRadius(6 / DaggerOfTime.PPM);
 
         //Creates the fixture
         fixtureDef.shape = shape;

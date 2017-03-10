@@ -6,15 +6,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hj.daggeroftime.DaggerOfTime;
-import com.hj.daggeroftime.Screens.MenuScreen;
-
-import java.security.PrivateKey;
 
 public class SplashScreen implements Screen {
 
-    private SpriteBatch spriteBatch;
+    //private SpriteBatch spriteBatch;
     private Texture texture;
     private DaggerOfTime game;
     public static int timeElapsed ;
@@ -22,9 +18,10 @@ public class SplashScreen implements Screen {
     private float userScreenWidth;
     private float userScreenHeight;
 
-    public SplashScreen(){}
+    //public SplashScreen(){}
 
-    public SplashScreen(DaggerOfTime game){
+    public SplashScreen(DaggerOfTime game) {
+
         this.game = game;
         texture = new Texture("splash.png");
         sprite = new Sprite(texture);
@@ -54,9 +51,8 @@ public class SplashScreen implements Screen {
 
             game.setScreen(new MenuScreen(game));
             this.dispose();
-        }
-
-    }
+        } //end if
+    } //End render
 
     @Override
     public void resize(int width, int height) {
@@ -80,11 +76,12 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
-     //   spriteBatch.dispose();
+
         texture.dispose();
     }
 
-    public void setScreenWidth(){
+    public void setScreenWidth() {
+
         userScreenWidth = Gdx.graphics.getWidth();
         System.out.println(userScreenWidth);
     }
@@ -96,7 +93,8 @@ public class SplashScreen implements Screen {
     public void setUserScreenHeight(){
         userScreenHeight = Gdx.graphics.getHeight();
     }
+
     public float getHeight(){
         return userScreenHeight;
     }
-}
+} //End SplashScreen
