@@ -135,8 +135,6 @@ public class Prince extends Sprite {
 
         //Creates the fixture
         fixtureDef.shape = shape;
-        b2body.createFixture(fixtureDef);
-        b2body.setUserData("prince");
-
+        b2body.createFixture(fixtureDef).setUserData("prince");
     }
 }

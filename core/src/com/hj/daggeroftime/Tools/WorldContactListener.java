@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.hj.daggeroftime.Sprites.InteractiveTileObject;
 
 /**
  * Created by Harman on 3/12/17.
@@ -21,14 +22,18 @@ public class WorldContactListener implements ContactListener {
         if(fixA.getUserData() == "prince" || fixB.getUserData() == "prince") {
 
             Fixture thePrince = fixA.getUserData() == "prince" ? fixA : fixB;
-            //Fixture object = thePrince == fixA
+            Fixture object = thePrince == fixA ? fixB : fixA;
+
+            if(object.getUserData() instanceof InteractiveTileObject) {
+
+                ((InteractiveTileObject) object.getUserData()).onCollision();
+            }
         }
     }
 
     @Override
     public void endContact(Contact contact) {
 
-        Gdx.app.log("End Contact", "");
     }
 
     @Override
