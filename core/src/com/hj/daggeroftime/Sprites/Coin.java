@@ -41,7 +41,7 @@ public class Coin extends InteractiveTileObject {
 
         //Creates the fixture
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = true;
+        //fixtureDef.isSensor = true;
         body.createFixture(fixtureDef);
     }
 
