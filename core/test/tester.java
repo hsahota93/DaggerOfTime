@@ -11,6 +11,7 @@ import static org.junit.Assert.assertTrue;
  * Created by jacob on 2/27/2017.
  */
 public class tester {
+
     //gradle2.bat connectInstrumentTest
     @Test
     public void thisAlwaysPasses()
@@ -18,27 +19,30 @@ public class tester {
         assertTrue(true);
     }
 
-    DaggerOfTime daggerOfTime = new DaggerOfTime();
+    private DaggerOfTime daggerOfTime = new DaggerOfTime();
 
     @Test
-    public void testWidth(){
-        int actaualValue = daggerOfTime.screenWidth;
+    public void testWidth() {
+
+        int actualValue = DaggerOfTime.screenWidth;
         int expectedValue = 400;
-        assertEquals(actaualValue,expectedValue);
+        assertEquals(actualValue, expectedValue);
     }
 
     @Test
-    public void testHeight(){
-        int actaualValue = daggerOfTime.screenHeight;
+    public void testHeight() {
+
+        int actualValue = DaggerOfTime.screenHeight;
         int expectedValue = 300;
-        assertEquals(actaualValue,expectedValue);
+        assertEquals(actualValue, expectedValue);
     }
 
     @Test
-    public void testPPMValue(){
-        float actaualValue = daggerOfTime.PPM;
+    public void testPPMValue() {
+
+        float actualValue = DaggerOfTime.PPM;
         float expectedValue = 100;
-        assertEquals(actaualValue,expectedValue,0);
+        assertEquals(actualValue, expectedValue,0);
     }
 
 }

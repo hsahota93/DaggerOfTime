@@ -18,10 +18,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
-
-
 import com.hj.daggeroftime.Sprites.Prince;
+
 import com.hj.daggeroftime.Tools.B2WorldCreator;
+import com.hj.daggeroftime.Tools.WorldContactListener;
 
 /**
  * Created by jacob on 2/22/2017.
@@ -79,6 +79,8 @@ public class PlayScreen implements Screen {
 
         player = new Prince(world, this);
 
+        world.setContactListener(new WorldContactListener());
+
     }  //End constructor
 
     public TextureAtlas getAtlas() {
@@ -94,7 +96,8 @@ public class PlayScreen implements Screen {
     public void handleInput(float dt) {
 
         //If the 'UP' key is pressed apply linear impulse upwards
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) &&
+                (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING))
 
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
 
@@ -130,7 +133,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);

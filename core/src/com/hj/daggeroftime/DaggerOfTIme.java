@@ -24,12 +24,6 @@ public class DaggerOfTime extends Game {
 		super.render();
 	}
 
-	//For testing
-	public int add(){
-
-		return 7;
-	}
-
 	//Dispose of resources
 	@Override
 	public void dispose () {
