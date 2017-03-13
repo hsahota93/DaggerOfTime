@@ -11,7 +11,7 @@ import com.hj.daggeroftime.DaggerOfTime;
 public class SplashScreen implements Screen {
 
     //private SpriteBatch spriteBatch;
-    private Texture texture;
+    protected Texture texture;
     private DaggerOfTime game;
     public static int timeElapsed ;
     private Sprite sprite;
@@ -19,7 +19,6 @@ public class SplashScreen implements Screen {
     private float userScreenHeight;
 
     public SplashScreen(DaggerOfTime game) {
-
         this.game = game;
         texture = new Texture("splash.png");
         sprite = new Sprite(texture);
@@ -27,7 +26,6 @@ public class SplashScreen implements Screen {
         setUserScreenHeight();
         sprite.setSize(getScreenWidth(),getHeight());
     }
-
 
     @Override
     public void show() {

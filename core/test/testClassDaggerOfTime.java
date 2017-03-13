@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jacob on 2/27/2017.
  */
-public class tester {
+public class testClassDaggerOfTime {
 
     //gradle2.bat connectInstrumentTest
     @Test
@@ -43,6 +43,37 @@ public class tester {
         float actualValue = DaggerOfTime.PPM;
         float expectedValue = 100;
         assertEquals(actualValue, expectedValue,0);
+    }
+    @Test
+    public void testCoinShort() {
+
+        float actualValue = DaggerOfTime.COIN_BIT;
+        float expectedValue = 4;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testDestroyedShort() {
+
+        float actualValue = DaggerOfTime.DESTROYED_BIT;
+        float expectedValue = 16;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testPrinceShort() {
+
+        float actualValue = DaggerOfTime.PRINCE_BIT;
+        float expectedValue = 2;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testSpikeShort() {
+
+        float actualValue = DaggerOfTime.SPIKE_BIT;
+        float expectedValue = 8;
+        assertEquals(actualValue, expectedValue, 0);
     }
 
 }

@@ -52,7 +52,10 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;  // represent the body and fixtures of box 2d world
 
-
+    public PlayScreen(DaggerOfTime obj){
+        setSplashScreen(obj);
+    }
+    public PlayScreen(){}
      //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
 
@@ -138,6 +141,7 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gameCamera.combined);
         game.batch.begin();
         player.draw(game.batch);
+        hud.update(delta);
         game.batch.end();
 
         //Draws the hud
@@ -163,6 +167,12 @@ public class PlayScreen implements Screen {
     @Override
     public void hide() {
 
+    }
+
+    // setting to splash Screen
+    public void setSplashScreen(DaggerOfTime obj){
+        this.game = obj;
+        obj.setScreen(new SplashScreen(obj));
     }
 
     @Override

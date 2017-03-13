@@ -20,6 +20,6 @@ public class Ground extends InteractiveTileObject {
     @Override
     public void onCollision() {
 
-        Gdx.app.log("Ground", "Collision");
+ //       Gdx.app.log("Ground", "Collision");
     }
 }

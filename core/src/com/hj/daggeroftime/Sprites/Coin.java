@@ -32,9 +32,10 @@ public class Coin extends InteractiveTileObject {
     @Override
     public void onCollision() {
 
-        Gdx.app.log("Coin", "Collision");
+     //   Gdx.app.log("Coin", "Collision");
         setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
         getCell().setTile(null);
         Hud.addScore(10);
+        Hud.setScoreLabel();
     }
 }

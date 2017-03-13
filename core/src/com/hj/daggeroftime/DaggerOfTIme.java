@@ -2,6 +2,7 @@ package com.hj.daggeroftime;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.hj.daggeroftime.Screens.PlayScreen;
 import com.hj.daggeroftime.Screens.SplashScreen;
 
 public class DaggerOfTime extends Game {
@@ -21,7 +22,8 @@ public class DaggerOfTime extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		setScreen(new SplashScreen(this));
+	//	setScreen(new SplashScreen(this));
+		PlayScreen ps = new PlayScreen(this);
 	}
 
 	/*Game logic updates are usually performed here*/
