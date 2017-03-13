@@ -45,4 +45,36 @@ public class tester {
         assertEquals(actualValue, expectedValue,0);
     }
 
+    @Test
+    public void testCoinShort() {
+
+        float actualValue = DaggerOfTime.COIN_BIT;
+        float expectedValue = 4;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testDestroyedShort() {
+
+        float actualValue = DaggerOfTime.DESTROYED_BIT;
+        float expectedValue = 16;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testPrinceShort() {
+
+        float actualValue = DaggerOfTime.PRINCE_BIT;
+        float expectedValue = 2;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
+    @Test
+    public void testSpikeShort() {
+
+        float actualValue = DaggerOfTime.SPIKE_BIT;
+        float expectedValue = 8;
+        assertEquals(actualValue, expectedValue, 0);
+    }
+
 }

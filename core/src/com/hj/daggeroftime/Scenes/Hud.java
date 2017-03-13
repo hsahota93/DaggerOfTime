@@ -23,7 +23,7 @@ public class Hud implements Disposable {
     public static Integer score;
 
     private Label countDownLabel;
-    public static Label scoreLabel;
+    private static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worldLabel;
@@ -41,7 +41,7 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        countDownLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        countDownLabel = new Label(String.format("%3d",worldTimer), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         scoreLabel = new Label(String.format("%6d",score ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
@@ -61,6 +61,18 @@ public class Hud implements Disposable {
 
 
         stage.addActor(table); // adding the table to the stage
+    }
+
+    public void update(float dt) {
+
+        timeCount += dt;
+
+        if(timeCount >= 1) {
+
+            worldTimer--;
+            countDownLabel.setText(String.format("%3d",worldTimer));
+            timeCount = 0;
+        }
     }
 
     public static void addScore(int points) {

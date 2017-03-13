@@ -28,7 +28,6 @@ public class SplashScreen implements Screen {
         sprite.setSize(getScreenWidth(),getHeight());
     }
 
-
     @Override
     public void show() {
 
@@ -74,7 +73,6 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
-
         texture.dispose();
     }
 
