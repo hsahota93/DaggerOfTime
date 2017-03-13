@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="157">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="159">
  <tileset firstgid="1" name="stand" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="2" columns="2">
   <image source="../piclevel2/stand.png" width="50" height="17"/>
  </tileset>
@@ -53,12 +53,12 @@
  </layer>
  <layer name="diamonds" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt2V1vgjAYhmGyKbgDgdIfTbIDPto/vDvZCXNACXPWynMld8xWDlD2UnVZJiL3Urytr1es12SoIRs4XkQep53M4+fNbHb83NNAIznyCc1vHvsEXsxfXs9XuBb/+RxOM21RvC+vlaxVVJOhhuzK8SLyWO1kHvPs5z2mY62ngUZy5A88v/lNsczdm7feryUt50lzioULf+X3JVVUk6GGrP5QZGLPez65n3blRe9Y62mgkRz5SBfpFHg8Eu2/skXJpl1RTYYasksbeeL2fn8g8qw6ZrWngUZy5CPNr/Zfkf1Mzv5LNpF/BJyz8Gd/kSNxzK5PZH5F5DdbxD4DERGR9BWX78ePy/pxhvWGbOC4kC98PBTS
+   eJzt2MtugkAYhmHSKmMXBWbmokm64DBzw32bbihyirXSke9J3hAdFir8oGaZiNyLeVleL1mvyJIjv7K/iDxOPZjHj9FsNjxuqaOeAsWE5jff+wU8md98ns9wLP7yPZwm2sK8zq8VrJVUkSVHfmF/EXmsejCPefbzGtOw1lJHPQWKB57ffNRepq7NW6/XkpbzoClm5sC/83xBJVVkyZHXiSIDt3znk/upFz70hrWWOuopUNzpIJ1Wtkei+69sUXDTLqkiS4783I08cbf+fyDyXzXMaksd9RQo7jS/uv9uk4+2Il8sJ4Qjn8iJcc7Wf/uLHElgdmMi8ysi17zZ+xWIiIikz1y+t2+X5f0s6478yn5rPgFMmxTe
   </data>
  </layer>
  <layer name="mudFloor" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt2MdSFEEcx/EmrfEdTMDCapWYc3oBBS/m8zRVKiaCCTwYr0ZM5cFYAoJkuCHgG5j1JBjewHDQ79TMlOw6sztb1exuFf9f1aeYWnp7emb63zOzSkkkEolEIpFIJBKJRCKRSCQSSWbyNKZUC1pj2R6JJBPZaSm1C7uxB3stc32b7k8ikcSnXivVgOM4gZPaXN9fqd1vU7R+F0zR45ZkNgXVShWiCBFMqzbXdy1rQZ3B9SDbaaEmh0IczzPatbv1G1HxfyUSkznFfDyNRjThjMF6y2MtyDe4HmQrSzknK7Eaa0KcnzbLIZFMdqZTXzMwE7MwO6Hedljx78jpJFX97qe/AziImhyc78vdul2FYYxgVOpXkkNJdf/9zDwcwzi+pDknvednv9/I9uEHfuIXfufQfF8xoW6HXNtYhypRFeJ5wqvf+ZbzHlyMEpQiijKUYw7mYl5AW78k6/MojqEWdahHg7tdgRcYxghG8TJgXLEkny/EvSxeq6Bz5TfORQauQTQDx3qffTzAQzzCYzxBM27iVsL2bdzBXSv1/beGuXsIh3EkzWdr7/47sf6937S+4yz9ncN5XMBFXJqE9+Wg/QR9fhlXcBXXcB030Kz/1WYY3ntwB56jE13oRo/lrA+tSdpu4P8bsQmbsUUn7/OPPddok4d8FKAQRYhgq70OoRJV2K79x9Xr03ebvW+0o8P+HjrRhW70oBd96McABtNsu9a1Duu1//GHOa/2+PvQH6Kt3Z/fNXjFvl7jDd7iHd7jAz7ik07dJnEsAxi0/u9nMSqwRDvvasu08+xXjBKUJmxHUYZy/AXbcFlP
+   eJzt2NdOFFEcx/FDtb6DDVhYTcSKvbyAgDf26zkkKjaKDbyw4C02RI0X1ggI0uEOKW9gRa8EyxsAXuB3MjsB1pnd2WSY3YT/L/kkk92zZ87MnP+ZmVVKIpFIJBKJRCKRSCQSiUQikUiCyZuwUk1oDid7JJIgcthQ6giO4hiOG/717Xd/Eolkbqq0UtW4iEu4rP3r+xe1+3uB1u+aBXrckmCTUaZUJrKQjUVl/vVdwVpQ6eN6kOw0UZMDHo7nLe1apX4lAeQK8/EqalCLaz7WWxprQbqP60GyspFzshXbsN3D+WkxLBLJfGcx9bUES7EMy6Pq7ZAx9x05kcSr35P0dwqnUZ6C831zpG6LMIghDEv9SlIo8e6/P5iHYxjHzwTnpP387PQf2QlMYBJT+JtC833LrLodiChmHSpBqYfnCbt+VxvWe3AOcpGHEPJRgBVYiVUubZ0Sq8/zuIAKVKIK1ZHtQrzHIIYwjBGXcYVjfL4WT5N4rdzOldM41/lwDUIBHOsz9vEcL/ASr/AaDXiIxqjtR3iMJ0b8+285c/cMzuJcgs/W9v13dv3b/2n9wXX6u4GbuIU63J6H92W3/bh9Xo87uIt7uI8HaNAztemF/R7chndoRwc60WVY60NzjLa7+X4P9mIf9uvYfU6bc402aUhHBjKRhWwcMNchlKAUB7XzuLod+m4x941WtJm/Qzs60IkudKMHvehDf4Jtd0TsxC7tfPxezqs5/h70emhr9ud0DT6wr4/4hM/4gq8YxTd81/HbRI+lD/3G//2sRyE2aOtdbZO2nv1ykIu8qO0Q8lGAfwsgWUM=
   </data>
  </layer>
  <layer name="door" width="240" height="13">
@@ -86,7 +86,7 @@
    eJzt07cNAlEURNHXESbB9IRJYIl3S8L0hSmAaWElxOpL50g3n2SqAAAAAAAAAH5j1Vet0yZt+6nXAGOc8tlz6tLFf6Ep13z2lu7p4b/QlGc++0rv9PFfaMpsqJqnRVoOU68Bxtjls/t0SEf//bsvVlcYDQ==
   </data>
  </layer>
- <objectgroup name="coins" visible="0">
+ <objectgroup name="coins">
   <object id="1" x="224" y="95" width="15" height="17">
    <ellipse/>
   </object>
@@ -219,6 +219,9 @@
   <object id="53" x="3458.25" y="49.5" width="11.5" height="13.25">
    <ellipse/>
   </object>
+  <object id="157" x="415.528" y="144.352" width="16" height="16">
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup name="ground">
   <object id="115" x="0" y="112" width="80" height="96"/>
@@ -251,7 +254,7 @@
   <object id="155" x="-5.15544" y="-64" width="3850.33"/>
   <object id="156" x="3840" y="-69.1554" height="277.155"/>
  </objectgroup>
- <objectgroup name="Spikes" visible="0">
+ <objectgroup name="Spikes">
   <object id="107" x="1458" y="189">
    <polyline points="0,0 2,-26.5 7,-2.5 16,-2.5 27.5,-26.5 39,-4.5 48.5,-4.5 53,-28 57,-5 72.5,-9 78.5,-26 82.5,-10 98.5,-10.5 102.5,-25.5 108,-0.5 0.5,0.5"/>
   </object>

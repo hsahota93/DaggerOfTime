@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.DaggerOfTime;
+import com.hj.daggeroftime.Scenes.Hud;
 
 /**
  * Created by Harman on 3/12/17.
@@ -21,33 +22,19 @@ public class Coin extends InteractiveTileObject {
     protected Body body;
     protected Ellipse bounds;
 
-    public Coin(World world, TiledMap map, Ellipse bounds) {
+    public Coin(World world, TiledMap map, Ellipse ellipse) {
 
-        this.world = world;
-        this.map = map;
-        this.bounds = bounds;
-
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set((bounds.x + bounds.width / 2) / DaggerOfTime.PPM, (bounds.y + bounds.height / 2) / DaggerOfTime.PPM);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-
-        //Telling the world to create the body
-        body = world.createBody(bodyDef);
-
-        //Defining the shape and radius of the body
-        FixtureDef fixtureDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(5 / DaggerOfTime.PPM);
-
-        //Creates the fixture
-        fixtureDef.shape = shape;
-        //fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef);
+        super(world, map, ellipse);
+        fixture.setUserData(this);
+        setCategoryFilter(DaggerOfTime.COIN_BIT);
     }
 
     @Override
     public void onCollision() {
 
-        Gdx.app.log("Coin:", "Collision");
+        Gdx.app.log("Coin", "Collision");
+        setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
+        getCell().setTile(null);
+        Hud.addScore(10);
     }
 }

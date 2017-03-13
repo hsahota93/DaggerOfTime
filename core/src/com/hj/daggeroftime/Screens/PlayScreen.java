@@ -74,7 +74,6 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-
         new B2WorldCreator(world, map, level);
 
         player = new Prince(world, this);
@@ -133,7 +132,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);

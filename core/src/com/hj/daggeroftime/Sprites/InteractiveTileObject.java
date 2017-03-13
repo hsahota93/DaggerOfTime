@@ -2,9 +2,13 @@ package com.hj.daggeroftime.Sprites;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -20,6 +24,7 @@ public abstract class InteractiveTileObject {
     protected World world;
     protected TiledMap map;
     protected Rectangle bounds;
+    protected Ellipse ellipse;
     protected Body body;
     protected Fixture fixture;
 
@@ -46,8 +51,45 @@ public abstract class InteractiveTileObject {
         fixture = body.createFixture(fixtureDef);
     }
 
-    protected InteractiveTileObject() {
+    public InteractiveTileObject(World world, TiledMap map, Ellipse ellipse) {
+
+        this.world = world;
+        this.map = map;
+        this.ellipse = ellipse;
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set((ellipse.x + ellipse.width / 2) / DaggerOfTime.PPM, (ellipse.y + ellipse.height / 2) / DaggerOfTime.PPM);
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+
+        //Telling the world to create the body
+        body = world.createBody(bodyDef);
+
+        //Defining the shape and radius of the body
+        FixtureDef fixtureDef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(5 / DaggerOfTime.PPM);
+
+        //Creates the fixture
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        body.createFixture(fixtureDef);
+        fixture = body.createFixture(fixtureDef);
     }
 
     public abstract void onCollision();
+
+    public void setCategoryFilter(short filterBit) {
+
+        Filter filter = new Filter();
+        filter.categoryBits = filterBit;
+        fixture.setFilterData(filter);
+    }
+
+    public TiledMapTileLayer.Cell getCell() {
+
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(3);
+
+        return layer.getCell((int) (body.getPosition().x * DaggerOfTime.PPM / 16),
+                (int) (body.getPosition().y * DaggerOfTime.PPM / 16));
+    }
 }

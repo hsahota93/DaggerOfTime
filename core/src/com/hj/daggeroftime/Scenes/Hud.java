@@ -20,10 +20,10 @@ public class Hud implements Disposable {
     private Viewport viewport;
     private Integer worldTimer;
     private float timeCount;
-    private Integer score;
+    public static Integer score;
 
     private Label countDownLabel;
-    private Label scoreLabel;
+    public static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worldLabel;
@@ -61,6 +61,12 @@ public class Hud implements Disposable {
 
 
         stage.addActor(table); // adding the table to the stage
+    }
+
+    public static void addScore(int points) {
+
+        score += points;
+        scoreLabel.setText(String.format("%6d",score ));
     }
 
     @Override

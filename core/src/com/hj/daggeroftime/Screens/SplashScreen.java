@@ -18,8 +18,6 @@ public class SplashScreen implements Screen {
     private float userScreenWidth;
     private float userScreenHeight;
 
-    //public SplashScreen(){}
-
     public SplashScreen(DaggerOfTime game) {
 
         this.game = game;
