@@ -18,22 +18,20 @@ import com.hj.daggeroftime.DaggerOfTime;
 public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
-    private Integer worldTimer;
-    private float timeCount;
-    public static Integer score;
-
+    protected Integer worldTimer;
+    protected float timeCount;
+    public static Integer score ;
+    protected Integer timeLimit = 300;
     private Label countDownLabel;
-    private static Label scoreLabel;
+    public static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worldLabel;
     private Label DaggerofTimeLabel;
 
     public Hud(SpriteBatch sb, String level) {
-        
-        worldTimer = 300;
-        timeCount = 0;
-        score = 0;
+
+        initiateVariables();
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
 
         stage = new Stage(viewport,sb);
@@ -41,7 +39,7 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        countDownLabel = new Label(String.format("%3d",worldTimer), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        countDownLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         scoreLabel = new Label(String.format("%6d",score ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
@@ -63,27 +61,41 @@ public class Hud implements Disposable {
         stage.addActor(table); // adding the table to the stage
     }
 
+
+    public static void addScore(int points) {
+        score += points;
+    }
+
+    public  static void setScoreLabel(){
+        scoreLabel.setText(String.format("%6d",score ));
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
+
+    public void initiateVariables(){
+        worldTimer = timeLimit;
+        timeCount = 0;
+        score = 0;
+    }
+
     public void update(float dt) {
 
         timeCount += dt;
 
         if(timeCount >= 1) {
 
-            worldTimer--;
+            worldTimerDecrementer();
             countDownLabel.setText(String.format("%3d",worldTimer));
             timeCount = 0;
         }
     }
 
-    public static void addScore(int points) {
-
-        score += points;
-        scoreLabel.setText(String.format("%6d",score ));
+    // To decrement the world timer
+    public void worldTimerDecrementer(){
+        worldTimer--;
     }
 
-    @Override
-    public void dispose() {
-
-        stage.dispose();
-    }
 }

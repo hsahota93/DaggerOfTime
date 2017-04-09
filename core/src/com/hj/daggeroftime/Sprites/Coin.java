@@ -24,7 +24,7 @@ public class Coin extends InteractiveTileObject {
 
     public Coin(World world, TiledMap map, Ellipse ellipse) {
 
-        super(world, map, ellipse);
+        super(world, map, ellipse, true);
         fixture.setUserData(this);
         setCategoryFilter(DaggerOfTime.COIN_BIT);
     }
@@ -36,5 +36,6 @@ public class Coin extends InteractiveTileObject {
         setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
         getCell().setTile(null);
         Hud.addScore(10);
+        Hud.setScoreLabel();
     }
 }

@@ -1,5 +1,7 @@
 package com.hj.daggeroftime.Sprites;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -29,6 +31,7 @@ public class Prince extends Sprite {
     private Animation princeJump;
     private boolean runningRight;
     private float stateTimer;
+    public int health = 100;
 
     //Constructor
     public Prince(World world, PlayScreen screen) {
@@ -66,7 +69,6 @@ public class Prince extends Sprite {
     public TextureRegion getFrame(float dt) {
 
         currentState = getState();
-
 
         TextureRegion region;
         switch (currentState) {
@@ -130,13 +132,24 @@ public class Prince extends Sprite {
 
         //Defining the shape and radius of the body
         FixtureDef fixtureDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / DaggerOfTime.PPM);
+        CircleShape lowerBody = new CircleShape();
+        lowerBody.setRadius(6 / DaggerOfTime.PPM);
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
-        fixtureDef.filter.maskBits = DaggerOfTime.DEFAULT_BIT | DaggerOfTime.COIN_BIT;
+        fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
+                DaggerOfTime.COIN_BIT |
+                DaggerOfTime.DANGER_BIT;
 
         //Creates the fixture
-        fixtureDef.shape = shape;
-        b2body.createFixture(fixtureDef).setUserData("prince");
+        fixtureDef.shape = lowerBody;
+        b2body.createFixture(fixtureDef).setUserData(this);
+    }
+
+    public void hit(int damage) {
+
+        DaggerOfTime.assetManager.get("Audio/Sounds/Damage.mp3",Sound.class).play();
+        health -= damage;
+        if(health <= 100) {
+            Gdx.app.log("Prince is","dead");
+        }
     }
 }

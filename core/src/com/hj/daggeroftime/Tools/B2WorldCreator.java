@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.Sprites.Coin;
 import com.hj.daggeroftime.Sprites.Ground;
+import com.hj.daggeroftime.Sprites.Water_And_Acid;
 
 /**
  * Created by Harman on 2/26/17.
@@ -50,6 +51,14 @@ public class B2WorldCreator {
 
                 //Creates all the rectangle objects in layer "4"
                 new Ground(world, map, rectangle);
+            } //End for
+
+            //For water and acid, gets all the objects in layer "7"
+            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                //Creates all the rectangle objects in layer "7"
+                new Water_And_Acid(world, map, rectangle);
             } //End for
 
             //For Coins, gets all the objects in layer "9"

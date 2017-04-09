@@ -13,13 +13,13 @@ public class Ground extends InteractiveTileObject {
 
     public Ground(World world, TiledMap map, Rectangle bounds) {
 
-        super(world, map, bounds);
+        super(world, map, bounds, false);
         fixture.setUserData(this);
     }
 
     @Override
     public void onCollision() {
 
-        Gdx.app.log("Ground", "Collision");
+        //Gdx.app.log("Ground", "Collision");
     }
 }

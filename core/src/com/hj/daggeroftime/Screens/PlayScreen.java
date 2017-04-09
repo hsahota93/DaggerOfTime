@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -52,6 +54,11 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;  // represent the body and fixtures of box 2d world
 
+    private Music music;
+
+    public PlayScreen(DaggerOfTime obj){
+        setSplashScreen(obj);
+    }
 
      //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
@@ -80,6 +87,10 @@ public class PlayScreen implements Screen {
 
         world.setContactListener(new WorldContactListener());
 
+        music = DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class);
+        music.setLooping(true);
+        music.play();
+
     }  //End constructor
 
     public TextureAtlas getAtlas() {
@@ -96,19 +107,23 @@ public class PlayScreen implements Screen {
 
         //If the 'UP' key is pressed apply linear impulse upwards
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) &&
-                (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING))
+                (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING)) {
 
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            DaggerOfTime.assetManager.get("Audio/Sounds/Jump.mp3", Sound.class).play();
+        }
 
         //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed)
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
 
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+        }
 
         //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed)
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
 
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
+        }
     } //End handleInput
 
     public void update(float dt) {
@@ -144,6 +159,11 @@ public class PlayScreen implements Screen {
         //Draws the hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+    }
+
+    public void setSplashScreen(DaggerOfTime obj){
+        this.game = obj;
+        obj.setScreen(new SplashScreen(obj));
     }
 
     @Override

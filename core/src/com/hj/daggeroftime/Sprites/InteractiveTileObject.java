@@ -29,7 +29,7 @@ public abstract class InteractiveTileObject {
     protected Fixture fixture;
 
     //Creates any rectangle TileObject in the world (i.e Ground)
-    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds) {
+    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, boolean sensor) {
 
         this.world = world;
         this.map = map;
@@ -48,17 +48,19 @@ public abstract class InteractiveTileObject {
         polygonShape.setAsBox((bounds.getWidth() / 2) / DaggerOfTime.PPM,
                 (bounds.getHeight() / 2) / DaggerOfTime.PPM);
         fixtureDef.shape = polygonShape;
+        fixtureDef.isSensor = sensor;
         fixture = body.createFixture(fixtureDef);
     }
 
-    public InteractiveTileObject(World world, TiledMap map, Ellipse ellipse) {
+    public InteractiveTileObject(World world, TiledMap map, Ellipse ellipse, boolean sensor) {
 
         this.world = world;
         this.map = map;
         this.ellipse = ellipse;
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set((ellipse.x + ellipse.width / 2) / DaggerOfTime.PPM, (ellipse.y + ellipse.height / 2) / DaggerOfTime.PPM);
+        bodyDef.position.set((ellipse.x + ellipse.width / 2) / DaggerOfTime.PPM,
+                (ellipse.y + ellipse.height / 2) / DaggerOfTime.PPM);
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
         //Telling the world to create the body
@@ -71,7 +73,7 @@ public abstract class InteractiveTileObject {
 
         //Creates the fixture
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = true;
+        fixtureDef.isSensor = sensor;
         body.createFixture(fixtureDef);
         fixture = body.createFixture(fixtureDef);
     }
