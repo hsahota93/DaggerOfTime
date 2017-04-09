@@ -10,49 +10,50 @@ import com.hj.daggeroftime.Screens.SplashScreen;
 
 public class DaggerOfTime extends Game {
 
-	public SpriteBatch batch;
-	public static final int screenWidth = 400;
-	public static final int screenHeight = 300;
-	public static final float PPM = 100;
+    public SpriteBatch batch;
+    public static final int screenWidth = 400;
+    public static final int screenHeight = 300;
+    public static final float PPM = 100;
 
-	public static final short DEAD_BIT = 1;
-	public static final short OBJECT_BIT = 1;
-	public static final short PRINCE_BIT = 2;
-	public static final short COIN_BIT = 4;
-	public static final short SPIKE_BIT = 8;
-	public static final short DESTROYED_BIT = 16;
-	public static final short DANGER_BIT = 32;
+    public static final short DEAD_BIT = 0;
+    public static final short OBJECT_BIT = 1;
+    public static final short PRINCE_BIT = 2;
+    public static final short COIN_BIT = 4;
+    public static final short SPIKE_BIT = 8;
+    public static final short DESTROYED_BIT = 16;
+    public static final short DANGER_BIT = 32;
 
-	public static AssetManager assetManager;
-	//Creates splash screen
-	@Override
-	public void create() {
-		batch = new SpriteBatch();
+    public static AssetManager assetManager;
 
-		//Creating an AssetManager and loading assets
-		assetManager = new AssetManager();
-		assetManager.load("Audio/Music/LevelOneMusic.mp3", Music.class);
-		assetManager.load("Audio/Sounds/Jump.mp3",Sound.class);
-		assetManager.load("Audio/Sounds/Damage.mp3",Sound.class);
+    //Creates splash screen
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
 
-		//Blocking call. Waits for all assets to finish loading
-		assetManager.finishLoading();
+        //Creating an AssetManager and loading assets
+        assetManager = new AssetManager();
+        assetManager.load("Audio/Music/LevelOneMusic.mp3", Music.class);
+        assetManager.load("Audio/Sounds/Jump.mp3", Sound.class);
+        assetManager.load("Audio/Sounds/Damage.mp3", Sound.class);
 
-		//Creates a PlayScreen
-		new PlayScreen(this);
-	}
+        //Blocking call. Waits for all assets to finish loading
+        assetManager.finishLoading();
 
-	/*Game logic updates are usually performed here*/
-	@Override
-	public void render () {
-		super.render();
-	}
+        //Creates a PlayScreen
+        new PlayScreen(this);
+    }
 
-	//Dispose of resources
-	@Override
-	public void dispose () {
-		super.dispose();
-		batch.dispose();
-		assetManager.dispose();
-	}
+    /*Game logic updates are usually performed here*/
+    @Override
+    public void render() {
+        super.render();
+    }
+
+    //Dispose of resources
+    @Override
+    public void dispose() {
+        super.dispose();
+        batch.dispose();
+        assetManager.dispose();
+    }
 }

@@ -56,11 +56,11 @@ public class PlayScreen implements Screen {
 
     private Music music;
 
-    public PlayScreen(DaggerOfTime obj){
+    public PlayScreen(DaggerOfTime obj) {
         setSplashScreen(obj);
     }
 
-     //@param game: passing game class @param level: passing level
+    //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
 
         atlas = new TextureAtlas("Pictures/RunningPrince.pack");
@@ -74,7 +74,7 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(level);
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / DaggerOfTime.PPM);
-        gameCamera.position.set(gamePort.getWorldWidth()/4, gamePort.getWorldHeight()/4, 0);
+        gameCamera.position.set(gamePort.getWorldWidth() / 4, gamePort.getWorldHeight() / 4, 0);
 
         /*@param1 vector2: for gravity,
           @param2 true: sleep object at the rest */
@@ -105,24 +105,27 @@ public class PlayScreen implements Screen {
     /*To handle interactions*/
     public void handleInput(float dt) {
 
-        //If the 'UP' key is pressed apply linear impulse upwards
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) &&
-                (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING)) {
+        //Only handle input if prince is alive
+        if (Prince.currentState != Prince.State.DEAD) {
+            //If the 'UP' key is pressed apply linear impulse upwards
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP) &&
+                    (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING)) {
 
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-            DaggerOfTime.assetManager.get("Audio/Sounds/Jump.mp3", Sound.class).play();
-        }
+                player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+                DaggerOfTime.assetManager.get("Audio/Sounds/Jump.mp3", Sound.class).play();
+            }
 
-        //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
+            //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
 
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
-        }
+                player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            }
 
-        //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
+            //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
 
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
+                player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
+            }
         }
     } //End handleInput
 
@@ -130,7 +133,7 @@ public class PlayScreen implements Screen {
 
         handleInput(dt);
 
-        world.step(1/60f, 6, 2);
+        world.step(1 / 60f, 6, 2);
 
         player.update(dt);
         hud.update(dt);
@@ -145,7 +148,7 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
 
         update(delta);
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
         //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
@@ -161,14 +164,14 @@ public class PlayScreen implements Screen {
         hud.stage.draw();
     }
 
-    public void setSplashScreen(DaggerOfTime obj){
+    public void setSplashScreen(DaggerOfTime obj) {
         this.game = obj;
         obj.setScreen(new SplashScreen(obj));
     }
 
     @Override
     public void resize(int width, int height) {
-        gamePort.update(width,height);
+        gamePort.update(width, height);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.hj.daggeroftime.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -20,17 +21,19 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 
 public class Prince extends Sprite {
 
-    public enum State {FALLING, JUMPING, STANDING, RUNNING}
+    public enum State {FALLING, JUMPING, STANDING, RUNNING, DEAD}
 
     public static State currentState;
     public State prevState;
     public World world;
     public Body b2body;
     private TextureRegion princeStand;
+    private TextureRegion princeDead;
     private Animation princeRun;
     private Animation princeJump;
     private boolean runningRight;
     private float stateTimer;
+    private TextureRegion region;
     public int health = 100;
 
     //Constructor
@@ -44,12 +47,13 @@ public class Prince extends Sprite {
         runningRight = true;
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
-        for(int i = 1; i < 13; i++) {
+        for (int i = 1; i < 13; i++) {
 
-            frames.add(new TextureRegion(getTexture(), i * 40, 0, 28, 60));
+            frames.add(new TextureRegion(getTexture(), i * 35, 0, 28, 60));
         }
 
-        princeRun = new Animation(0.1f, frames);
+        princeRun = new Animation(0.2f, frames);
+        princeDead = new TextureRegion(screen.getAtlas().findRegion("runningPrince"), 0, 0, 0, 0);
         frames.clear();
 
         definePrince();
@@ -70,14 +74,13 @@ public class Prince extends Sprite {
 
         currentState = getState();
 
-        TextureRegion region;
         switch (currentState) {
 
             case JUMPING:
                 region = princeStand; //(TextureRegion) princeJump.getKeyFrame(stateTimer);
                 break;
             case RUNNING:
-                region = princeStand; //(TextureRegion) princeRun.getKeyFrame(stateTimer, true);
+                region = (TextureRegion) princeRun.getKeyFrame(stateTimer, true);
                 break;
             case FALLING:
             case STANDING:
@@ -86,11 +89,11 @@ public class Prince extends Sprite {
                 break;
         }
 
-        if((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
 
             region.flip(true, false);
             runningRight = false;
-        } else if((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
 
             region.flip(true, false);
             runningRight = true;
@@ -104,15 +107,18 @@ public class Prince extends Sprite {
 
     public State getState() {
 
-        if(b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y > 0 && prevState == State.JUMPING)) {
+        if ((b2body.getLinearVelocity().y > 0 && currentState != State.DEAD) || (b2body.getLinearVelocity().y > 0 && prevState == State.JUMPING)) {
 
             return State.JUMPING;
-        } else if(b2body.getLinearVelocity().y < 0) {
+        } else if (b2body.getLinearVelocity().y < 0 && currentState != State.DEAD) {
 
             return State.FALLING;
-        } else if(b2body.getLinearVelocity().x != 0) {
+        } else if (b2body.getLinearVelocity().x != 0 && currentState != State.DEAD) {
 
             return State.RUNNING;
+        } else if (currentState == State.DEAD) {
+
+            return State.DEAD;
         } else {
 
             return State.STANDING;
@@ -144,12 +150,21 @@ public class Prince extends Sprite {
         b2body.createFixture(fixtureDef).setUserData(this);
     }
 
+    //When the prince gets hit
     public void hit(int damage) {
 
-        DaggerOfTime.assetManager.get("Audio/Sounds/Damage.mp3",Sound.class).play();
+        DaggerOfTime.assetManager.get("Audio/Sounds/Damage.mp3", Sound.class).play();
         health -= damage;
-        if(health <= 100) {
-            Gdx.app.log("Prince is","dead");
+
+        //If health is 0 or below, set state to dead and remove all sprites/animation.
+        //Also stop music
+        if (health <= 0) {
+            currentState = State.DEAD;
+            region.setRegion(princeDead);
+            DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
+
+
+            Gdx.app.log("Prince is", "dead");
         }
     }
 }
