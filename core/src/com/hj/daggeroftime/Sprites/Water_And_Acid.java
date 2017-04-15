@@ -17,7 +17,7 @@ public class Water_And_Acid extends InteractiveTileObject {
         super(world, map, bounds, true);
         fixture.setUserData(this);
 
-        setCategoryFilter(DaggerOfTime.DANGER_BIT);
+        setCategoryFilter(DaggerOfTime.HAZARD_BIT);
     }
 
     @Override

@@ -1,7 +1,5 @@
 import com.hj.daggeroftime.DaggerOfTime;
-import com.hj.daggeroftime.Screens.SplashScreen;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -72,7 +70,7 @@ public class tester {
     @Test
     public void testSpikeShort() {
 
-        float actualValue = DaggerOfTime.SPIKE_BIT;
+        float actualValue = DaggerOfTime.ENEMY_BIT;
         float expectedValue = 8;
         assertEquals(actualValue, expectedValue, 0);
     }

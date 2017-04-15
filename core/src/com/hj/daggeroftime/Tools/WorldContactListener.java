@@ -1,6 +1,5 @@
 package com.hj.daggeroftime.Tools;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Sprites.Coin;
+import com.hj.daggeroftime.Sprites.FireBreath;
 import com.hj.daggeroftime.Sprites.InteractiveTileObject;
 import com.hj.daggeroftime.Sprites.Prince;
 
@@ -26,8 +26,8 @@ public class WorldContactListener implements ContactListener {
 
         switch (cDef) {
 
-            //If prince collides with water/acid
-            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.DANGER_BIT:
+            //If prince collides with a hazard
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.HAZARD_BIT:
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
                     ((Prince)fixA.getUserData()).hit(100);
@@ -40,10 +40,52 @@ public class WorldContactListener implements ContactListener {
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.COIN_BIT:
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.COIN_BIT) {
+
                 ((Coin)fixA.getUserData()).onCollision();
-            } else {
+                } else {
+
                 ((Coin)fixB.getUserData()).onCollision();
             }
+                break;
+
+            //If prince collides with an enemy
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.ENEMY_BIT:
+
+                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+
+                    ((Prince)fixA.getUserData()).hit(25);
+                } else {
+
+                    ((Prince)fixB.getUserData()).hit(25);
+                }
+                break;
+
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.FIRE_BREATH:
+
+                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+
+                    ((Prince)fixA.getUserData()).hit(100);
+                    ((FireBreath)fixB.getUserData()).onCollision();
+                } else {
+
+                    ((Prince)fixB.getUserData()).hit(100);
+                    ((FireBreath)fixA.getUserData()).onCollision();
+                }
+                break;
+
+            case DaggerOfTime.OBJECT_BIT | DaggerOfTime.FIRE_BREATH:
+
+                if(fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH) {
+
+                    ((FireBreath)fixA.getUserData()).onCollision();
+                    System.out.println(fixA.getUserData());
+
+                } else {
+
+                    ((FireBreath)fixB.getUserData()).onCollision();
+                    System.out.println(fixB.getUserData());
+                }
+                break;
         }
 
         if(fixA.getUserData() == "prince" || fixB.getUserData() == "prince") {

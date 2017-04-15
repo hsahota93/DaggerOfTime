@@ -16,25 +16,26 @@ import com.hj.daggeroftime.DaggerOfTime;
  * Created by jacob on 2/23/2017.
  */
 public class Hud implements Disposable {
+
     public Stage stage;
     private Viewport viewport;
     protected Integer worldTimer;
     protected float timeCount;
-    public static Integer score ;
+    public static Integer score;
     protected Integer timeLimit = 300;
     private Label countDownLabel;
     public static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worldLabel;
-    private Label DaggerofTimeLabel;
+    private Label DaggerOfTimeLabel;
 
     public Hud(SpriteBatch sb, String level) {
 
         initiateVariables();
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
 
-        stage = new Stage(viewport,sb);
+        stage = new Stage(viewport, sb);
         Table table = new Table(); // creating table to keep items inside the stage organized
         table.top();
         table.setFillParent(true);
@@ -44,10 +45,10 @@ public class Hud implements Disposable {
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("World", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        DaggerofTimeLabel  = new Label("Dagger Of Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        DaggerOfTimeLabel  = new Label("Dagger Of Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
 
         //adding labels to the table
-        table.add(DaggerofTimeLabel).expandX().padTop(20);
+        table.add(DaggerOfTimeLabel).expandX().padTop(20);
         table.add(worldLabel).expandX().padTop(20);
         table.add(timeLabel).expandX().padTop(20);
 

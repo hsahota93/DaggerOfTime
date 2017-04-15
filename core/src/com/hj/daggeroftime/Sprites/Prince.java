@@ -35,24 +35,28 @@ public class Prince extends Sprite {
     private float stateTimer;
     private TextureRegion region;
     public int health = 100;
+    private PlayScreen screen;
+    private boolean princeIsDead;
 
     //Constructor
     public Prince(World world, PlayScreen screen) {
 
         super(screen.getAtlas().findRegion("runningPrince"));
+        this.screen = screen;
         this.world = world;
         currentState = State.STANDING;
         prevState = State.STANDING;
         stateTimer = 0;
         runningRight = true;
+
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
         for (int i = 1; i < 13; i++) {
 
-            frames.add(new TextureRegion(getTexture(), i * 35, 0, 28, 60));
+            frames.add(new TextureRegion(getTexture(), i * 30, 0, 28, 60));
         }
 
-        princeRun = new Animation(0.2f, frames);
+        princeRun = new Animation(0.1f, frames);
         princeDead = new TextureRegion(screen.getAtlas().findRegion("runningPrince"), 0, 0, 0, 0);
         frames.clear();
 
@@ -64,10 +68,13 @@ public class Prince extends Sprite {
 
     public void update(float dt) {
 
-        //Putting the center of the sprite in the center of the circle
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+        if(currentState != State.DEAD) {
 
-        setRegion(getFrame(dt));
+            //Putting the center of the sprite in the center of the circle
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+
+            setRegion(getFrame(dt));
+        }
     }
 
     public TextureRegion getFrame(float dt) {
@@ -103,6 +110,14 @@ public class Prince extends Sprite {
         prevState = currentState;
 
         return region;
+    }
+
+    public boolean isDead() {
+        return princeIsDead;
+    }
+
+    public float getStateTimer() {
+        return stateTimer;
     }
 
     public State getState() {
@@ -143,7 +158,9 @@ public class Prince extends Sprite {
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
                 DaggerOfTime.COIN_BIT |
-                DaggerOfTime.DANGER_BIT;
+                DaggerOfTime.HAZARD_BIT |
+                DaggerOfTime.ENEMY_BIT |
+                DaggerOfTime.FIRE_BREATH;
 
         //Creates the fixture
         fixtureDef.shape = lowerBody;
@@ -155,14 +172,17 @@ public class Prince extends Sprite {
 
         DaggerOfTime.assetManager.get("Audio/Sounds/Damage.mp3", Sound.class).play();
         health -= damage;
+        Gdx.app.log("Damage: " + damage,"Health: " + health);
 
         //If health is 0 or below, set state to dead and remove all sprites/animation.
         //Also stop music
-        if (health <= 0) {
+        if (health < 1) {
+
+            princeIsDead = true;
             currentState = State.DEAD;
             region.setRegion(princeDead);
+            screen.clearPrince();
             DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
-
 
             Gdx.app.log("Prince is", "dead");
         }

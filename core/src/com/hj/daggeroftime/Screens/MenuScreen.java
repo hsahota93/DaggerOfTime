@@ -52,7 +52,7 @@ public class MenuScreen implements Screen {
             }
         });
 
-        // click event listeber for leveltwo button
+        // click event listener for leveltwo button
         levelTwoButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
