@@ -19,7 +19,6 @@ import com.hj.daggeroftime.Screens.PlayScreen;
  */
 public class FireBreath extends Sprite {
 
-
     public World world;
     public Body b2body;
     protected float polygonSize = 5 / DaggerOfTime.PPM;
