@@ -49,6 +49,7 @@ public class B2WorldCreator {
 
             //Array to hold the dragon
             dragon = new Array<Dragon>();
+
             //Getting the position of all the dragons from the sprites
             for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
 

@@ -20,6 +20,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
  * Created by jacob on 4/3/2017.
  */
 public class FireBreath extends Sprite {
+
     public World world;
     public Body b2body;
     protected float polygonSize = 5/DaggerOfTime.PPM;
@@ -46,9 +47,9 @@ public class FireBreath extends Sprite {
         fireAnimation = new Animation(0.4f,frames);
         stateTIme = 0;
         setBounds(0, 40, 14 / DaggerOfTime.PPM, 42 / DaggerOfTime.PPM);
-  }
+    }
 
-    public void defineStaticEnemy(){
+    public void defineStaticEnemy() {
 
         bodyDef = new BodyDef();
         bodyDef.position.set(positionX, positionY);
@@ -68,7 +69,7 @@ public class FireBreath extends Sprite {
         b2body.setGravityScale(0);
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         stateTIme+=dt;
 
         elapsedTime += dt;
