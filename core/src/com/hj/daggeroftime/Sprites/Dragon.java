@@ -13,7 +13,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 /**
  * Created by jacob on 4/9/2017.
  */
-public class Dragon extends  Enemy{
+public class Dragon extends Enemy{
     private float stateTime;
     private Animation dragonAnimation;
     private Array<TextureRegion> frames;
@@ -53,7 +53,6 @@ public class Dragon extends  Enemy{
         if(resetTimer > 5) {
             fireBreath = new FireBreath(world, screen, xPosition - (10/DaggerOfTime.PPM), yPosition + (10/DaggerOfTime.PPM));
             fireBreathsArray.add(fireBreath);
-            System.out.println("Print: " + fireBreath);
 
             resetTimer = 0;
         }
