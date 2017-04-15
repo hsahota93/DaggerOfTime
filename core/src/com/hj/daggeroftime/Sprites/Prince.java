@@ -155,6 +155,7 @@ public class Prince extends Sprite {
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape lowerBody = new CircleShape();
         lowerBody.setRadius(6 / DaggerOfTime.PPM);
+        fixtureDef.friction = 0.5f;
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
                 DaggerOfTime.COIN_BIT |

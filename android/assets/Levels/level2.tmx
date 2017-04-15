@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="161">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="169">
  <tileset firstgid="1" name="stand" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="2" columns="2">
   <image source="../piclevel2/stand.png" width="50" height="17"/>
  </tileset>
@@ -86,7 +86,7 @@
    eJzt07cNAlEURNHXESbB9IRJYIl3S8L0hSmAaWElxOpL50g3n2SqAAAAAAAAAH5j1Vet0yZt+6nXAGOc8tlz6tLFf6Ep13z2lu7p4b/QlGc++0rv9PFfaMpsqJqnRVoOU68Bxtjls/t0SEf//bsvVlcYDQ==
   </data>
  </layer>
- <objectgroup name="coins">
+ <objectgroup name="Coins">
   <object id="1" x="224" y="95" width="15" height="17">
    <ellipse/>
   </object>
@@ -223,7 +223,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="ground">
+ <objectgroup name="Ground">
   <object id="115" x="0" y="112" width="80" height="96"/>
   <object id="120" x="128" y="176" width="64" height="32"/>
   <object id="121" x="224" y="160" width="96" height="16"/>
@@ -248,19 +248,19 @@
   <object id="148" x="1136" y="160" width="32" height="32"/>
   <object id="149" x="1104" y="176" width="32" height="16"/>
   <object id="150" x="0" y="-70.1865" height="198.187"/>
-  <object id="151" x="80" y="208" width="48"/>
-  <object id="152" x="192" y="208" width="176"/>
-  <object id="153" x="592" y="208" width="320"/>
   <object id="155" x="-5.15544" y="-64" width="3850.33"/>
   <object id="156" x="3840" y="-69.1554" height="277.155"/>
  </objectgroup>
- <objectgroup name="Spikes">
-  <object id="107" x="1458" y="189">
-   <polyline points="0,0 2,-26.5 7,-2.5 16,-2.5 27.5,-26.5 39,-4.5 48.5,-4.5 53,-28 57,-5 72.5,-9 78.5,-26 82.5,-10 98.5,-10.5 102.5,-25.5 108,-0.5 0.5,0.5"/>
-  </object>
- </objectgroup>
- <objectgroup name="dragon">
+ <objectgroup name="Spikes"/>
+ <objectgroup name="Dragon">
   <object id="159" x="1776" y="160" width="32" height="32"/>
   <object id="160" x="2769" y="118" width="28" height="23"/>
+ </objectgroup>
+ <objectgroup name="Hazard">
+  <object id="164" x="189.18" y="192" width="181.481" height="15.6079"/>
+  <object id="165" x="75.4011" y="192" width="55.9963" height="15.6079"/>
+  <object id="166" x="589.452" y="199.884" width="325.361" height="7.72406"/>
+  <object id="167" x="1451.67" y="169.43" width="115.782" height="22.1778"/>
+  <object id="168" x="2800" y="161.546" width="78.3338" height="30.0616"/>
  </objectgroup>
 </map>

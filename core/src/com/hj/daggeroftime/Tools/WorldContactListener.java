@@ -78,12 +78,9 @@ public class WorldContactListener implements ContactListener {
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH) {
 
                     ((FireBreath)fixA.getUserData()).onCollision();
-                    System.out.println(fixA.getUserData());
-
                 } else {
 
                     ((FireBreath)fixB.getUserData()).onCollision();
-                    System.out.println(fixB.getUserData());
                 }
                 break;
         }
