@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
@@ -22,14 +24,15 @@ public class GameOverScreen implements Screen {
 
     private Viewport viewport;
     private Stage stage;
-
     private Game game;
 
-    public GameOverScreen(Game game) {
+    public GameOverScreen(final Game game) {
 
         this.game = game;
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
         stage = new Stage(viewport, ((DaggerOfTime) game).batch);
+
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
@@ -61,6 +64,7 @@ public class GameOverScreen implements Screen {
             game.setScreen(new MenuScreen((DaggerOfTime) game));
             dispose();
         }
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();

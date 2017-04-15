@@ -30,14 +30,15 @@ public class MenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-         levelOneButton = new TextButton("Level One",skin);
-         levelTwoButton = new TextButton("Level Two", skin);
+        levelOneButton = new TextButton("Level One", skin);
+        levelTwoButton = new TextButton("Level Two", skin);
 
-        // positioning the buttons on the screen
-        levelOneButton.setPosition( (Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) );
-        levelTwoButton.setPosition((Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) - (buttonHeight+10));
+        //Positioning the buttons on the screen
+        levelOneButton.setPosition( (Gdx.graphics.getWidth()/2) - (buttonWidth/2), (Gdx.graphics.getHeight()/2) );
+        levelTwoButton.setPosition((Gdx.graphics.getWidth()/2) - (buttonWidth/2),
+                (Gdx.graphics.getHeight()/2) - (buttonHeight+10));
 
-        // setting the size of the buttons
+        //Setting the size of the buttons
         levelOneButton.setSize(buttonWidth,buttonHeight);
         levelTwoButton.setSize(buttonWidth,buttonHeight);
 
@@ -62,7 +63,6 @@ public class MenuScreen implements Screen {
         });
         }
 
-
     /* @param level: name of the sprite sheet
     *   Set the screen to the 'PlayScreen'
     *   and load the proper sprite sheet.
@@ -72,7 +72,6 @@ public class MenuScreen implements Screen {
         game.setScreen(new PlayScreen(game, level));
         this.dispose();
     }
-
 
     @Override
     public void show() {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -73,7 +74,8 @@ public class Prince extends Sprite {
         if(currentState != State.DEAD) {
 
             //Putting the center of the sprite in the center of the circle
-            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setPosition(b2body.getPosition().x - getWidth() / 2,
+                    b2body.getPosition().y - getHeight() / 2 - 14 / DaggerOfTime.PPM);
 
             setRegion(getFrame(dt));
         }
@@ -145,9 +147,11 @@ public class Prince extends Sprite {
     //Creating the prince
     public void definePrince() {
 
+        Vector2 spawnPosition = new Vector2(32 / DaggerOfTime.PPM, 120 / DaggerOfTime.PPM);
+
         //Defining the body. Setting position and the type of body
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(32 / DaggerOfTime.PPM, 64 / DaggerOfTime.PPM);
+        bodyDef.position.set(spawnPosition.add(0, 10 / DaggerOfTime.PPM));
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         //Telling the world to create the body
@@ -155,8 +159,8 @@ public class Prince extends Sprite {
 
         //Defining the shape and radius of the body
         FixtureDef fixtureDef = new FixtureDef();
-        CircleShape lowerBody = new CircleShape();
-        lowerBody.setRadius(6 / DaggerOfTime.PPM);
+        CircleShape shape = new CircleShape();
+        shape.setRadius(6 / DaggerOfTime.PPM);
         fixtureDef.friction = 0.5f;
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
@@ -166,7 +170,13 @@ public class Prince extends Sprite {
                 DaggerOfTime.FIRE_BREATH;
 
         //Creates the fixture
-        fixtureDef.shape = lowerBody;
+        fixtureDef.shape = shape;
+        b2body.createFixture(fixtureDef).setUserData(this);
+
+        shape.setPosition(new Vector2(0, -14 / DaggerOfTime.PPM));
+        b2body.createFixture(fixtureDef).setUserData(this);
+
+        shape.setPosition(new Vector2(0, -28 / DaggerOfTime.PPM));
         b2body.createFixture(fixtureDef).setUserData(this);
     }
 

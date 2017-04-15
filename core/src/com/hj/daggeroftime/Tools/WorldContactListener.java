@@ -84,19 +84,6 @@ public class WorldContactListener implements ContactListener {
                 }
                 break;
         }
-
-        if(fixA.getUserData() == "prince" || fixB.getUserData() == "prince") {
-
-            Fixture thePrince = fixA.getUserData() == "prince" ? fixA : fixB;
-            Fixture object = thePrince == fixA ? fixB : fixA;
-
-            if(object.getUserData() instanceof InteractiveTileObject) {
-
-                ((InteractiveTileObject) object.getUserData()).onCollision();
-            }
-        }
-
-
     }
 
     @Override
