@@ -21,7 +21,7 @@ public class FireBreath extends Sprite {
 
     public World world;
     public Body b2body;
-    protected float polygonSize = 5/DaggerOfTime.PPM;
+    protected float polygonSize = 5 / DaggerOfTime.PPM;
     protected float positionX ;
     protected float positionY ;
     public Animation fireAnimation;
