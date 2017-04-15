@@ -13,7 +13,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 import com.hj.daggeroftime.Sprites.Coin;
 import com.hj.daggeroftime.Sprites.Dragon;
 import com.hj.daggeroftime.Sprites.Ground;
-import com.hj.daggeroftime.Sprites.Water_And_Acid;
+import com.hj.daggeroftime.Sprites.Hazard;
 
 /**
  * Created by Harman on 2/26/17.
@@ -47,6 +47,14 @@ public class B2WorldCreator {
                 new Coin(world, map, ellipse);
             } //End for
 
+            //For hazards, gets all the objects in layer "14"
+            for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                //Creates all the rectangle objects in layer "14"
+                new Hazard(world, map, rectangle);
+            }
+
             //Array to hold the dragon
             dragon = new Array<Dragon>();
 
@@ -69,12 +77,12 @@ public class B2WorldCreator {
                 new Ground(world, map, rectangle);
             } //End for
 
-            //For water and acid, gets all the objects in layer "5"
+            //For hazards, gets all the objects in layer "5"
             for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 //Creates all the rectangle objects in layer "7"
-                new Water_And_Acid(world, map, rectangle);
+                new Hazard(world, map, rectangle);
             } //End for
 
             //For Coins, gets all the objects in layer "7"

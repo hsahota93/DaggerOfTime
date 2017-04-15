@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
+import com.hj.daggeroftime.Sprites.Enemy;
 import com.hj.daggeroftime.Sprites.Prince;
 
 import com.hj.daggeroftime.Tools.B2WorldCreator;

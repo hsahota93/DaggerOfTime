@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Sprites.Coin;
+import com.hj.daggeroftime.Sprites.FireBreath;
 import com.hj.daggeroftime.Sprites.InteractiveTileObject;
 import com.hj.daggeroftime.Sprites.Prince;
 

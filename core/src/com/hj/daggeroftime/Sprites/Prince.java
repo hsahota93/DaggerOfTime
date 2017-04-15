@@ -41,7 +41,6 @@ public class Prince extends Sprite {
     //Constructor
     public Prince(World world, PlayScreen screen) {
 
-        super(screen.getAtlas().findRegion("runningPrince"));
         this.screen = screen;
         this.world = world;
         currentState = State.STANDING;
@@ -53,7 +52,8 @@ public class Prince extends Sprite {
 
         for (int i = 1; i < 13; i++) {
 
-            frames.add(new TextureRegion(getTexture(), i * 30, 0, 28, 60));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("runningPrince"), i * 16, 15, 13, 40));
+            //frames.add(new TextureRegion(screen.getAtlas().findRegion("runningPrince"), i * 30, 0, 28, 60));
         }
 
         princeRun = new Animation(0.1f, frames);
@@ -61,8 +61,10 @@ public class Prince extends Sprite {
         frames.clear();
 
         definePrince();
-        princeStand = new TextureRegion(getTexture(), 30, 15, 28, 60);
-        setBounds(0, 40, 16 / DaggerOfTime.PPM, 41 / DaggerOfTime.PPM);
+
+        princeStand = new TextureRegion(screen.getAtlas().findRegion("runningPrince"), 43, 15, 13, 40);
+        //princeStand = new TextureRegion(getTexture(), 30, 15, 28, 60);
+        setBounds(0, 0, 13 / DaggerOfTime.PPM, 40 / DaggerOfTime.PPM);
         setRegion(princeStand);
     }
 
