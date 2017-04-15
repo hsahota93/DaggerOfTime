@@ -1,8 +1,8 @@
 package com.hj.daggeroftime.Sprites;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,9 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.hj.daggeroftime.DaggerOfTime;
-import com.hj.daggeroftime.Scenes.Hud;
 import com.hj.daggeroftime.Screens.PlayScreen;
-
 
 /**
  * Created by jacob on 4/3/2017.
@@ -34,7 +32,8 @@ public class FireBreath extends Sprite {
     BodyDef bodyDef;
 
     //@param world: take the world that enemy generated in
-    public FireBreath(World world, PlayScreen screen, float positionX, float positionY){
+    public FireBreath(World world, PlayScreen screen, float positionX, float positionY) {
+
         this.positionX = positionX;
         this.positionY = positionY;
         this.world = world;
