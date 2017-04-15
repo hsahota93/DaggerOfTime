@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="169">
+ <tileset firstgid="1" name="stand" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="2" columns="2">
+  <image source="../piclevel2/stand.png" width="50" height="17"/>
+ </tileset>
+ <tileset firstgid="3" name="bg1" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../piclevel2/bg1.jpg" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="4" name="greenDiamond" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../piclevel2/Diamonds/greenDiamond.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="5" name="blueDiamond" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../piclevel2/Diamonds/blueDiamond.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="6" name="redDiamond" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../piclevel2/Diamonds/redDiamond.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="7" name="Floor" tilewidth="16" tileheight="16" tilecount="4096" columns="128">
+  <image source="../piclevel2/floor/66732.png" width="2048" height="512"/>
+ </tileset>
+ <tileset firstgid="4103" name="bgGraphics" tilewidth="16" tileheight="16" tilecount="4992" columns="52">
+  <image source="../piclevel2/floor/3DS - Adventure Time Hey Ice King Whyd You Steal Our Garbage - Lemongrab Dungeon.png" width="845" height="1536"/>
+ </tileset>
+ <tileset firstgid="9095" name="mudFloor" tilewidth="16" tileheight="16" tilecount="17920" columns="140">
+  <image source="../piclevel2/floor/3DS - Adventure Time Hey Ice King Whyd You Steal Our Garbage - Marauder Village.png" width="2240" height="2048"/>
+ </tileset>
+ <tileset firstgid="27015" name="graphics" tilewidth="16" tileheight="16" tilecount="2774" columns="38">
+  <image source="../piclevel2/floor/graphics.png" width="614" height="1177"/>
+ </tileset>
+ <tileset firstgid="29789" name="door" tilewidth="16" tileheight="16" tilecount="3408" columns="48">
+  <image source="../piclevel2/floor/door.png" width="768" height="1151"/>
+ </tileset>
+ <tileset firstgid="33197" name="Spikes" tilewidth="16" tileheight="16" tilecount="80" columns="8">
+  <image source="../piclevel2/latest.png" width="142" height="163"/>
+ </tileset>
+ <tileset firstgid="33277" name="portal" tilewidth="16" tileheight="16" tilecount="620" columns="62">
+  <image source="../piclevel2/enemy/gate1.png" width="1000" height="166"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEKgCAUBFDJ+9+5TUILwcyynzzhrURh5A/mlFIGAAAAAACAw1bx9N1fZ4RV6e9YnrJWzk1c+tv/Rue9slbMTXwj/W2d/fsc1/LpL5Fc7eCdmWydeePPf+tN9JeIZvS314yMsIId1pcjYA==
+  </data>
+ </layer>
+ <layer name="background1" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt1TdQFFEcx/GdsTXO0RgAc86hlqiCAipZtDR7egvHASooWhgAAXNWlKB2oIBKFjCjrbHUGbUwAAKd3+JmeMrqcqPD7a7vN/OZo9jd9/+/fX9WUQYmSTZFWYt1tgFa0KIJY//CbZ7vZzTXxSAWcYhHAhIRgUhEmejdGPk8OahJRTJS4EQqXAastb/Jp/YCFJq4ByMkk/3Lsnm+nwe47iAO4TBykIs8ZGMf9pvo3Rj5PBVTUwlKUYZruI4bBqy1v2mm9ha0mrgHI6Sc/auweb6fNVxXizrUowGNaEIlqlBtondj5PP0gppe4hVe4w3eGrBOT9JF/d3oMXkf3s479u+9zfP9/Mx1X/AV39CODnTiAz7ik4nejZHP02AfRRmCoRiG4Rjh4+2qZKwaX86WH/zlGfsnCWAfAxGEYIQgVO7tTxnk7QJkDJk2h6I8w3OH92pwMqupcCEN6ciQ8ysj89uIc9uBTi/O799mqaooyxCGcLQLPX1HF7rRY+IeZWTEiGd8FGd+NHzhh7EYh/GYgImYhMmYgqmYhumYgZmYhdmYo/55Xa179Z43F/MwHwuwEIuEdez8vR074MBItbenMUJf/jq1yciYJeIZD0AgghGCJWrfb9pyrEAEIhGFlViF1YhGDGJ1ZkTrXr3nxSEeCUjEGiS51znK7zEcxwmcxGKhpyChr1A5vzIWiXjGN2AjNmMLtql9v2kqkpECJ1LhQhrSkYGd2KUzI1r36j1vNzKRhT3Yi2z3Orf5vYO7qEEt1gs9bRL62irnV8YiEc94LvKQjwJV+5t2CqdxBmdxDudxARdxCZdRpDMjWvfqPe8KrqIYJShFmXsdu/t/jVhvjtDTEaGvQjm/MhaJeMYrcBOVqFK1v2l1qEcDGtGEe2hGC1pxHw90ZkTrXr3nPcQjPMYTPEWb2ju79l/qLRd6uiX0VS3nV8YiEc/4/5QfJvdfMA==
+  </data>
+ </layer>
+ <layer name="trees" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt1ekz1vsbB/BOG9lLp1SaLC1atKBoty+tUv9TshRtSkxEUSiFLEmihRZU/qDzmvH4fnLGfH/M71wzr8f3+1ru72fFiv+P2rhyxYq/2cRmEtjCVraRyPaVwWba8deKFUkkk0IqO9nFbvaQxl72sZ8DpP+1uDnS9X2QQxzmCBlkksVRjpFNDsc5wUlOcZoznCWXPPIpoJAiiimhlDLOcZ4LXOQSlynnChVc5VqInQQ5uzAZwllHBJFEEU0MscSxng3Eh8i8FG9wudRdc7nHfRp4wEMaeUQTzQHP7rFbaqGVJ7TRzlOe0UEnz3lBF930LPL/t0ffL3lFL695Qx/9DPCWQYYYZoR3jPKeMT4wzkcmmOQTn/nCV6aY5hvf+cFPZphljl/85g/zIXYS5Oyuy1DJDaqopoZabnKLOuq5zZ0QmZfiDS6X2rjKt49NbCaBLWxlG4lsXxVsph12lUQyKaSyk13sZg9p7GUf+zmwcuG9XMxK1/dBDnGYI2SQSRZHOUY2ORznBCc5xWnOcJZc8singEKKKKaEUso4x3kucJFLXKacK1RwlWshdhLk7MJkCGcdEUQSRTQxxBLHejYQHyLzUrzB5VJ3zeUe92ngAQ9p5BFNNAc8u8duqYVWntBGO095RgedPOcFXXSvXHgvF7N69P2SV/Tymjf00c8AbxlkiGFGeMco7xnjA+N8ZIJJPvGZL3xlimm+8Z0f/GSGWeb4xW/+MB9iJ0HO7roMldygimpqqOUmt6ijntvcCZF5Kd7gcqmNq3372MRmEtjCVraRyPbVwWbaYVdJJJNCKjvZxW72kMZe9rGfA6sW3svFrHR9H+QQhzlCBplkcZRjZJPDcU5wklOc5gxnySWPfAoopIhiSiiljHOc5wIXucRlyrlCBVe5FmInQc4uTIZw1hFBJFFEE0MscaxnA/EhMi/FG1xOdc9s7tPAAx7SyCOaaA54do/dUgutPKGNdp7yjA46ec4LuuhetfBeLmb16Pslr+jlNW/oo58B3jLIEMOM8I5R3jPGB8b5yASTfOIzX/jKFNN84zs/+MkMs8zxi9/8YT7EToKc3XUZKrlBFdXUUMtNblFHPbe5EyLz3dVL7waXU/29xrePzSSwha1sI5Hta4LNs8OukkgmhVR2sovd7CGNvexjPwdWL7yXi1np+j7IIQ5zhAwyyeIox8gmh+Oc4CSnOM0ZzpJLHvkUUEgRxZRQShnnOM8FLnKJy5RzhQquci3EToKcXZgM4awjgkiiiCaGWOJYzwbiQ2TeuGbp3eByqbvmco/7NPCAhzTyiCaaA57dY7fUQitPaKOdpzyjg06e84IuulcvvJeLWT36fskrennNG/roZ4C3DDLEMCO8Y5T3jPGBcT4ywSSf+MwXvjLFNN/4zg9+MsMsc/ziN3+YD7GTIGd3XYZKblBFNTXUcpNb1FHPbe6EyLwUb3C51Ma1vn1sYjMJbGEr20hk+9pgM+2wqySSSSGVnexiN3tIYy/72M+BNQvv5WJWur4PcojDHCGDTLI4yjGyyeE4JzjJKU5zhrPkkkc+BRRSRDEllFLGOc5zgYtc4jLlXKGCq1wLsZMgZxcmQzjriCCSKKKJIZY41rOB+BCZl9INVsb4HlFFNTXUxgTz2/+m7prLPe7TwAMe0sgjmmgO+P/72C210MoT2mjnKc/ooJPnvKCL7jUL7+ViVo++X/KKXl7zhj76GeAtgwwxzAjvGOU9Y3xgnI9MMMknPvOFr0wxzTe+84OfzDDLHL/4zR/mQ+wkyNldl6GSG1RRTQ213OQWddRzmzshMi+lGwyP9T0igkiiiI4N5rf/TW0M8+1jE5tJYAtb2UYi28OCzbTDrpJIJoVUdrKL3ewhjb3sYz8H1i68l4tZ6fo+yCEOc4QMMsniKMfIJofjnOAkpzjNGc6SSx75FFBIEcWUUEoZ5zjPBS5yicuUc4UKrnItxE6CnF2YDOGsI4JIoogmhljiWM8G4kNkXoo3uFzqrrnc4z4NPOAhjTyiieaAZ/fYLbXQyhPaaOcpz+igk+e8oIvutQvv5WJWj75f8opeXvOGPvoZ4C2DDDHMCO8Y5T1jfGCcj0wwySc+84WvTDHNN77zg5/MMMscv/jNH+ZD7CTI2V2XoZIbVFFNDbXc5BZ11HObOyEyL8Ub/K/+q//qf1f/ADX3GjA=
+  </data>
+ </layer>
+ <layer name="diamonds" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2MtugkAYhmHSKmMXBWbmokm64DBzw32bbihyirXSke9J3hAdFir8oGaZiNyLeVleL1mvyJIjv7K/iDxOPZjHj9FsNjxuqaOeAsWE5jff+wU8md98ns9wLP7yPZwm2sK8zq8VrJVUkSVHfmF/EXmsejCPefbzGtOw1lJHPQWKB57ffNRepq7NW6/XkpbzoClm5sC/83xBJVVkyZHXiSIDt3znk/upFz70hrWWOuopUNzpIJ1Wtkei+69sUXDTLqkiS4783I08cbf+fyDyXzXMaksd9RQo7jS/uv9uk4+2Il8sJ4Qjn8iJcc7Wf/uLHElgdmMi8ysi17zZ+xWIiIikz1y+t2+X5f0s6478yn5rPgFMmxTe
+  </data>
+ </layer>
+ <layer name="mudFloor" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2NdOFFEcx/FDtb6DDVhYTcSKvbyAgDf26zkkKjaKDbyw4C02RI0X1ggI0uEOKW9gRa8EyxsAXuB3MjsB1pnd2WSY3YT/L/kkk92zZ87MnP+ZmVVKIpFIJBKJRCKRSCQSiUQikUiCyZuwUk1oDid7JJIgcthQ6giO4hiOG/717Xd/Eolkbqq0UtW4iEu4rP3r+xe1+3uB1u+aBXrckmCTUaZUJrKQjUVl/vVdwVpQ6eN6kOw0UZMDHo7nLe1apX4lAeQK8/EqalCLaz7WWxprQbqP60GyspFzshXbsN3D+WkxLBLJfGcx9bUES7EMy6Pq7ZAx9x05kcSr35P0dwqnUZ6C831zpG6LMIghDEv9SlIo8e6/P5iHYxjHzwTnpP387PQf2QlMYBJT+JtC833LrLodiChmHSpBqYfnCbt+VxvWe3AOcpGHEPJRgBVYiVUubZ0Sq8/zuIAKVKIK1ZHtQrzHIIYwjBGXcYVjfL4WT5N4rdzOldM41/lwDUIBHOsz9vEcL/ASr/AaDXiIxqjtR3iMJ0b8+285c/cMzuJcgs/W9v13dv3b/2n9wXX6u4GbuIU63J6H92W3/bh9Xo87uIt7uI8HaNAztemF/R7chndoRwc60WVY60NzjLa7+X4P9mIf9uvYfU6bc402aUhHBjKRhWwcMNchlKAUB7XzuLod+m4x941WtJm/Qzs60IkudKMHvehDf4Jtd0TsxC7tfPxezqs5/h70emhr9ud0DT6wr4/4hM/4gq8YxTd81/HbRI+lD/3G//2sRyE2aOtdbZO2nv1ykIu8qO0Q8lGAfwsgWUM=
+  </data>
+ </layer>
+ <layer name="door" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt00kyg2EYReF3JUQTyxEkMtQFy+D9JQyTaJejZzn6GDsbUL/ZF1XnqTrzO7kRkiRJkiRJkiT93UZGbNIWbdMO9WiX9mg/Sy2TVGeYESMa0ymd0Tld0CVdZbFpkmpcZ8QN3dId3dMDPdITPWepZZLqvGTEK73RO33QJ33RhL6z2DRJNWaqiFlq0BzN0wItUpOWqtILJf1mmX+2aIVWaY3a1KF16vpfaWod8M9DSqroiPo0oGM68b/Sv/cDNRxAKg==
+  </data>
+ </layer>
+ <layer name="jumpLayers" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2EduwkAUgGH2BG6QYxEwzWBTF2nclWJ6MW1BPUF+S1iaIKJEIYMj837p2zhZxJg340kkIkmSJEmSJEl6SkQjkSckkYKBNDLIIoc8TBRQhAUbJZSjQd+BJN1vTeavhTY6cNBFD30MMMQIY0wwxQwu5jK/khRYiQf2XySRgoE0MsgihzxMFFCEBRsllB+CvoPwtGEt3GKHPQ44yvoYinQ92ybz10IbHTjoooc+BhhihDEmmGIGF3MssMQKa5nnX/fMZ/eCV7zhHY07/zzDsqbperaJGPsvkkjBQBoZZJFDHiYKKMKCjRLKqKCKGuqx6/+me23D89xihz0OOGqcX/VcpHbpmpd/XlpgiRXWmmcpLGuarmfbZN5aaKMDB1300McAQ4wwxgRTzOBijgWWWGEt8/tl/2Uv8Z+3ei7y89Zu88LZyFWuVVBFDXXNs3TrNe3WXfudSMTZf5FECgbSyCCLHPIwUUARFmyUUI7ru7ewFfRe4p+L1OfdO71b+Xk/s07/41Dn13vXkvPS39Z4DP47If28oPYSf79Vz0Wmwjhbg71r5/PrynlJS2F/v5CuT91vzbPZ7XDNiX/+3Uvza8t5SZIkSfqmD0Wh0pI=
+  </data>
+ </layer>
+ <layer name="Obstructions" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt0zkOwzAMRUFdnRdyVijOcrj8VIlLF4ZtZAZ4YEVABdUaAAAAAAAAAAAAbNtQrR3SMZ3SOV3StdZ+2fqGms45e7/BUnru65bGdE+P9EyvP7+7z7/r9Z1z9JoGsBdvT3Mhtw==
+  </data>
+ </layer>
+ <layer name="obstruction2" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztzrEJACAQA0BX/4HUFS0sRDsL+cI7CKQJpBQAAAAAAHirRvYDAAAAACBTi5mz/6zHyo0W+/Z2D5BpAHKOD2o=
+  </data>
+ </layer>
+ <layer name="Magic Portal" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt07cNAlEURNHXESbB9IRJYIl3S8L0hSmAaWElxOpL50g3n2SqAAAAAAAAAH5j1Vet0yZt+6nXAGOc8tlz6tLFf6Ep13z2lu7p4b/QlGc++0rv9PFfaMpsqJqnRVoOU68Bxtjls/t0SEf//bsvVlcYDQ==
+  </data>
+ </layer>
+ <objectgroup name="Coins">
+  <object id="1" x="224" y="95" width="15" height="17">
+   <ellipse/>
+  </object>
+  <object id="2" x="257" y="94" width="15" height="19">
+   <ellipse/>
+  </object>
+  <object id="3" x="288.25" y="95.5" width="15.75" height="18">
+   <ellipse/>
+  </object>
+  <object id="4" x="319.5" y="96" width="17.25" height="17">
+   <ellipse/>
+  </object>
+  <object id="5" x="223.25" y="127.25" width="18" height="18">
+   <ellipse/>
+  </object>
+  <object id="6" x="255.75" y="127.75" width="16.5" height="18.25">
+   <ellipse/>
+  </object>
+  <object id="7" x="287.5" y="127.5" width="17.25" height="17.5">
+   <ellipse/>
+  </object>
+  <object id="8" x="320" y="127.5" width="16" height="17.5">
+   <ellipse/>
+  </object>
+  <object id="9" x="433.25" y="33.25" width="13.5" height="14.25">
+   <ellipse/>
+  </object>
+  <object id="11" x="432.25" y="143.75" width="14.5" height="16.5">
+   <ellipse/>
+  </object>
+  <object id="12" x="448.75" y="144.25" width="14" height="16">
+   <ellipse/>
+  </object>
+  <object id="13" x="464.5" y="144.5" width="15" height="15.25">
+   <ellipse/>
+  </object>
+  <object id="14" x="608.5" y="112.25" width="13.75" height="16">
+   <ellipse/>
+  </object>
+  <object id="15" x="625.25" y="112.75" width="13.5" height="15.25">
+   <ellipse/>
+  </object>
+  <object id="16" x="641.25" y="113" width="13.5" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="17" x="658" y="113.25" width="12.75" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="18" x="674" y="113.5" width="12.25" height="14">
+   <ellipse/>
+  </object>
+  <object id="19" x="753.25" y="64.75" width="12.75" height="14">
+   <ellipse/>
+  </object>
+  <object id="20" x="769.75" y="65.25" width="12.25" height="13.5">
+   <ellipse/>
+  </object>
+  <object id="21" x="785.75" y="65" width="12" height="13.75">
+   <ellipse/>
+  </object>
+  <object id="22" x="801.75" y="65.25" width="12.25" height="14.25">
+   <ellipse/>
+  </object>
+  <object id="26" x="1296.25" y="63.75" width="15.25" height="16">
+   <ellipse/>
+  </object>
+  <object id="27" x="1295.75" y="96.5" width="16" height="15.5">
+   <ellipse/>
+  </object>
+  <object id="28" x="1376.75" y="64.25" width="14.75" height="15.25">
+   <ellipse/>
+  </object>
+  <object id="29" x="1377" y="96.5" width="13.75" height="15">
+   <ellipse/>
+  </object>
+  <object id="30" x="1408.5" y="127.75" width="14.25" height="16.5">
+   <ellipse/>
+  </object>
+  <object id="31" x="1440.75" y="127.75" width="13.25" height="15.75">
+   <ellipse/>
+  </object>
+  <object id="32" x="1777.5" y="32.25" width="12.5" height="15.25">
+   <ellipse/>
+  </object>
+  <object id="33" x="1856.5" y="81" width="14.25" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="34" x="1873.5" y="81.25" width="13.5" height="14">
+   <ellipse/>
+  </object>
+  <object id="35" x="1889.5" y="81" width="13.5" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="36" x="1905.25" y="80.75" width="14.25" height="15">
+   <ellipse/>
+  </object>
+  <object id="37" x="2017" y="33" width="13" height="14.25">
+   <ellipse/>
+  </object>
+  <object id="38" x="2801.5" y="33.25" width="11.25" height="13">
+   <ellipse/>
+  </object>
+  <object id="39" x="3167.5" y="33.5" width="15" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="45" x="3185.75" y="33.5" width="12.25" height="13.75">
+   <ellipse/>
+  </object>
+  <object id="46" x="3202" y="33" width="13.5" height="14.25">
+   <ellipse/>
+  </object>
+  <object id="47" x="3218" y="32.25" width="13.25" height="15.75">
+   <ellipse/>
+  </object>
+  <object id="48" x="3233.5" y="33" width="13.25" height="13.75">
+   <ellipse/>
+  </object>
+  <object id="49" x="3265.5" y="64.5" width="13.25" height="15.5">
+   <ellipse/>
+  </object>
+  <object id="50" x="3280.5" y="64.25" width="14.25" height="15.5">
+   <ellipse/>
+  </object>
+  <object id="51" x="3296.5" y="64.75" width="14" height="14.75">
+   <ellipse/>
+  </object>
+  <object id="52" x="3441.25" y="48.75" width="12" height="13.75">
+   <ellipse/>
+  </object>
+  <object id="53" x="3458.25" y="49.5" width="11.5" height="13.25">
+   <ellipse/>
+  </object>
+  <object id="157" x="415.528" y="144.352" width="16" height="16">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Ground">
+  <object id="115" x="0" y="112" width="80" height="96"/>
+  <object id="120" x="128" y="176" width="64" height="32"/>
+  <object id="121" x="224" y="160" width="96" height="16"/>
+  <object id="122" x="368" y="112" width="32" height="96"/>
+  <object id="125" x="400" y="192" width="192" height="16"/>
+  <object id="126" x="496" y="176" width="64" height="16"/>
+  <object id="127" x="624" y="144" width="64" height="16"/>
+  <object id="128" x="752" y="96" width="64" height="16"/>
+  <object id="130" x="912" y="192" width="2928" height="16"/>
+  <object id="131" x="1280" y="128" width="32" height="64"/>
+  <object id="132" x="1360" y="128" width="32" height="64"/>
+  <object id="133" x="1392" y="160" width="64" height="16"/>
+  <object id="134" x="1856" y="112" width="64" height="16"/>
+  <object id="135" x="2656" y="96" width="64" height="16"/>
+  <object id="136" x="2752" y="144" width="64" height="16"/>
+  <object id="137" x="3248" y="96" width="64" height="16"/>
+  <object id="138" x="3152" y="64" width="96" height="80"/>
+  <object id="139" x="3088" y="96" width="64" height="48"/>
+  <object id="140" x="3024" y="128" width="64" height="16"/>
+  <object id="144" x="1200" y="128" width="32" height="64"/>
+  <object id="147" x="1168" y="144" width="32" height="48"/>
+  <object id="148" x="1136" y="160" width="32" height="32"/>
+  <object id="149" x="1104" y="176" width="32" height="16"/>
+  <object id="150" x="0" y="-70.1865" height="198.187"/>
+  <object id="155" x="-5.15544" y="-64" width="3850.33"/>
+  <object id="156" x="3840" y="-69.1554" height="277.155"/>
+ </objectgroup>
+ <objectgroup name="Spikes"/>
+ <objectgroup name="Dragon">
+  <object id="159" x="1776" y="160" width="32" height="32"/>
+  <object id="160" x="2769" y="118" width="28" height="23"/>
+ </objectgroup>
+ <objectgroup name="Hazard">
+  <object id="164" x="189.18" y="192" width="181.481" height="15.6079"/>
+  <object id="165" x="75.4011" y="192" width="55.9963" height="15.6079"/>
+  <object id="166" x="589.452" y="199.884" width="325.361" height="7.72406"/>
+  <object id="167" x="1451.67" y="169.43" width="115.782" height="22.1778"/>
+  <object id="168" x="2800" y="161.546" width="78.3338" height="30.0616"/>
+ </objectgroup>
+</map>
