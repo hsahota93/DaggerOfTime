@@ -51,21 +51,26 @@ public class Prince extends Sprite {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
-        for (int i = 1; i < 13; i++) {
+        int heightForRowTwo = 60;
 
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("runningPrince"), i * 16, 15, 13, 40));
-            //frames.add(new TextureRegion(screen.getAtlas().findRegion("runningPrince"), i * 30, 0, 28, 60));
+        for (int i = 0; i < 2; i++) {
+
+            for(int j = 1; j < 7; j ++) {
+                if(i==1){
+                    heightForRowTwo = 50;
+                }
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), j * 80, i * 60, 80, heightForRowTwo));
+            }
         }
 
         princeRun = new Animation(0.1f, frames);
-        princeDead = new TextureRegion(screen.getAtlas().findRegion("runningPrince"), 0, 0, 0, 0);
+        princeDead = new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), 0, 0, 0, 0);
         frames.clear();
 
         definePrince();
 
-        princeStand = new TextureRegion(screen.getAtlas().findRegion("runningPrince"), 43, 15, 13, 40);
-        //princeStand = new TextureRegion(getTexture(), 30, 15, 28, 60);
-        setBounds(0, 0, 13 / DaggerOfTime.PPM, 40 / DaggerOfTime.PPM);
+        princeStand = new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), 20, 0, 80, 60);
+        setBounds(getX(), getY(), 70 / DaggerOfTime.PPM, 80 / DaggerOfTime.PPM);
         setRegion(princeStand);
     }
 
@@ -75,7 +80,7 @@ public class Prince extends Sprite {
 
             //Putting the center of the sprite in the center of the circle
             setPosition(b2body.getPosition().x - getWidth() / 2,
-                    b2body.getPosition().y - getHeight() / 2 - 14 / DaggerOfTime.PPM);
+                    b2body.getPosition().y - getHeight() / 2 - 5 / DaggerOfTime.PPM);
 
             setRegion(getFrame(dt));
         }

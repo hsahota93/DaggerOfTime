@@ -46,8 +46,10 @@ public class Dragon extends Enemy{
 
         setBounds(getX(), getY(), 70/DaggerOfTime.PPM, 45/DaggerOfTime.PPM);
     }
+    float tempTime =0;
 
     public void update(float dt){
+        tempTime+=dt;
         resetTimer +=dt;
 
         if(resetTimer > 5) {
@@ -57,8 +59,18 @@ public class Dragon extends Enemy{
             resetTimer = 0;
         }
 
+
+
         for(int i =0; i < fireBreathsArray.size; i++) {
+            fireBreathsArray.get(i).fireBreathTimer += dt;
             (fireBreathsArray.get(i)).update(dt);
+
+            if(fireBreathsArray.get(i).fireBreathTimer > 5 ){
+                world.destroyBody(fireBreathsArray.get(i).b2body);
+                fireBreathsArray.get(i).fireBreathTimer = 0;
+                fireBreathsArray.removeIndex(i);
+
+            }
         }
 
         stateTime+=dt;

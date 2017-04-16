@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="153">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="159">
  <tileset firstgid="1" name="DaggerOfTime" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="3136" columns="56">
   <image source="../Pictures/DaggerOfTime.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
@@ -113,9 +113,6 @@
   <object id="97" x="2800" y="208" width="432"/>
   <object id="98" x="1664" y="208" width="319.416" height="3.83876"/>
   <object id="100" x="443.158" y="208" width="154.227" height="3.83876"/>
-  <object id="101" x="1.21051" y="-72.2663" height="278.658"/>
-  <object id="102" x="-8.47355" y="-64" width="3864.47"/>
-  <object id="104" x="3840.94" y="-75.8978" height="283.5"/>
   <object id="105" x="2160" y="96" width="32" height="96"/>
   <object id="106" x="2128" y="128" width="32" height="64"/>
   <object id="107" x="2096" y="160" width="32" height="32"/>
@@ -248,5 +245,14 @@
  </objectgroup>
  <objectgroup name="dragon">
   <object id="140" x="1079.77" y="169.471" width="22.9996" height="21.7891"/>
+  <object id="153" x="419" y="167" width="19" height="20"/>
+ </objectgroup>
+ <objectgroup name="Door">
+  <object id="154" x="3754.24" y="113.096" width="64.3769" height="78.9039"/>
+ </objectgroup>
+ <objectgroup name="Bounds">
+  <object id="156" x="3840" y="0.931532" height="207.068"/>
+  <object id="157" x="1.3973" y="0" width="3838.6" height="0.465766"/>
+  <object id="158" x="0.465766" y="0" height="208"/>
  </objectgroup>
 </map>

@@ -73,7 +73,7 @@ public class PlayScreen implements Screen {
     //@param game: passing game class @param level: passing level
     public PlayScreen(DaggerOfTime game, String level) {
 
-        atlas = new TextureAtlas("Pictures/RunningPrince.pack");
+        atlas = new TextureAtlas("RunningPrince2.pack");
         fireBreathAtlas = new TextureAtlas("fire.pack");
         myDragonAtlas = new TextureAtlas(Gdx.files.internal("test.pack"));
 
@@ -199,7 +199,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);
@@ -230,12 +230,8 @@ public class PlayScreen implements Screen {
 
     public boolean gameOver() {
 
-        if (player.currentState == Prince.State.DEAD) {
+        return Prince.currentState == Prince.State.DEAD;
 
-            return true;
-        }
-
-        return false;
     }
 
     public void setSplashScreen(DaggerOfTime obj) {
