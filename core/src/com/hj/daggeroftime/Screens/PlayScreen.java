@@ -233,9 +233,7 @@ public class PlayScreen implements Screen {
     }
 
     public boolean gameOver() {
-
         return Prince.currentState == Prince.State.DEAD;
-
     }
 
     public void setSplashScreen(DaggerOfTime obj) {
