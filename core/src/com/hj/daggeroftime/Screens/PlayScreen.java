@@ -134,21 +134,25 @@ public class PlayScreen implements Screen {
         //Only handle input if prince is alive
         if (Prince.currentState != Prince.State.DEAD) {
             //If the 'UP' key is pressed apply linear impulse upwards
-            if (Gdx.input.isKeyJustPressed(Input.Keys.W) &&
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) &&
                     (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING)) {
 
                 player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
                 DaggerOfTime.assetManager.get("Audio/Sounds/Jump.mp3", Sound.class).play();
             }
 
-            //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-            if (Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
+            //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity
+            //is slower than 'maxPlayerSpeed'
+            if ((Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) &&
+                    player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
 
                 player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
             }
 
-            //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-            if (Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
+            //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity
+            //is slower than 'maxPlayerSpeed'
+            if ((Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) &&
+                    player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
 
                 player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
             }

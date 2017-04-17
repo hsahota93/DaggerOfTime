@@ -42,6 +42,7 @@ public class Prince extends Sprite {
     //Constructor
     public Prince(PlayScreen screen) {
 
+        super(screen.getAtlas().findRegion("RunningPrince2"));
         this.screen = screen;
         this.world = screen.getWorld();
         currentState = State.STANDING;
@@ -51,25 +52,18 @@ public class Prince extends Sprite {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
-        int heightForRowTwo = 60;
+        for (int j = 1; j < 7; j++) {
 
-        for (int i = 0; i < 2; i++) {
-
-            for(int j = 1; j < 7; j ++) {
-                if(i==1){
-                    heightForRowTwo = 50;
-                }
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), j * 80, i * 60, 80, heightForRowTwo));
-            }
+            frames.add(new TextureRegion(getTexture(), j * 70, 0, 70, 56));
         }
 
         princeRun = new Animation(0.1f, frames);
-        princeDead = new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), 0, 0, 0, 0);
+        princeDead = new TextureRegion(getTexture(), 0, 0, 0, 0);
         frames.clear();
 
         definePrince();
 
-        princeStand = new TextureRegion(screen.getAtlas().findRegion("RunningPrince2"), 20, 0, 80, 60);
+        princeStand = new TextureRegion(getTexture(), 0, 0, 70, 56);
         setBounds(getX(), getY(), 70 / DaggerOfTime.PPM, 80 / DaggerOfTime.PPM);
         setRegion(princeStand);
     }
@@ -80,7 +74,7 @@ public class Prince extends Sprite {
 
             //Putting the center of the sprite in the center of the circle
             setPosition(b2body.getPosition().x - getWidth() / 2,
-                    b2body.getPosition().y - getHeight() / 2 - 5 / DaggerOfTime.PPM);
+                    b2body.getPosition().y - getHeight() / 2);
 
             setRegion(getFrame(dt));
         }
@@ -165,7 +159,7 @@ public class Prince extends Sprite {
         //Defining the shape and radius of the body
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(8 / DaggerOfTime.PPM);
+        shape.setRadius(6 / DaggerOfTime.PPM);
         fixtureDef.friction = 0.3f;
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |

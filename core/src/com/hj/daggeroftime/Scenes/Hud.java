@@ -45,7 +45,7 @@ public class Hud implements Disposable {
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("World", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        DaggerOfTimeLabel  = new Label("Dagger Of Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        DaggerOfTimeLabel  = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
 
         //adding labels to the table
         table.add(DaggerOfTimeLabel).expandX().padTop(20);
@@ -57,7 +57,6 @@ public class Hud implements Disposable {
         table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
         table.add(countDownLabel).expandX();
-
 
         stage.addActor(table); // adding the table to the stage
     }
