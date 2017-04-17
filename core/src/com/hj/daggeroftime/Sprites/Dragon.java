@@ -44,32 +44,36 @@ public class Dragon extends Enemy{
         dragonAnimation = new Animation(0.10f, frames);
         stateTime = 0;
 
-        setBounds(getX(), getY(), 70/DaggerOfTime.PPM, 45/DaggerOfTime.PPM);
+        setBounds(getX(), getY(), 70 / DaggerOfTime.PPM, 45 / DaggerOfTime.PPM);
     }
-    float tempTime =0;
+    float tempTime = 0;
 
-    public void update(float dt){
+    public void update(float dt) {
+
         tempTime+=dt;
         resetTimer +=dt;
 
         if(resetTimer > 5) {
-            fireBreath = new FireBreath(world, screen, xPosition - (10/DaggerOfTime.PPM), yPosition + (10/DaggerOfTime.PPM));
+            fireBreath = new FireBreath(world, screen, (b2body.getPosition().x) - (20 / DaggerOfTime.PPM),
+                    (b2body.getPosition().y) + (10 / DaggerOfTime.PPM));
             fireBreathsArray.add(fireBreath);
 
             resetTimer = 0;
         }
 
+        //Check the entire array
+        for(int i = 0; i < fireBreathsArray.size; i++) {
 
-
-        for(int i =0; i < fireBreathsArray.size; i++) {
+            //Add time to each fireball timer and update them
             fireBreathsArray.get(i).fireBreathTimer += dt;
             (fireBreathsArray.get(i)).update(dt);
 
-            if(fireBreathsArray.get(i).fireBreathTimer > 5 ){
-                world.destroyBody(fireBreathsArray.get(i).b2body);
-                fireBreathsArray.get(i).fireBreathTimer = 0;
-                fireBreathsArray.removeIndex(i);
+            //If one of the fireballs has hit a wall remove it from the world
+            if(fireBreathsArray.get(i).hitWall) {
 
+                //Destroy the fireball that hit the wall and remove it from the array
+                world.destroyBody(fireBreathsArray.get(i).b2body);
+                fireBreathsArray.removeIndex(i);
             }
         }
 

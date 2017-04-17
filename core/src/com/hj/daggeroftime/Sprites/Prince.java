@@ -40,10 +40,10 @@ public class Prince extends Sprite {
     private boolean princeIsDead;
 
     //Constructor
-    public Prince(World world, PlayScreen screen) {
+    public Prince(PlayScreen screen) {
 
         this.screen = screen;
-        this.world = world;
+        this.world = screen.getWorld();
         currentState = State.STANDING;
         prevState = State.STANDING;
         stateTimer = 0;
@@ -165,14 +165,15 @@ public class Prince extends Sprite {
         //Defining the shape and radius of the body
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6 / DaggerOfTime.PPM);
-        fixtureDef.friction = 0.5f;
+        shape.setRadius(8 / DaggerOfTime.PPM);
+        fixtureDef.friction = 0.3f;
         fixtureDef.filter.categoryBits = DaggerOfTime.PRINCE_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
                 DaggerOfTime.COIN_BIT |
                 DaggerOfTime.HAZARD_BIT |
                 DaggerOfTime.ENEMY_BIT |
-                DaggerOfTime.FIRE_BREATH;
+                DaggerOfTime.FIRE_BREATH_BIT |
+                DaggerOfTime.BOUND_BIT;
 
         //Creates the fixture
         fixtureDef.shape = shape;

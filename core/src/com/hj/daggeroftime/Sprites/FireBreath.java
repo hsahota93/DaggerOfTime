@@ -1,6 +1,5 @@
 package com.hj.daggeroftime.Sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -30,6 +29,7 @@ public class FireBreath extends Sprite {
     public  float elapsedTime;
     PlayScreen screen;
     BodyDef bodyDef;
+    public boolean hitWall;
 
     //@param world: take the world that enemy generated in
     public FireBreath(World world, PlayScreen screen, float positionX, float positionY) {
@@ -45,7 +45,7 @@ public class FireBreath extends Sprite {
             frames.add(new TextureRegion(screen.getFireAtlas().findRegion("attachment"), i*60, 0, 60,60));
         fireAnimation = new Animation(0.4f,frames);
         stateTIme = 0;
-        setBounds(0, 40, 14 / DaggerOfTime.PPM, 42 / DaggerOfTime.PPM);
+        setBounds(0, 40, 14 / DaggerOfTime.PPM, 21 / DaggerOfTime.PPM);
     }
 
     public void defineStaticEnemy() {
@@ -59,9 +59,10 @@ public class FireBreath extends Sprite {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(polygonSize, polygonSize);
 
-        fixtureDef.filter.categoryBits = DaggerOfTime.FIRE_BREATH;
+        fixtureDef.filter.categoryBits = DaggerOfTime.FIRE_BREATH_BIT;
         fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
-                DaggerOfTime.PRINCE_BIT;
+                DaggerOfTime.PRINCE_BIT |
+                DaggerOfTime.BOUND_BIT;
 
         fixtureDef.shape = shape;
         b2body.createFixture(fixtureDef).setUserData(this);
@@ -78,12 +79,12 @@ public class FireBreath extends Sprite {
             elapsedTime = 0;
         }
 
-        setPosition(b2body.getPosition().x - getWidth()/2, b2body.getPosition().y-getHeight()/2);
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y-getHeight() / 2);
         setRegion((TextureRegion) fireAnimation.getKeyFrame(stateTIme, true));
     }
 
     public void onCollision() {
 
-        //Gdx.app.log("Clearing", "frames");
+        hitWall = true;
     }
 }

@@ -79,7 +79,6 @@ public class SplashScreen implements Screen {
     public void setScreenWidth() {
 
         userScreenWidth = Gdx.graphics.getWidth();
-        System.out.println(userScreenWidth);
     }
 
     public float getScreenWidth(){

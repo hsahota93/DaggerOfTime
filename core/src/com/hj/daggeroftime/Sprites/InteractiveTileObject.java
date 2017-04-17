@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.DaggerOfTime;
+import com.hj.daggeroftime.Screens.PlayScreen;
 
 /**
  * Created by Harman on 2/27/17.
@@ -29,10 +30,10 @@ public abstract class InteractiveTileObject {
     protected Fixture fixture;
 
     //Creates any rectangle TileObject in the world (i.e Ground)
-    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, boolean sensor) {
+    public InteractiveTileObject(PlayScreen screen, Rectangle bounds, boolean sensor) {
 
-        this.world = world;
-        this.map = map;
+        this.world = screen.getWorld();
+        this.map = screen.getMap();
         this.bounds = bounds;
 
         BodyDef bodyDef = new BodyDef();
@@ -52,10 +53,10 @@ public abstract class InteractiveTileObject {
         fixture = body.createFixture(fixtureDef);
     }
 
-    public InteractiveTileObject(World world, TiledMap map, Ellipse ellipse, boolean sensor) {
+    public InteractiveTileObject(PlayScreen screen, Ellipse ellipse, boolean sensor) {
 
-        this.world = world;
-        this.map = map;
+        this.world = screen.getWorld();
+        this.map = screen.getMap();
         this.ellipse = ellipse;
 
         BodyDef bodyDef = new BodyDef();

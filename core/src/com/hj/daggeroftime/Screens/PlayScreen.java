@@ -96,7 +96,7 @@ public class PlayScreen implements Screen {
 
         creator = new B2WorldCreator(this, level);
 
-        player = new Prince(world, this);
+        player = new Prince(this);
 
         world.setContactListener(new WorldContactListener());
 
@@ -134,7 +134,7 @@ public class PlayScreen implements Screen {
         //Only handle input if prince is alive
         if (Prince.currentState != Prince.State.DEAD) {
             //If the 'UP' key is pressed apply linear impulse upwards
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP) &&
+            if (Gdx.input.isKeyJustPressed(Input.Keys.W) &&
                     (Prince.currentState != Prince.State.JUMPING && Prince.currentState != Prince.State.FALLING)) {
 
                 player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
@@ -142,13 +142,13 @@ public class PlayScreen implements Screen {
             }
 
             //If the 'RIGHT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
+            if (Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= maxPlayerSpeed) {
 
                 player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
             }
 
             //If the 'LEFT' key is pressed apply linear impulse to the right as long as velocity is slower than 'maxPlayerSpeed'
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
+            if (Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -maxPlayerSpeed) {
 
                 player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
             }
@@ -199,7 +199,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);

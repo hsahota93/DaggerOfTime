@@ -16,13 +16,16 @@ public class DaggerOfTime extends Game {
     public static final float PPM = 100;
 
     public static final short DEAD_BIT = 0;
-    public static final short OBJECT_BIT = 1;
-    public static final short PRINCE_BIT = 2;
-    public static final short COIN_BIT = 4;
-    public static final short ENEMY_BIT = 8;
-    public static final short DESTROYED_BIT = 16;
-    public static final short HAZARD_BIT = 32;
-    public static final short FIRE_BREATH = 64;
+    public static final short OBJECT_BIT = 2;
+    public static final short PRINCE_BIT = 4;
+    public static final short COIN_BIT = 8;
+    public static final short ENEMY_BIT = 16;
+    public static final short DESTROYED_BIT = 32;
+    public static final short HAZARD_BIT = 64;
+    public static final short FIRE_BREATH_BIT = 128;
+    public static final short BOUND_BIT = 256;
+    public static final short KEY_BIT = 256;
+    public static final short DOOR_BIT = 256;
 
     public static AssetManager assetManager;
 

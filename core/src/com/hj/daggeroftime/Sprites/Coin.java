@@ -1,12 +1,12 @@
 package com.hj.daggeroftime.Sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Scenes.Hud;
+import com.hj.daggeroftime.Screens.PlayScreen;
 
 /**
  * Created by Harman on 3/12/17.
@@ -19,9 +19,9 @@ public class Coin extends InteractiveTileObject {
     protected Body body;
     protected Ellipse bounds;
 
-    public Coin(World world, TiledMap map, Ellipse ellipse) {
+    public Coin(PlayScreen screen, Ellipse ellipse) {
 
-        super(world, map, ellipse, true);
+        super(screen, ellipse, true);
         fixture.setUserData(this);
         setCategoryFilter(DaggerOfTime.COIN_BIT);
     }

@@ -35,7 +35,7 @@ public class B2WorldCreator {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 //Creates all the rectangle objects in layer "11"
-                new Ground(world, map, rectangle);
+                new Ground(screen, rectangle);
             }
 
             //For Coins, gets all the objects in layer "9"
@@ -44,7 +44,7 @@ public class B2WorldCreator {
                 Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
 
                 //Creates all the circle objects in layer "9"
-                new Coin(world, map, ellipse);
+                new Coin(screen, ellipse);
             } //End for
 
             //For hazards, gets all the objects in layer "14"
@@ -52,7 +52,7 @@ public class B2WorldCreator {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 //Creates all the rectangle objects in layer "14"
-                new Hazard(world, map, rectangle);
+                new Hazard(screen, rectangle);
             }
 
             //Array to hold the dragon
@@ -74,7 +74,7 @@ public class B2WorldCreator {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 //Creates all the rectangle objects in layer "4"
-                new Ground(world, map, rectangle);
+                new Ground(screen, rectangle);
             } //End for
 
             //For hazards, gets all the objects in layer "5"
@@ -82,7 +82,7 @@ public class B2WorldCreator {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
                 //Creates all the rectangle objects in layer "7"
-                new Hazard(world, map, rectangle);
+                new Hazard(screen, rectangle);
             } //End for
 
             //For Coins, gets all the objects in layer "7"
@@ -90,17 +90,19 @@ public class B2WorldCreator {
 
                 Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
 
-                //Creates all the circle objects in layer "9"
-                new Coin(world, map, ellipse);
+                //Creates all the circle objects in layer "7"
+                new Coin(screen, ellipse);
             } //End for
 
             //Array to hold the dragons
             dragon = new Array<Dragon>();
+
             // Getting position of all the dragons from the sprite
             for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-                dragon.add(new Dragon(screen,rectangle.getX()/ DaggerOfTime.PPM, rectangle.getY()/DaggerOfTime.PPM, world));
+                dragon.add(new Dragon(screen, rectangle.getX() / DaggerOfTime.PPM,
+                        rectangle.getY() / DaggerOfTime.PPM, world));
             }
         }  //End if-else
     } //End constructor

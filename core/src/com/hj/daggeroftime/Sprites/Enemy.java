@@ -10,12 +10,12 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 /**
  * Created by jacob on 4/9/2017.
  */
+
 public abstract class Enemy extends Sprite {
 
     protected  World world;
     protected Screen screen;
     public Body b2body;
-    public static Array<FireBreath> fireBreathsArray;
 
     public Enemy(PlayScreen screen, float x, float y, World world){
         this.world = world;
@@ -23,7 +23,6 @@ public abstract class Enemy extends Sprite {
         setPosition(x,y);
         defineEnemy();
     }
-
 
     protected abstract void defineEnemy();
 

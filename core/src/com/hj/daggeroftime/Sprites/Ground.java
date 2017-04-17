@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.DaggerOfTime;
+import com.hj.daggeroftime.Screens.PlayScreen;
 
 /**
  * Created by Harman on 2/27/17.
@@ -12,9 +13,9 @@ import com.hj.daggeroftime.DaggerOfTime;
 
 public class Ground extends InteractiveTileObject {
 
-    public Ground(World world, TiledMap map, Rectangle bounds) {
+    public Ground(PlayScreen screen, Rectangle bounds) {
 
-        super(world, map, bounds, false);
+        super(screen, bounds, false);
         fixture.setUserData(this);
         setCategoryFilter(DaggerOfTime.OBJECT_BIT);
     }

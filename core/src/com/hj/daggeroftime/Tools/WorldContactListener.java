@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Sprites.Coin;
 import com.hj.daggeroftime.Sprites.FireBreath;
-import com.hj.daggeroftime.Sprites.InteractiveTileObject;
 import com.hj.daggeroftime.Sprites.Prince;
 
 /**
@@ -60,22 +59,22 @@ public class WorldContactListener implements ContactListener {
                 }
                 break;
 
-            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.FIRE_BREATH:
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.FIRE_BREATH_BIT:
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
                     ((Prince)fixA.getUserData()).hit(100);
-                    ((FireBreath)fixB.getUserData()).onCollision();
+                    //((FireBreath)fixB.getUserData()).onCollision();
                 } else {
 
                     ((Prince)fixB.getUserData()).hit(100);
-                    ((FireBreath)fixA.getUserData()).onCollision();
+                    //((FireBreath)fixA.getUserData()).onCollision();
                 }
-                break;
 
-            case DaggerOfTime.OBJECT_BIT | DaggerOfTime.FIRE_BREATH:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH) {
+            case DaggerOfTime.FIRE_BREATH_BIT | DaggerOfTime.OBJECT_BIT:
+
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH_BIT) {
 
                     ((FireBreath)fixA.getUserData()).onCollision();
                 } else {
@@ -83,6 +82,7 @@ public class WorldContactListener implements ContactListener {
                     ((FireBreath)fixB.getUserData()).onCollision();
                 }
                 break;
+
         }
     }
 
