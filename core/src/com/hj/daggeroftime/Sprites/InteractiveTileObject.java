@@ -88,9 +88,9 @@ public abstract class InteractiveTileObject {
         fixture.setFilterData(filter);
     }
 
-    public TiledMapTileLayer.Cell getCell() {
+    public TiledMapTileLayer.Cell getCell(int graphicLayer) {
 
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(3);
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(graphicLayer);
 
         return layer.getCell((int) (body.getPosition().x * DaggerOfTime.PPM / 16),
                 (int) (body.getPosition().y * DaggerOfTime.PPM / 16));

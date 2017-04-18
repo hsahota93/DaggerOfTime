@@ -1,40 +1,39 @@
 package com.hj.daggeroftime.Sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.hj.daggeroftime.DaggerOfTime;
-import com.hj.daggeroftime.Scenes.Hud;
 import com.hj.daggeroftime.Screens.PlayScreen;
 
 /**
- * Created by Harman on 3/12/17.
+ * Created by Harman on 4/17/17.
  */
 
-public class Coin extends InteractiveTileObject {
+public class Key extends InteractiveTileObject {
 
     protected World world;
     protected TiledMap map;
     protected Body body;
     protected Ellipse bounds;
 
-    private final int coinGraphicLayer = 3;
+    private final int keyGraphicLayer = 2;
 
-    public Coin(PlayScreen screen, Ellipse ellipse) {
+    public Key(PlayScreen screen, Rectangle bounds) {
 
-        super(screen, ellipse, true);
+        super(screen, bounds, true);
         fixture.setUserData(this);
-        setCategoryFilter(DaggerOfTime.COIN_BIT);
+        setCategoryFilter(DaggerOfTime.KEY_BIT);
     }
 
     @Override
     public void onCollision() {
 
-        //Gdx.app.log("Coin", "Collision");
+        Gdx.app.log("You got the", " Key");
         setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
-        getCell(coinGraphicLayer).setTile(null);
-        Hud.addScore(10);
-        Hud.setScoreLabel();
+        getCell(keyGraphicLayer).setTile(null);
     }
 }

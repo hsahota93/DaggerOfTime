@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Sprites.Coin;
 import com.hj.daggeroftime.Sprites.FireBreath;
+import com.hj.daggeroftime.Sprites.Key;
 import com.hj.daggeroftime.Sprites.Prince;
 
 /**
@@ -29,8 +30,10 @@ public class WorldContactListener implements ContactListener {
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.HAZARD_BIT:
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+
                     ((Prince)fixA.getUserData()).hit(100);
                 } else {
+
                     ((Prince)fixB.getUserData()).hit(100);
                 }
                 break;
@@ -40,11 +43,11 @@ public class WorldContactListener implements ContactListener {
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.COIN_BIT) {
 
-                ((Coin)fixA.getUserData()).onCollision();
+                    ((Coin)fixA.getUserData()).onCollision();
                 } else {
 
-                ((Coin)fixB.getUserData()).onCollision();
-            }
+                    ((Coin)fixB.getUserData()).onCollision();
+                }
                 break;
 
             //If prince collides with an enemy
@@ -59,6 +62,7 @@ public class WorldContactListener implements ContactListener {
                 }
                 break;
 
+            //If the Prince collides with firebreath (fireballs)
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.FIRE_BREATH_BIT:
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
@@ -71,7 +75,7 @@ public class WorldContactListener implements ContactListener {
                     //((FireBreath)fixA.getUserData()).onCollision();
                 }
 
-
+            //If the firebreath (fireball) collide with the ground
             case DaggerOfTime.FIRE_BREATH_BIT | DaggerOfTime.OBJECT_BIT:
 
                 if (fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH_BIT) {
@@ -83,6 +87,31 @@ public class WorldContactListener implements ContactListener {
                 }
                 break;
 
+            //If the Prince collides with a Key
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.KEY_BIT:
+
+                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+
+                    ((Prince)fixA.getUserData()).obtainKey();
+                    ((Key)fixB.getUserData()).onCollision();
+                } else {
+
+                    ((Prince)fixB.getUserData()).obtainKey();
+                    ((Key)fixA.getUserData()).onCollision();
+                }
+                break;
+
+            //If the Prince collides with the door
+            case DaggerOfTime.PRINCE_BIT | DaggerOfTime.DOOR_BIT:
+
+                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+
+                    ((Prince)fixA.getUserData()).setReachedDoor();
+                } else {
+
+                    ((Prince)fixB.getUserData()).setReachedDoor();
+                }
+                break;
         }
     }
 

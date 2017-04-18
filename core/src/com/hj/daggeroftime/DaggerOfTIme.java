@@ -25,7 +25,7 @@ public class DaggerOfTime extends Game {
     public static final short FIRE_BREATH_BIT = 128;
     public static final short BOUND_BIT = 256;
     public static final short KEY_BIT = 256;
-    public static final short DOOR_BIT = 256;
+    public static final short DOOR_BIT = 512;
 
     public static AssetManager assetManager;
 

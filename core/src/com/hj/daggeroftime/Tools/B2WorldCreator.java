@@ -11,9 +11,11 @@ import com.badlogic.gdx.utils.Array;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Screens.PlayScreen;
 import com.hj.daggeroftime.Sprites.Coin;
+import com.hj.daggeroftime.Sprites.Door;
 import com.hj.daggeroftime.Sprites.Dragon;
 import com.hj.daggeroftime.Sprites.Ground;
 import com.hj.daggeroftime.Sprites.Hazard;
+import com.hj.daggeroftime.Sprites.Key;
 
 /**
  * Created by Harman on 2/26/17.
@@ -69,6 +71,20 @@ public class B2WorldCreator {
             //If level1 is selected
         } else {
 
+            //For 'Door'. Creates the door on the level
+            for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                new Door(screen, rectangle, true);
+            } //End for
+
+            //For 'Key'. Creates the key on the level
+            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+
+                new Key(screen, rectangle);
+            } //End for
+
             //For ground, gets all the objects in layer "4"
             for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
@@ -97,7 +113,7 @@ public class B2WorldCreator {
             //Array to hold the dragons
             dragon = new Array<Dragon>();
 
-            // Getting position of all the dragons from the sprite
+            //Getting position of all the dragons from the sprite
             for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 

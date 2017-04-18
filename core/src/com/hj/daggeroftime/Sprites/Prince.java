@@ -37,7 +37,10 @@ public class Prince extends Sprite {
     private TextureRegion region;
     public int health = 100;
     private PlayScreen screen;
+
     private boolean princeIsDead;
+    private boolean hasKey;
+    private boolean reachedDoor;
 
     //Constructor
     public Prince(PlayScreen screen) {
@@ -115,10 +118,6 @@ public class Prince extends Sprite {
         return region;
     }
 
-    public boolean isDead() {
-        return princeIsDead;
-    }
-
     public float getStateTimer() {
         return stateTimer;
     }
@@ -167,7 +166,9 @@ public class Prince extends Sprite {
                 DaggerOfTime.HAZARD_BIT |
                 DaggerOfTime.ENEMY_BIT |
                 DaggerOfTime.FIRE_BREATH_BIT |
-                DaggerOfTime.BOUND_BIT;
+                DaggerOfTime.BOUND_BIT |
+                DaggerOfTime.KEY_BIT |
+                DaggerOfTime.DOOR_BIT;
 
         //Creates the fixture
         fixtureDef.shape = shape;
@@ -199,5 +200,25 @@ public class Prince extends Sprite {
 
             Gdx.app.log("Prince is", "dead");
         }
+    }
+
+    //Called when the prince collides with a key
+    public void obtainKey() {
+        hasKey = true;
+    }
+
+    //Returns true if prince has collided with a key
+    public boolean getKey() {
+        return hasKey;
+    }
+
+    //Called when the prince collides with the door
+    public void setReachedDoor() {
+        reachedDoor = true;
+    }
+
+    //Returns true if the prince has collided with the door
+    public boolean getReachedDoor() {
+        return reachedDoor;
     }
 }

@@ -16,40 +16,35 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hj.daggeroftime.DaggerOfTime;
 
 /**
- * Created by Harman on 4/14/17.
+ * Created by Harman on 4/17/17.
  */
 
-public class GameOverScreen implements Screen {
+public class WinScreen implements Screen {
 
     private Viewport viewport;
     private Stage stage;
     private Game game;
 
-    public GameOverScreen(Game game) {
+    public WinScreen(Game game) {
 
         this.game = game;
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
         stage = new Stage(viewport, ((DaggerOfTime) game).batch);
 
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
-        Table table = new Table(); // creating table to keep items inside the stage organized
+        //Creating table to keep items inside the stage organized
+        Table table = new Table();
         table.center();
         table.setFillParent(true);
 
-        Label gameOverLabel = new Label("Game Over", font);
-        Label playAgainLabel = new Label("Play Again?", font);
+        Label gameOverLabel = new Label("You Win!!!", font);
 
         table.add(gameOverLabel).expandX();
         table.row();
-        table.add(playAgainLabel).expandX().padTop(10f);
 
         stage.addActor(table);
-
     }
-
     @Override
     public void show() {
 
@@ -71,6 +66,7 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+
     }
 
     @Override
@@ -90,6 +86,7 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
+
         stage.dispose();
     }
 }

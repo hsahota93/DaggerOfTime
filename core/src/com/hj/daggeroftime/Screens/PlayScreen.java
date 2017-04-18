@@ -129,7 +129,7 @@ public class PlayScreen implements Screen {
     }
 
     /*To handle interactions*/
-    public void handleInput(float dt) {
+    private void handleInput(float dt) {
 
         //Only handle input if prince is alive
         if (Prince.currentState != Prince.State.DEAD) {
@@ -228,6 +228,13 @@ public class PlayScreen implements Screen {
         if(gameOver()) {
 
             game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+
+        if(player.getKey() && player.getReachedDoor()) {
+
+            DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
+            game.setScreen(new WinScreen(game));
             dispose();
         }
     }
