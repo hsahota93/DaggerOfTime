@@ -25,102 +25,60 @@ public class B2WorldCreator {
 
     private Array<Dragon> dragon;
 
-    public B2WorldCreator(PlayScreen screen, String level) {
+    public B2WorldCreator(PlayScreen screen) {
 
         World world = screen.getWorld();
         TiledMap map = screen.getMap();
 
-        if(level.compareTo("Levels/level2.tmx") == 0) {
+        //For 'Door'. Creates the door on the level
+        for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-            //For ground, gets all the objects in layer "11"
-            for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+            new Door(screen, rectangle, true);
+        } //End for
 
-                //Creates all the rectangle objects in layer "11"
-                new Ground(screen, rectangle);
-            }
+        //For 'Key'. Creates the key on the level
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-            //For Coins, gets all the objects in layer "9"
-            for (MapObject object : map.getLayers().get(10).getObjects().getByType(EllipseMapObject.class)) {
+            new Key(screen, rectangle);
+        } //End for
 
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+        //For ground, gets all the objects in layer "4"
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-                //Creates all the circle objects in layer "9"
-                new Coin(screen, ellipse);
-            } //End for
+            //Creates all the rectangle objects in layer "4"
+            new Ground(screen, rectangle);
+        } //End for
 
-            //For hazards, gets all the objects in layer "14"
-            for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+        //For hazards, gets all the objects in layer "5"
+        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-                //Creates all the rectangle objects in layer "14"
-                new Hazard(screen, rectangle);
-            }
+            //Creates all the rectangle objects in layer "7"
+            new Hazard(screen, rectangle);
+        } //End for
 
-            //Array to hold the dragon
-            dragon = new Array<Dragon>();
+        //For Coins, gets all the objects in layer "7"
+        for (MapObject object : map.getLayers().get(7).getObjects().getByType(EllipseMapObject.class)) {
 
-            //Getting the position of all the dragons from the sprites
-            for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
+            Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
 
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+            //Creates all the circle objects in layer "7"
+            new Coin(screen, ellipse);
+        } //End for
 
-                dragon.add(new Dragon(screen,rectangle.getX()/ DaggerOfTime.PPM, rectangle.getY()/DaggerOfTime.PPM, world));
-            }
+        //Array to hold the dragons
+        dragon = new Array<Dragon>();
 
-            //If level1 is selected
-        } else {
+        //Getting position of all the dragons from the sprite
+        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
 
-            //For 'Door'. Creates the door on the level
-            for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                new Door(screen, rectangle, true);
-            } //End for
-
-            //For 'Key'. Creates the key on the level
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                new Key(screen, rectangle);
-            } //End for
-
-            //For ground, gets all the objects in layer "4"
-            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                //Creates all the rectangle objects in layer "4"
-                new Ground(screen, rectangle);
-            } //End for
-
-            //For hazards, gets all the objects in layer "5"
-            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                //Creates all the rectangle objects in layer "7"
-                new Hazard(screen, rectangle);
-            } //End for
-
-            //For Coins, gets all the objects in layer "7"
-            for (MapObject object : map.getLayers().get(7).getObjects().getByType(EllipseMapObject.class)) {
-
-                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-
-                //Creates all the circle objects in layer "7"
-                new Coin(screen, ellipse);
-            } //End for
-
-            //Array to hold the dragons
-            dragon = new Array<Dragon>();
-
-            //Getting position of all the dragons from the sprite
-            for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-
-                dragon.add(new Dragon(screen, rectangle.getX() / DaggerOfTime.PPM,
-                        rectangle.getY() / DaggerOfTime.PPM, world));
-            }
-        }  //End if-else
+            dragon.add(new Dragon(screen, rectangle.getX() / DaggerOfTime.PPM,
+                    rectangle.getY() / DaggerOfTime.PPM, world));
+        }
     } //End constructor
 
     //Getter for dragon array

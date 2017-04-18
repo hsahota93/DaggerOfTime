@@ -30,6 +30,7 @@ public class FireBreath extends Sprite {
     PlayScreen screen;
     BodyDef bodyDef;
     public boolean hitWall;
+    private int maxFireBreathSpeed = 2;
 
     //@param world: take the world that enemy generated in
     public FireBreath(World world, PlayScreen screen, float positionX, float positionY) {
@@ -74,9 +75,9 @@ public class FireBreath extends Sprite {
 
         elapsedTime += dt;
 
-        if(elapsedTime >0.5) {
+        if(b2body.getLinearVelocity().x >= -maxFireBreathSpeed) {
+
             b2body.applyLinearImpulse(new Vector2(-0.1f, 0), b2body.getWorldCenter(), true);
-            elapsedTime = 0;
         }
 
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y-getHeight() / 2);

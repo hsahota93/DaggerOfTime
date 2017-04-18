@@ -212,9 +212,13 @@ public class Prince extends Sprite {
         return hasKey;
     }
 
-    //Called when the prince collides with the door
+    //Called when the prince collides with the door and already has the key
     public void setReachedDoor() {
-        reachedDoor = true;
+
+        if (hasKey) {
+
+            reachedDoor = true;
+        }
     }
 
     //Returns true if the prince has collided with the door

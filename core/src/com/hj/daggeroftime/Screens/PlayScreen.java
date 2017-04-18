@@ -65,6 +65,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer box2DDebugRenderer;  // represent the body and fixtures of box 2d world
 
     private Music music;
+    private String level;
 
     public PlayScreen(DaggerOfTime obj) {
         setSplashScreen(obj);
@@ -78,6 +79,7 @@ public class PlayScreen implements Screen {
         myDragonAtlas = new TextureAtlas(Gdx.files.internal("test.pack"));
 
         this.game = game;
+        this.level = level;
         gameCamera = new OrthographicCamera();
         gamePort = new FitViewport(DaggerOfTime.screenWidth / DaggerOfTime.PPM,
                 DaggerOfTime.screenHeight / DaggerOfTime.PPM, gameCamera); //width, height, gameCamera
@@ -94,7 +96,7 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        creator = new B2WorldCreator(this, level);
+        creator = new B2WorldCreator(this);
 
         player = new Prince(this);
 
@@ -234,7 +236,8 @@ public class PlayScreen implements Screen {
         if(player.getKey() && player.getReachedDoor()) {
 
             DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
-            game.setScreen(new WinScreen(game));
+            //game.setScreen(new WinScreen(game));
+            game.setScreen(new PlayScreen(game, "Levels/level2.tmx"));
             dispose();
         }
     }
