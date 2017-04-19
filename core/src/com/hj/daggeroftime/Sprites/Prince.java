@@ -225,4 +225,8 @@ public class Prince extends Sprite {
     public boolean getReachedDoor() {
         return reachedDoor;
     }
+
+    public int getHealth() {
+        return health;
+    }
 }

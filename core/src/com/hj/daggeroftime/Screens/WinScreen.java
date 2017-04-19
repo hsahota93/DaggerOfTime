@@ -38,7 +38,7 @@ public class WinScreen implements Screen {
         table.center();
         table.setFillParent(true);
 
-        Label gameOverLabel = new Label("You Win!!!", font);
+        Label gameOverLabel = new Label("You beat the game!!!", font);
 
         table.add(gameOverLabel).expandX();
         table.row();

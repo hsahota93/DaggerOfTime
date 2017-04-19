@@ -19,16 +19,19 @@ public class Hud implements Disposable {
 
     public Stage stage;
     private Viewport viewport;
-    protected Integer worldTimer;
-    protected float timeCount;
-    public static Integer score;
-    protected Integer timeLimit = 300;
+    private Integer worldTimer;
+    private float timeCount;
+    private static Integer score;
+    private Integer timeLimit = 120;
     private Label countDownLabel;
-    public static Label scoreLabel;
+    private static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worldLabel;
     private Label DaggerOfTimeLabel;
+    private Label healthLabel;
+    private Label currentHealthLabel;
+    private Integer princeHealth;
 
     public Hud(SpriteBatch sb, String level) {
 
@@ -45,22 +48,25 @@ public class Hud implements Disposable {
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("World", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        DaggerOfTimeLabel  = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        DaggerOfTimeLabel = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        healthLabel = new Label("Health", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        currentHealthLabel = new Label(String.format("%3d", princeHealth ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
 
         //adding labels to the table
         table.add(DaggerOfTimeLabel).expandX().padTop(20);
         table.add(worldLabel).expandX().padTop(20);
         table.add(timeLabel).expandX().padTop(20);
+        table.add(healthLabel).expandX().padTop(20);
 
         table.row();
 
         table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
         table.add(countDownLabel).expandX();
+        table.add(currentHealthLabel).expandX();
 
         stage.addActor(table); // adding the table to the stage
     }
-
 
     public static void addScore(int points) {
         score += points;
@@ -75,7 +81,9 @@ public class Hud implements Disposable {
         stage.dispose();
     }
 
-    public void initiateVariables(){
+    public void initiateVariables() {
+
+        princeHealth = 100;
         worldTimer = timeLimit;
         timeCount = 0;
         score = 0;
@@ -87,15 +95,33 @@ public class Hud implements Disposable {
 
         if(timeCount >= 1) {
 
-            worldTimerDecrementer();
-            countDownLabel.setText(String.format("%3d",worldTimer));
+            if (worldTimer > 0) {
+
+                worldTimerDecrementer();
+            }
+
+            countDownLabel.setText(String.format("%3d", worldTimer));
+            currentHealthLabel.setText(String.format("%3d", princeHealth));
             timeCount = 0;
+        }
+
+        if (worldTimer == 0) {
+            System.out.printf("");
         }
     }
 
     // To decrement the world timer
-    public void worldTimerDecrementer(){
+    private void worldTimerDecrementer(){
         worldTimer--;
+    }
+
+    //Returns the worldTimer. Used to see if prince should die.
+    public int getTimer() {
+        return worldTimer;
+    }
+
+    public void updateHealth(int newHealth) {
+        princeHealth = newHealth;
     }
 
 }

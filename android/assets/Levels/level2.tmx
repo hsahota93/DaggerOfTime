@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="120">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="124">
  <tileset firstgid="1" name="66732" tilewidth="16" tileheight="16" tilecount="4096" columns="128">
   <image source="../piclevel2/floor/66732.png" width="2048" height="512"/>
  </tileset>
@@ -78,15 +78,18 @@
   <object id="115" x="560" y="192" width="3280" height="16"/>
   <object id="116" x="304" y="112" width="64" height="16"/>
   <object id="117" x="432" y="80" width="64" height="16"/>
+  <object id="120" x="0" y="-48" height="144"/>
+  <object id="121" x="3840" y="-48" height="240"/>
+  <object id="123" x="0" y="-48" width="3840"/>
  </objectgroup>
  <objectgroup name="Hazard">
-  <object id="38" x="1232" y="160" width="96" height="32"/>
-  <object id="39" x="1776" y="160" width="64" height="32"/>
-  <object id="40" x="2368" y="160" width="96" height="32"/>
-  <object id="41" x="2576" y="160" width="64" height="32"/>
-  <object id="42" x="2784" y="160" width="80" height="32"/>
-  <object id="113" x="96" y="176" width="80" height="32"/>
-  <object id="114" x="272" y="192" width="288" height="16"/>
+  <object id="38" x="1243.98" y="163.267" width="76.3975" height="28.7329"/>
+  <object id="39" x="1777.9" y="163.812" width="58.4148" height="28.1884"/>
+  <object id="40" x="2370.11" y="165.445" width="86.1542" height="26.5549"/>
+  <object id="41" x="2578.13" y="164.356" width="54.2679" height="27.6439"/>
+  <object id="42" x="2790.32" y="165.445" width="70.0825" height="26.5549"/>
+  <object id="113" x="96" y="191.791" width="80" height="16.2091"/>
+  <object id="114" x="272" y="199.079" width="288" height="8.92132"/>
  </objectgroup>
  <objectgroup name="Key">
   <object id="43" x="2480" y="80" width="32" height="32"/>

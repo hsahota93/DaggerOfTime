@@ -89,7 +89,7 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(level);
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / DaggerOfTime.PPM);
-        gameCamera.position.set(gamePort.getWorldWidth() / 4, gamePort.getWorldHeight() / 4, 0);
+        gameCamera.position.set(gamePort.getWorldWidth() / 4, gamePort.getWorldHeight() / 3, 0);
 
         /*@param1 vector2: for gravity,
           @param2 true: sleep object at the rest */
@@ -163,21 +163,18 @@ public class PlayScreen implements Screen {
 
     public void update(float dt) {
 
-        if(destroyPrince) {
+        gameCamera.position.x = player.b2body.getPosition().x;
+        gameCamera.update();
 
-            world.destroyBody(player.b2body);
-            destroyPrince = false;
-            gameCamera.position.x = 0;
-        } else {
-
-            gameCamera.position.x = player.b2body.getPosition().x;
-            gameCamera.update();
+        if (hud.getTimer() == 0) {
+            player.hit(100);
         }
 
         handleInput(dt);
 
         world.step(1 / 60f, 6, 2);
         player.update(dt);
+        hud.updateHealth(player.getHealth());
         hud.update(dt);
 
         //updating the dragon
@@ -227,23 +224,31 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
-        if(gameOver()) {
+        //If the prince's health is 0 create the game over screen
+        if(player.getHealth() == 0) {
 
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
 
-        if(player.getKey() && player.getReachedDoor()) {
+        //If the player has the key and has reached the door
+        if(player.getReachedDoor()) {
 
+            //Stop playing the music
             DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
-            //game.setScreen(new WinScreen(game));
-            game.setScreen(new PlayScreen(game, "Levels/level2.tmx"));
+
+            //If he is on level 1 set the game to level 2
+            if (level.compareTo("Levels/level1.tmx") == 0) {
+
+                game.setScreen(new PlayScreen(game, "Levels/level2.tmx"));
+            } else {
+
+                //Otherwise show the WinScreen (all levels beaten)
+                game.setScreen(new WinScreen(game));
+            }
+
             dispose();
         }
-    }
-
-    public boolean gameOver() {
-        return Prince.currentState == Prince.State.DEAD;
     }
 
     public void setSplashScreen(DaggerOfTime obj) {
