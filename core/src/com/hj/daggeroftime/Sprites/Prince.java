@@ -35,7 +35,7 @@ public class Prince extends Sprite {
     private boolean runningRight;
     private float stateTimer;
     private TextureRegion region;
-    public int health = 100;
+    private int health = 100;
     private PlayScreen screen;
 
     private boolean princeIsDead;
@@ -186,7 +186,6 @@ public class Prince extends Sprite {
 
         DaggerOfTime.assetManager.get("Audio/Sounds/Damage.mp3", Sound.class).play();
         health -= damage;
-        Gdx.app.log("Damage: " + damage,"Health: " + health);
 
         //If health is 0 or below, set state to dead and remove all sprites/animation.
         //Also stop music
@@ -197,19 +196,12 @@ public class Prince extends Sprite {
             region.setRegion(princeDead);
             screen.clearPrince();
             DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();
-
-            Gdx.app.log("Prince is", "dead");
         }
     }
 
     //Called when the prince collides with a key
     public void obtainKey() {
         hasKey = true;
-    }
-
-    //Returns true if prince has collided with a key
-    public boolean getKey() {
-        return hasKey;
     }
 
     //Called when the prince collides with the door and already has the key

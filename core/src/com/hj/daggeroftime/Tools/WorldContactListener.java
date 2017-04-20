@@ -67,11 +67,11 @@ public class WorldContactListener implements ContactListener {
 
                 if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).hit(100);
+                    ((Prince)fixA.getUserData()).hit(25);
                     //((FireBreath)fixB.getUserData()).onCollision();
                 } else {
 
-                    ((Prince)fixB.getUserData()).hit(100);
+                    ((Prince)fixB.getUserData()).hit(25);
                     //((FireBreath)fixA.getUserData()).onCollision();
                 }
 

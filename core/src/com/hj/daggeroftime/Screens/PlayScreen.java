@@ -202,7 +202,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render(); // rendering the map
-        box2DDebugRenderer.render(world, gameCamera.combined); // debug line
+        //box2DDebugRenderer.render(world, gameCamera.combined); // debug line
 
         //Draws the sprite
         game.batch.setProjectionMatrix(gameCamera.combined);
@@ -225,9 +225,19 @@ public class PlayScreen implements Screen {
         hud.stage.draw();
 
         //If the prince's health is 0 create the game over screen
-        if(player.getHealth() == 0) {
+        if(player.getHealth() <= 0) {
 
-            game.setScreen(new GameOverScreen(game));
+            game.maxLives--;
+
+            if (game.maxLives < 0) {
+
+                game.setScreen(new GameOverScreen(game));
+                game.maxLives = 2;
+            } else {
+
+                game.setScreen(new PlayScreen(game, level));
+            }
+
             dispose();
         }
 

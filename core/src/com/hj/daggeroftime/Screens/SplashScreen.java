@@ -36,7 +36,7 @@ public class SplashScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        timeElapsed +=1;
+        timeElapsed += 1;
         Gdx.gl.glClearColor(23,100,200,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

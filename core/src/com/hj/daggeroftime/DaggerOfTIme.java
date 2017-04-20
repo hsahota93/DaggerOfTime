@@ -27,6 +27,8 @@ public class DaggerOfTime extends Game {
     public static final short KEY_BIT = 256;
     public static final short DOOR_BIT = 512;
 
+    public int maxLives = 2;
+
     public static AssetManager assetManager;
 
     //Creates splash screen
@@ -47,7 +49,7 @@ public class DaggerOfTime extends Game {
         new PlayScreen(this);
     }
 
-    /*Game logic updates are usually performed here*/
+    //Game logic updates are usually performed here
     @Override
     public void render() {
         super.render();
@@ -59,5 +61,9 @@ public class DaggerOfTime extends Game {
         super.dispose();
         batch.dispose();
         assetManager.dispose();
+    }
+
+    public void livesDecramentor() {
+        maxLives--;
     }
 }
