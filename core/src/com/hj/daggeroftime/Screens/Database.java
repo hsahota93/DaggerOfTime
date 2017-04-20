@@ -16,7 +16,7 @@ import java.util.Iterator;
  * Created by Harman on 4/20/17.
  */
 
-public class Databse {
+public class Database {
     private Firebase mref;
     private Array<String> nameList;
     private Array<Integer> scoreList;
@@ -26,7 +26,7 @@ public class Databse {
     private Game game;
     private Firebase playerName;
 
-    public Databse(){
+    public Database(){
         scoreList = new Array<Integer>();
         nameList = new Array<String>();
         mref = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerScore");
