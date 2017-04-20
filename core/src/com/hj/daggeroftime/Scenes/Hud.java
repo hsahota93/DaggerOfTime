@@ -33,7 +33,7 @@ public class Hud implements Disposable {
     private Label currentHealthLabel;
     private Integer princeHealth;
 
-    public Hud(SpriteBatch sb, String level) {
+    public Hud(SpriteBatch sb) {
 
         initiateVariables();
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
