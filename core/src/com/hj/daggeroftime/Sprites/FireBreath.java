@@ -1,0 +1,93 @@
+package com.hj.daggeroftime.Sprites;
+
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.hj.daggeroftime.DaggerOfTime;
+import com.hj.daggeroftime.Screens.PlayScreen;
+
+/**
+ * Created by jacob on 4/3/2017.
+ */
+public class FireBreath extends Sprite {
+    protected float fireBreathTimer = 0;
+    public World world;
+    public Body b2body;
+    protected float polygonSize = 5 / DaggerOfTime.PPM;
+    protected float positionX ;
+    protected float positionY ;
+    public Animation fireAnimation;
+    public Array<TextureRegion> frames;
+    private float stateTIme;
+    public  float elapsedTime;
+    PlayScreen screen;
+    BodyDef bodyDef;
+    public boolean hitWall;
+    private int maxFireBreathSpeed = 2;
+
+    //@param world: take the world that enemy generated in
+    public FireBreath(World world, PlayScreen screen, float positionX, float positionY) {
+
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.world = world;
+        this.screen = screen;
+        defineStaticEnemy();
+
+        frames = new Array<TextureRegion>();
+        for(int i = 0; i < 2; i++)
+            frames.add(new TextureRegion(screen.getFireAtlas().findRegion("attachment"), i*60, 0, 60,60));
+        fireAnimation = new Animation(0.4f,frames);
+        stateTIme = 0;
+        setBounds(0, 40, 14 / DaggerOfTime.PPM, 21 / DaggerOfTime.PPM);
+    }
+
+    public void defineStaticEnemy() {
+
+        bodyDef = new BodyDef();
+        bodyDef.position.set(positionX, positionY);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        b2body = world.createBody(bodyDef);
+
+
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(polygonSize, polygonSize);
+        fixtureDef.isSensor = true;
+
+        fixtureDef.filter.categoryBits = DaggerOfTime.FIRE_BREATH_BIT;
+        fixtureDef.filter.maskBits = DaggerOfTime.OBJECT_BIT |
+                DaggerOfTime.PRINCE_BIT |
+                DaggerOfTime.BOUND_BIT;
+
+        fixtureDef.shape = shape;
+        b2body.createFixture(fixtureDef).setUserData(this);
+        b2body.setGravityScale(0);
+    }
+
+    public void update(float dt) {
+        stateTIme+=dt;
+
+        elapsedTime += dt;
+
+        if(b2body.getLinearVelocity().x >= -maxFireBreathSpeed) {
+
+            b2body.applyLinearImpulse(new Vector2(-0.1f, 0), b2body.getWorldCenter(), true);
+        }
+
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y-getHeight() / 2);
+        setRegion((TextureRegion) fireAnimation.getKeyFrame(stateTIme, true));
+    }
+
+    public void onCollision() {
+
+        hitWall = true;
+    }
+}
