@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hj.daggeroftime.Screens.PlayScreen;
 import com.hj.daggeroftime.Screens.SplashScreen;
 
+
 public class DaggerOfTime extends Game {
 
     public SpriteBatch batch;
