@@ -23,8 +23,8 @@ public class LevelPicker implements Screen {
     private TextButton levelOneButton;
     private TextButton levelTwoButton;
     private TextButton mainMenuButton;
-    private  static final int buttonWidth = 500;
-    private  static final int buttonHeight = 100;
+    private static final int buttonWidth = 500;
+    private static final int buttonHeight = 100;
 
     public LevelPicker(DaggerOfTime game) {
 
@@ -33,18 +33,18 @@ public class LevelPicker implements Screen {
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        levelOneButton = new TextButton("Level One",skin);
+        levelOneButton = new TextButton("Level One", skin);
         levelTwoButton = new TextButton("Level Two", skin);
         mainMenuButton = new TextButton("Back to Main Menu", skin);
         // positioning the buttons on the screen
-        levelOneButton.setPosition( (Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) );
-        levelTwoButton.setPosition((Gdx.graphics.getWidth()/2) - (buttonWidth/2) ,(Gdx.graphics.getHeight()/2) - (buttonHeight+10));
-        mainMenuButton.setPosition(0 ,0);
+        levelOneButton.setPosition((Gdx.graphics.getWidth() / 2) - (buttonWidth / 2), (Gdx.graphics.getHeight() / 2));
+        levelTwoButton.setPosition((Gdx.graphics.getWidth() / 2) - (buttonWidth / 2), (Gdx.graphics.getHeight() / 2) - (buttonHeight + 10));
+        mainMenuButton.setPosition(0, 0);
         mainMenuButton.setColor(Color.GOLD);
         mainMenuButton.pad(10);
         // setting the size of the buttons
-        levelOneButton.setSize(buttonWidth,buttonHeight);
-        levelTwoButton.setSize(buttonWidth,buttonHeight);
+        levelOneButton.setSize(buttonWidth, buttonHeight);
+        levelTwoButton.setSize(buttonWidth, buttonHeight);
 
         stage.addActor(levelOneButton); // adding to the stage
         stage.addActor(levelTwoButton);
@@ -53,7 +53,7 @@ public class LevelPicker implements Screen {
         //click event listener for levelone button
         levelOneButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen2();
@@ -63,7 +63,7 @@ public class LevelPicker implements Screen {
         // click event listener for leveltwo button
         levelTwoButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen("Levels/level2.tmx");
@@ -71,13 +71,13 @@ public class LevelPicker implements Screen {
         });
         mainMenuButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen3();
             }
         });
-        }
+    }
 
 
     /* @param level: name of the sprite sheet
@@ -90,12 +90,12 @@ public class LevelPicker implements Screen {
         this.dispose();
     }
 
-    public void changeScreen2(){
+    public void changeScreen2() {
         game.setScreen(new Story(game));
         this.dispose();
     }
 
-    public void changeScreen3(){
+    public void changeScreen3() {
         game.setScreen(new MainMenuScreen(game));
         this.dispose();
     }
@@ -108,7 +108,7 @@ public class LevelPicker implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta);

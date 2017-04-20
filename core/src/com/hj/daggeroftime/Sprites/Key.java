@@ -31,8 +31,7 @@ public class Key extends InteractiveTileObject {
 
     @Override
     public void onCollision() {
-
-        Gdx.app.log("You got the", " Key");
+        
         setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
         getCell(keyGraphicLayer).setTile(null);
     }

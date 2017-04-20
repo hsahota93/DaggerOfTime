@@ -21,12 +21,12 @@ public class FireBreath extends Sprite {
     public World world;
     public Body b2body;
     protected float polygonSize = 5 / DaggerOfTime.PPM;
-    protected float positionX ;
-    protected float positionY ;
+    protected float positionX;
+    protected float positionY;
     public Animation fireAnimation;
     public Array<TextureRegion> frames;
     private float stateTIme;
-    public  float elapsedTime;
+    public float elapsedTime;
     PlayScreen screen;
     BodyDef bodyDef;
     public boolean hitWall;
@@ -42,9 +42,9 @@ public class FireBreath extends Sprite {
         defineStaticEnemy();
 
         frames = new Array<TextureRegion>();
-        for(int i = 0; i < 2; i++)
-            frames.add(new TextureRegion(screen.getFireAtlas().findRegion("attachment"), i*60, 0, 60,60));
-        fireAnimation = new Animation(0.4f,frames);
+        for (int i = 0; i < 2; i++)
+            frames.add(new TextureRegion(screen.getFireAtlas().findRegion("attachment"), i * 60, 0, 60, 60));
+        fireAnimation = new Animation(0.4f, frames);
         stateTIme = 0;
         setBounds(0, 40, 14 / DaggerOfTime.PPM, 21 / DaggerOfTime.PPM);
     }
@@ -74,16 +74,16 @@ public class FireBreath extends Sprite {
     }
 
     public void update(float dt) {
-        stateTIme+=dt;
+        stateTIme += dt;
 
         elapsedTime += dt;
 
-        if(b2body.getLinearVelocity().x >= -maxFireBreathSpeed) {
+        if (b2body.getLinearVelocity().x >= -maxFireBreathSpeed) {
 
             b2body.applyLinearImpulse(new Vector2(-0.1f, 0), b2body.getWorldCenter(), true);
         }
 
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y-getHeight() / 2);
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
         setRegion((TextureRegion) fireAnimation.getKeyFrame(stateTIme, true));
     }
 

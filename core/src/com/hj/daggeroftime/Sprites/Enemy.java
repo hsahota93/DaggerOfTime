@@ -13,14 +13,14 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 
 public abstract class Enemy extends Sprite {
 
-    protected  World world;
+    protected World world;
     protected Screen screen;
     public Body b2body;
 
-    public Enemy(PlayScreen screen, float x, float y, World world){
+    public Enemy(PlayScreen screen, float x, float y, World world) {
         this.world = world;
         this.screen = screen;
-        setPosition(x,y);
+        setPosition(x, y);
         defineEnemy();
     }
 

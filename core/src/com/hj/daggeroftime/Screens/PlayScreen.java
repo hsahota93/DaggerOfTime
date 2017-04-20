@@ -41,7 +41,7 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlas;
 
     private TextureAtlas fireBreathAtlas; // dragon atlas
-    private TextureAtlas  myDragonAtlas; // fire breath atlas
+    private TextureAtlas myDragonAtlas; // fire breath atlas
     private B2WorldCreator creator; //instance of B2WorldCreator
 
     //Basic playscreen variables
@@ -112,12 +112,12 @@ public class PlayScreen implements Screen {
     }
 
     //Getter got fire breath atlas
-    public TextureAtlas getFireAtlas(){
+    public TextureAtlas getFireAtlas() {
         return fireBreathAtlas;
     }
 
     //Getter for the dragon atlas
-    public TextureAtlas getDragonAtlas(){
+    public TextureAtlas getDragonAtlas() {
         return myDragonAtlas;
     }
 
@@ -178,7 +178,7 @@ public class PlayScreen implements Screen {
         hud.update(dt);
 
         //updating the dragon
-        for(Enemy enemy: creator.getDragon()) {
+        for (Enemy enemy : creator.getDragon()) {
             enemy.update(dt);
         }
 
@@ -186,12 +186,12 @@ public class PlayScreen implements Screen {
     }
 
     //Getter for the current map
-    public TiledMap getMap(){
+    public TiledMap getMap() {
         return map;
     }
 
     //Getter for the current world
-    public World getWorld(){
+    public World getWorld() {
         return world;
     }
 
@@ -210,10 +210,10 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
 
         //Drawing the dragon and fire
-        for(Enemy enemy: creator.getDragon()) {
+        for (Enemy enemy : creator.getDragon()) {
             enemy.draw(game.batch);
 
-            for(int i =0; i < enemy.getFireList2().size;i++ ) {
+            for (int i = 0; i < enemy.getFireList2().size; i++) {
                 enemy.getFireList2().get(i).draw(game.batch);
             }
         }
@@ -225,7 +225,7 @@ public class PlayScreen implements Screen {
         hud.stage.draw();
 
         //If the prince's health is 0 create the game over screen
-        if(player.getHealth() <= 0) {
+        if (player.getHealth() <= 0) {
 
             game.maxLives--;
 
@@ -242,7 +242,7 @@ public class PlayScreen implements Screen {
         }
 
         //If the player has the key and has reached the door
-        if(player.getReachedDoor()) {
+        if (player.getReachedDoor()) {
 
             //Stop playing the music
             DaggerOfTime.assetManager.get("Audio/Music/LevelOneMusic.mp3", Music.class).stop();

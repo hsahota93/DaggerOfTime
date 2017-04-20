@@ -30,13 +30,13 @@ public class MainMenuScreen implements Screen {
     private TextButton highScoreListButton;
     private TextButton quitButton;
     private ImageButton playBtn;
-    private  static final int buttonWidth = 500;
+    private static final int buttonWidth = 500;
 
-    private  static final int buttonHeight = 100;
+    private static final int buttonHeight = 100;
 
     public MainMenuScreen(DaggerOfTime game) {
-        int top, right, bottom ;
-        top = bottom = right =10;
+        int top, right, bottom;
+        top = bottom = right = 10;
         int left = 50;
         this.game = game;
         stage = new Stage();
@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
 
         playBtn = new ImageButton(drawable2);
 
-        playButton = new TextButton("Play",skin);
+        playButton = new TextButton("Play", skin);
         playButton.setColor(Color.DARK_GRAY);
         highScoreListButton = new TextButton("High Scores", skin);
         highScoreListButton.setColor(Color.DARK_GRAY);
@@ -63,13 +63,13 @@ public class MainMenuScreen implements Screen {
         table.setBackground(drawable);
         table.setFillParent(true);
 
-        table.row().pad(top,left,bottom,right);
+        table.row().pad(top, left, bottom, right);
         table.add(playBtn).expandX().left().width(200);
         table.row();
 
-        table.row().pad(top,left,bottom,right);
+        table.row().pad(top, left, bottom, right);
         table.add(playButton).width(120).expandX().left();
-        table.row().pad(10,50,10,10);
+        table.row().pad(10, 50, 10, 10);
 
         table.add(highScoreListButton).width(120).expandX().left();
         table.row().padLeft(50);
@@ -82,7 +82,7 @@ public class MainMenuScreen implements Screen {
         //click event listener for play button
         playButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToPlayMode();
@@ -93,7 +93,7 @@ public class MainMenuScreen implements Screen {
         // click event listener ti view high scores
         highScoreListButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToViewHighScores();
@@ -103,7 +103,7 @@ public class MainMenuScreen implements Screen {
         //Click listener to quit the game
         quitButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 Gdx.app.exit();
@@ -111,17 +111,17 @@ public class MainMenuScreen implements Screen {
         });
     }
 
-
     /* @param level: name of the sprite sheet
     *   Set the screen to the 'PlayScreen'
     *   and load the proper sprite sheet.
     * */
     public void changeToPlayMode() {
 
-       // game.setScreen(new LevelPicker(game));
+        // game.setScreen(new LevelPicker(game));
         game.setScreen(new GetInfo(game));
         this.dispose();
     }
+
     public void changeToViewHighScores() {
 
         game.setScreen(new DisplayHighScore(game));
@@ -136,7 +136,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta);

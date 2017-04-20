@@ -43,14 +43,14 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        countDownLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        scoreLabel = new Label(String.format("%6d",score ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        countDownLabel = new Label(String.format("%3d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        scoreLabel = new Label(String.format("%6d", score), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         levelLabel = new Label("" + DaggerOfTime.maxLives, new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("Lives", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         DaggerOfTimeLabel = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         healthLabel = new Label("Health", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        currentHealthLabel = new Label(String.format("%3d", princeHealth ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        currentHealthLabel = new Label(String.format("%3d", princeHealth), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
 
         //adding labels to the table
         table.add(DaggerOfTimeLabel).expandX().padTop(20);
@@ -72,8 +72,8 @@ public class Hud implements Disposable {
         score += points;
     }
 
-    public  static void setScoreLabel(){
-        scoreLabel.setText(String.format("%6d",score ));
+    public static void setScoreLabel() {
+        scoreLabel.setText(String.format("%6d", score));
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Hud implements Disposable {
 
         currentHealthLabel.setText(String.format("%3d", princeHealth));
 
-        if(timeCount >= 1) {
+        if (timeCount >= 1) {
 
             if (worldTimer > 0) {
 
@@ -108,7 +108,7 @@ public class Hud implements Disposable {
     }
 
     // To decrement the world timer
-    private void worldTimerDecrementer(){
+    private void worldTimerDecrementer() {
         worldTimer--;
     }
 

@@ -23,7 +23,5 @@ public class Hazard extends InteractiveTileObject {
 
     @Override
     public void onCollision() {
-
-        Gdx.app.log("Water/Acid", "Collision");
     }
 }

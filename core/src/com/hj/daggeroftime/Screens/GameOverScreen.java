@@ -38,7 +38,7 @@ public class GameOverScreen implements Screen {
 
 
     public GameOverScreen(Game game) {
-          this.game = game;
+        this.game = game;
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
         stage = new Stage(viewport, ((DaggerOfTime) game).batch);
 
@@ -102,5 +102,5 @@ public class GameOverScreen implements Screen {
         stage.dispose();
     }
 
-    }
+}
 

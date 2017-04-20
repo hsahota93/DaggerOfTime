@@ -46,11 +46,12 @@ public class DisplayHighScore implements Screen {
     private Stage stage;
 
     Table table;
-    private  DaggerOfTime game;
-    public DisplayHighScore(DaggerOfTime game){
+    private DaggerOfTime game;
+
+    public DisplayHighScore(DaggerOfTime game) {
         this.game = game;
-        tempscoreList =  new Array<String>();
-        tempNameList  =  new Array<String>();
+        tempscoreList = new Array<String>();
+        tempNameList = new Array<String>();
 
         playerScore = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerScore");
         playerName = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerName");
@@ -68,7 +69,7 @@ public class DisplayHighScore implements Screen {
         table.setFillParent(true);
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-        backButton = new TextButton("Back",skin);
+        backButton = new TextButton("Back", skin);
         backButton.setColor(Color.BROWN);
         table.add(backButton).expandX().left();
         table.row();
@@ -85,7 +86,7 @@ public class DisplayHighScore implements Screen {
 
         backButton.addListener(new ClickListener() {
             @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 setScreen();
@@ -94,21 +95,22 @@ public class DisplayHighScore implements Screen {
     }
 
 
-    public void  setScreen(){
+    public void setScreen() {
         game.setScreen(new MainMenuScreen(game));
         this.dispose();
 
     }
-     String value;
 
-    public Array<String> displayScore(){
+    String value;
+
+    public Array<String> displayScore() {
 
         playerScore.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
-                while(iterator.hasNext()){
-                    value =  iterator.next().getValue().toString();
+                while (iterator.hasNext()) {
+                    value = iterator.next().getValue().toString();
                     tempscoreList.add(value);
                 }
             }
@@ -121,14 +123,14 @@ public class DisplayHighScore implements Screen {
         return tempscoreList;
     }
 
-    public Array<String> displayPlayer(){
+    public Array<String> displayPlayer() {
 
         playerName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
-                while(iterator.hasNext()){
-                    value =  iterator.next().getValue().toString();
+                while (iterator.hasNext()) {
+                    value = iterator.next().getValue().toString();
                     tempNameList.add(value);
                 }
             }
@@ -152,17 +154,17 @@ public class DisplayHighScore implements Screen {
     @Override
     public void render(float delta) {
         int length;
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(scoreList.size > 0 &&  nameList.size > 0 && status == false) {
+        if (scoreList.size > 0 && nameList.size > 0 && status == false) {
             status = true;
-            length = scoreList.size > 10? 10 : scoreList.size;
+            length = scoreList.size > 10 ? 10 : scoreList.size;
             for (int i = 0; i < length; i++) {
                 table.row().pad(10);
-                scoreLabel = new Label(String.format( nameList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
+                scoreLabel = new Label(String.format(nameList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
                 table.add(scoreLabel).expandX();
-                scoreLabel = new Label(String.format( scoreList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
+                scoreLabel = new Label(String.format(scoreList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
                 table.add(scoreLabel).expandX();
                 table.row();
 
@@ -173,7 +175,6 @@ public class DisplayHighScore implements Screen {
         stage.draw();
 
 
-
     }
 
     @Override
@@ -181,7 +182,6 @@ public class DisplayHighScore implements Screen {
         stage.getViewport().update(width, height);
 
     }
-
 
 
     @Override

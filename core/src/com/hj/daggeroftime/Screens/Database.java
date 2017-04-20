@@ -33,12 +33,13 @@ public class Database {
         mref = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerScore");
         playerName = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerName");
         addDataTODataBase();
-        displayScore();
+        //displayScore();
     }
+
     public void addDataTODataBase() {
 
         String name = GetInfo.name;
-        if(name== null || name.length() == 0) {
+        if (name == null || name.length() == 0) {
 
             name = "Anonymous";
         }
@@ -54,7 +55,7 @@ public class Database {
 
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
 
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     scoreList.add(23);
                 }
             }

@@ -13,7 +13,7 @@ public class SplashScreen implements Screen {
     //private SpriteBatch spriteBatch;
     private Texture texture;
     private DaggerOfTime game;
-    public static int timeElapsed ;
+    public static int timeElapsed;
     private Sprite sprite;
     private float userScreenWidth;
     private float userScreenHeight;
@@ -25,7 +25,7 @@ public class SplashScreen implements Screen {
         sprite = new Sprite(texture);
         setScreenWidth();
         setUserScreenHeight();
-        sprite.setSize(getScreenWidth(),getHeight());
+        sprite.setSize(getScreenWidth(), getHeight());
     }
 
     @Override
@@ -36,18 +36,18 @@ public class SplashScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        timeElapsed +=1;
-        Gdx.gl.glClearColor(23,100,200,1);
+        timeElapsed += 1;
+        Gdx.gl.glClearColor(23, 100, 200, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin(); // open batch file
         sprite.draw(game.batch);
         game.batch.end(); // close the batch
 
-        if(timeElapsed > 200){
+        if (timeElapsed > 200) {
 
-           // game.setScreen(new LevelPicker(game));
-           game.setScreen(new MainMenuScreen(game));
+            // game.setScreen(new LevelPicker(game));
+            game.setScreen(new MainMenuScreen(game));
             this.dispose();
         } //end if
     } //End render
@@ -82,15 +82,15 @@ public class SplashScreen implements Screen {
         userScreenWidth = Gdx.graphics.getWidth();
     }
 
-    public float getScreenWidth(){
+    public float getScreenWidth() {
         return userScreenWidth;
     }
 
-    public void setUserScreenHeight(){
+    public void setUserScreenHeight() {
         userScreenHeight = Gdx.graphics.getHeight();
     }
 
-    public float getHeight(){
+    public float getHeight() {
         return userScreenHeight;
     }
 } //End SplashScreen

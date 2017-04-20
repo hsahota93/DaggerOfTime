@@ -34,18 +34,19 @@ public class GetInfo implements Screen {
     protected static String name;
 
     //Testing
-    public GetInfo(){}
+    public GetInfo() {
+    }
 
-    public GetInfo(DaggerOfTime game){
-        int padding =10;
+    public GetInfo(DaggerOfTime game) {
+        int padding = 10;
         this.game = game;
-        stage =  new Stage();
+        stage = new Stage();
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
 
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-        button = new TextButton("Enter your name",skin);
+        button = new TextButton("Enter your name", skin);
         button.setTouchable(Touchable.disabled);
-        nameField = new TextField("",skin );
+        nameField = new TextField("", skin);
 
         texture = new Texture("Button/playButton.png");
         Drawable drawable = new TextureRegionDrawable(new TextureRegion(texture));
@@ -56,10 +57,10 @@ public class GetInfo implements Screen {
 
         goButton.setWidth(100);
         goButton.setHeight(100);
-        button.setPosition((Gdx.graphics.getWidth()/2)- nameField.getWidth()/2, (Gdx.graphics.getHeight()/2)+ nameField.getHeight()/2);
+        button.setPosition((Gdx.graphics.getWidth() / 2) - nameField.getWidth() / 2, (Gdx.graphics.getHeight() / 2) + nameField.getHeight() / 2);
 
-        nameField.setPosition((Gdx.graphics.getWidth()/2)- nameField.getWidth()/2, (Gdx.graphics.getHeight()/2) - (button.getHeight()+padding)/2);
-        goButton.setPosition(nameField.getX()+ nameField.getWidth(), nameField.getY());
+        nameField.setPosition((Gdx.graphics.getWidth() / 2) - nameField.getWidth() / 2, (Gdx.graphics.getHeight() / 2) - (button.getHeight() + padding) / 2);
+        goButton.setPosition(nameField.getX() + nameField.getWidth(), nameField.getY());
 
         stage.addActor(button);
         stage.addActor(nameField);
@@ -68,7 +69,7 @@ public class GetInfo implements Screen {
 
         goButton.addListener(new ClickListener() {
             @Override
-            public void clicked (InputEvent event, float x, float y) {
+            public void clicked(InputEvent event, float x, float y) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 name = nameField.getText().toString();
@@ -95,7 +96,7 @@ public class GetInfo implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
