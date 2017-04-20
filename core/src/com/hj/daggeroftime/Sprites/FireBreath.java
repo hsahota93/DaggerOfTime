@@ -56,7 +56,6 @@ public class FireBreath extends Sprite {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bodyDef);
 
-
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(polygonSize, polygonSize);
