@@ -26,7 +26,8 @@ public class Database {
     private Game game;
     private Firebase playerName;
 
-    public Database(){
+    public Database() {
+
         scoreList = new Array<Integer>();
         nameList = new Array<String>();
         mref = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerScore");
@@ -34,19 +35,18 @@ public class Database {
         addDataTODataBase();
         displayScore();
     }
-    public void addDataTODataBase(){
+    public void addDataTODataBase() {
+
         String name = GetInfo.name;
-        //   Firebase child = mref.child("Score");
-        System.out.println("Pushing to database");
-        if(name== null || name.length() == 0){
+        if(name== null || name.length() == 0) {
+
             name = "Anonymous";
-            System.out.println("Null buddy");
         }
-        mref.push().setValue(hud.score);
+        mref.push().setValue(Hud.score);
         playerName.push().setValue(name);
     }
 
-    public Array<Integer> displayScore(){
+    public Array<Integer> displayScore() {
 
         mref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,13 +55,8 @@ public class Database {
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
 
                 while(iterator.hasNext()){
-                    scoreList.add( 23);
-                    System.out.println(iterator.next().getValue());
-                    //iterator.next();
+                    scoreList.add(23);
                 }
-                System.out.println("Size frm gameOver" + scoreList.size);
-
-                //  System.out.println(value);
             }
 
             @Override
@@ -69,7 +64,6 @@ public class Database {
                 System.out.println("Error");
             }
         });
-        System.out.println("Size frm gameOver" + scoreList.size);
         return scoreList;
     }
 
