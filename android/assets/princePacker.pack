@@ -1,0 +1,12 @@
+
+princePacker.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+sprite1
+  rotate: false
+  xy: 1, 1
+  size: 1000, 196
+  orig: 1000, 196
+  offset: 0, 0
+  index: -1
