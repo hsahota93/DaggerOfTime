@@ -2,6 +2,7 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -94,6 +95,8 @@ public class Story implements Screen {
         skipButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 setScreen();
             }
         });
@@ -119,7 +122,6 @@ public class Story implements Screen {
             // displaying the pics
             while (index < imageList.size && timer > 8) {
 
-                System.out.println("Size:" + imageList.size + "Index: " + index);
                 p.setActor(imageList.get(index)).width(stage.getWidth()).height(stage.getHeight()-skipButton.getHeight()*2);
                 timer = 0;
                 index++;

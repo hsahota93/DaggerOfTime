@@ -2,6 +2,7 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -82,6 +83,8 @@ public class MainMenuScreen implements Screen {
         playButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToPlayMode();
 
             }
@@ -92,6 +95,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
 
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToViewHighScores();
             }
         });
@@ -100,6 +104,8 @@ public class MainMenuScreen implements Screen {
         quitButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 Gdx.app.exit();
             }
         });

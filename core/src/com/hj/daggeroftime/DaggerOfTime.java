@@ -27,7 +27,7 @@ public class DaggerOfTime extends Game {
     public static final short KEY_BIT = 256;
     public static final short DOOR_BIT = 512;
 
-    public int maxLives = 2;
+    public static int maxLives = 2;
 
     public static AssetManager assetManager;
 
@@ -41,6 +41,7 @@ public class DaggerOfTime extends Game {
         assetManager.load("Audio/Music/LevelOneMusic.mp3", Music.class);
         assetManager.load("Audio/Sounds/Jump.mp3", Sound.class);
         assetManager.load("Audio/Sounds/Damage.mp3", Sound.class);
+        assetManager.load("Audio/Sounds/Click.wav", Sound.class);
 
         //Blocking call. Waits for all assets to finish loading
         assetManager.finishLoading();
@@ -61,9 +62,5 @@ public class DaggerOfTime extends Game {
         super.dispose();
         batch.dispose();
         assetManager.dispose();
-    }
-
-    public void livesDecramentor() {
-        maxLives--;
     }
 }

@@ -2,6 +2,8 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,10 +28,10 @@ import com.hj.daggeroftime.DaggerOfTime;
 
 import java.util.Iterator;
 
-
 /**
  * Created by jacob on 4/16/2017.
  */
+
 public class DisplayHighScore implements Screen {
     private Firebase playerScore;
     private Firebase playerName;
@@ -38,7 +40,7 @@ public class DisplayHighScore implements Screen {
     private Array<String> nameList;
     Array<String> tempscoreList, tempNameList;
 
-    Button backBatton;
+    Button backButton;
 
     public Label scoreLabel;
     private Stage stage;
@@ -56,7 +58,7 @@ public class DisplayHighScore implements Screen {
         scoreList = displayScore();
         nameList = displayPlayer();
         stage = new Stage();
-        //TODO make the list to wait untill it get the data
+        //TODO make the list to wait until it get the data
         table = new Table(); // creating table to keep items inside the stage organized
         table.top();
         Texture texture = new Texture("table.jfif");
@@ -66,9 +68,9 @@ public class DisplayHighScore implements Screen {
         table.setFillParent(true);
         Gdx.input.setInputProcessor(stage); // to pass input to the stage
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-        backBatton = new TextButton("Back",skin);
-        backBatton.setColor(Color.BROWN);
-        table.add(backBatton).expandX().left();
+        backButton = new TextButton("Back",skin);
+        backButton.setColor(Color.BROWN);
+        table.add(backButton).expandX().left();
         table.row();
         scoreLabel = new Label(String.format("Top Scores"), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         table.add(scoreLabel).expandX().right();
@@ -81,10 +83,11 @@ public class DisplayHighScore implements Screen {
         table.row();
         stage.addActor(table);
 
-        backBatton.addListener(new ClickListener() {
+        backButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("going back");
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 setScreen();
             }
         });
@@ -107,9 +110,7 @@ public class DisplayHighScore implements Screen {
                 while(iterator.hasNext()){
                     value =  iterator.next().getValue().toString();
                     tempscoreList.add(value);
-                    System.out.println(value);
                 }
-                System.out.println("Size frm gameOver" + tempscoreList.size);
             }
 
             @Override
@@ -117,7 +118,6 @@ public class DisplayHighScore implements Screen {
                 System.out.println("Error");
             }
         });
-        System.out.println("Size frm gameOver" + tempscoreList.size);
         return tempscoreList;
     }
 
@@ -130,9 +130,7 @@ public class DisplayHighScore implements Screen {
                 while(iterator.hasNext()){
                     value =  iterator.next().getValue().toString();
                     tempNameList.add(value);
-                    System.out.println(value);
                 }
-                System.out.println("Size from gameOver" + tempNameList.size);
             }
 
             @Override
@@ -140,7 +138,7 @@ public class DisplayHighScore implements Screen {
                 System.out.println("Error");
             }
         });
-        System.out.println("Size frm gameOver" + tempNameList.size);
+
         return tempNameList;
     }
 
@@ -148,7 +146,8 @@ public class DisplayHighScore implements Screen {
     public void show() {
 
     }
-boolean status = false;
+
+    boolean status = false;
 
     @Override
     public void render(float delta) {
@@ -161,7 +160,6 @@ boolean status = false;
             length = scoreList.size > 10? 10 : scoreList.size;
             for (int i = 0; i < length; i++) {
                 table.row().pad(10);
-                System.out.println("Size of list " + scoreList.size);
                 scoreLabel = new Label(String.format( nameList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
                 table.add(scoreLabel).expandX();
                 scoreLabel = new Label(String.format( scoreList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));

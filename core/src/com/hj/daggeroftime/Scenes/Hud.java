@@ -46,7 +46,7 @@ public class Hud implements Disposable {
         countDownLabel = new Label(String.format("%3d",worldTimer ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         scoreLabel = new Label(String.format("%6d",score ), new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
-        levelLabel = new Label("1", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
+        levelLabel = new Label("" + DaggerOfTime.maxLives, new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         worldLabel = new Label("Lives", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         DaggerOfTimeLabel = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
         healthLabel = new Label("Health", new Label.LabelStyle(new BitmapFont(), Color.VIOLET));
@@ -104,10 +104,6 @@ public class Hud implements Disposable {
 
             countDownLabel.setText(String.format("%3d", worldTimer));
             timeCount = 0;
-        }
-
-        if (worldTimer == 0) {
-            System.out.printf("");
         }
     }
 

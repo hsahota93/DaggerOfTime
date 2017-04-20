@@ -2,13 +2,11 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -21,14 +19,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.hj.daggeroftime.DaggerOfTime;
 
-
-
 /**
  * Created by jacob on 4/19/2017.
  */
 public class GetInfo implements Screen {
+
     private DaggerOfTime game;
-    private TextField nameFeild;
+    private TextField nameField;
     private Stage stage;
     private TextButton button;
     private ImageButton goButton;
@@ -48,7 +45,7 @@ public class GetInfo implements Screen {
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
         button = new TextButton("Enter your name",skin);
         button.setTouchable(Touchable.disabled);
-        nameFeild = new TextField("",skin );
+        nameField = new TextField("",skin );
 
         texture = new Texture("Button/playButton.png");
         Drawable drawable = new TextureRegionDrawable(new TextureRegion(texture));
@@ -59,13 +56,13 @@ public class GetInfo implements Screen {
 
         goButton.setWidth(100);
         goButton.setHeight(100);
-        button.setPosition((Gdx.graphics.getWidth()/2)-nameFeild.getWidth()/2, (Gdx.graphics.getHeight()/2)+ nameFeild.getHeight()/2);
+        button.setPosition((Gdx.graphics.getWidth()/2)- nameField.getWidth()/2, (Gdx.graphics.getHeight()/2)+ nameField.getHeight()/2);
 
-        nameFeild.setPosition((Gdx.graphics.getWidth()/2)-nameFeild.getWidth()/2, (Gdx.graphics.getHeight()/2) - (button.getHeight()+padding)/2);
-        goButton.setPosition(nameFeild.getX()+nameFeild.getWidth(), nameFeild.getY());
+        nameField.setPosition((Gdx.graphics.getWidth()/2)- nameField.getWidth()/2, (Gdx.graphics.getHeight()/2) - (button.getHeight()+padding)/2);
+        goButton.setPosition(nameField.getX()+ nameField.getWidth(), nameField.getY());
 
         stage.addActor(button);
-        stage.addActor(nameFeild);
+        stage.addActor(nameField);
         stage.addActor(goButton);
 
 
@@ -73,10 +70,9 @@ public class GetInfo implements Screen {
             @Override
             public void clicked (InputEvent event, float x, float y) {
 
-                System.out.println(nameFeild.getText().toString());
-                name = nameFeild.getText().toString();
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
+                name = nameField.getText().toString();
                 setScreen();
-
             }
 
 
@@ -85,15 +81,16 @@ public class GetInfo implements Screen {
 
     }
 
-    public void setScreen(){
+    public void setScreen() {
+
         game.setScreen(new LevelPicker(game));
         this.dispose();
     }
+
     @Override
     public void show() {
 
     }
-
 
     @Override
     public void render(float delta) {
@@ -102,7 +99,6 @@ public class GetInfo implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
-
     }
 
     @Override

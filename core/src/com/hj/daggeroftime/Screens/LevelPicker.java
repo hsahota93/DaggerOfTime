@@ -2,6 +2,7 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,10 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.hj.daggeroftime.DaggerOfTime;
 
-
 /**
  * Created by jacob on 2/24/2017.
  */
+
 public class LevelPicker implements Screen {
 
     private DaggerOfTime game;
@@ -53,6 +54,8 @@ public class LevelPicker implements Screen {
         levelOneButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen2();
             }
         });
@@ -62,16 +65,18 @@ public class LevelPicker implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
 
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen("Levels/level2.tmx");
             }
         });
         mainMenuButton.addListener(new ClickListener() {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeScreen3();
             }
         });
-
         }
 
 
@@ -84,10 +89,12 @@ public class LevelPicker implements Screen {
         game.setScreen(new PlayScreen(game, level));
         this.dispose();
     }
+
     public void changeScreen2(){
         game.setScreen(new Story(game));
         this.dispose();
     }
+
     public void changeScreen3(){
         game.setScreen(new MainMenuScreen(game));
         this.dispose();
