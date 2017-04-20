@@ -49,6 +49,7 @@ public class FireBreath extends Sprite {
         setBounds(0, 40, 14 / DaggerOfTime.PPM, 21 / DaggerOfTime.PPM);
     }
 
+
     public void defineStaticEnemy() {
 
         bodyDef = new BodyDef();
