@@ -26,8 +26,6 @@ import com.hj.daggeroftime.DaggerOfTime;
 
 import java.util.Iterator;
 
-
-
 /**
  * Created by jacob on 4/16/2017.
  */

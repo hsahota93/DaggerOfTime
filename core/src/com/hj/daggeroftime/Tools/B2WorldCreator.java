@@ -17,7 +17,6 @@ import com.hj.daggeroftime.Sprites.Ground;
 import com.hj.daggeroftime.Sprites.Hazard;
 import com.hj.daggeroftime.Sprites.Key;
 
-
 /**
  * Created by Harman on 2/26/17.
  */

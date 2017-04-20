@@ -17,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.hj.daggeroftime.DaggerOfTime;
 
-
-
 /**
  * Created by jacob on 2/24/2017.
  */

@@ -26,7 +26,6 @@ import com.hj.daggeroftime.Sprites.Prince;
 import com.hj.daggeroftime.Tools.B2WorldCreator;
 import com.hj.daggeroftime.Tools.WorldContactListener;
 
-
 /**
  * Created by jacob on 2/22/2017.
  */
@@ -231,7 +230,7 @@ public class PlayScreen implements Screen {
             game.maxLives--;
 
             if (game.maxLives < 0) {
-                Databse demo = new Databse();
+                Database demo = new Database();
                 game.setScreen(new GameOverScreen(game));
                 game.maxLives = 2;
             } else {
@@ -253,7 +252,7 @@ public class PlayScreen implements Screen {
 
                 game.setScreen(new PlayScreen(game, "Levels/level2.tmx"));
             } else {
-                Databse demo = new Databse();
+                Database demo = new Database();
                 //Otherwise show the WinScreen (all levels beaten)
                 game.setScreen(new WinScreen(game));
             }

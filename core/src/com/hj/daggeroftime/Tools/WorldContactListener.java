@@ -11,7 +11,6 @@ import com.hj.daggeroftime.Sprites.FireBreath;
 import com.hj.daggeroftime.Sprites.Key;
 import com.hj.daggeroftime.Sprites.Prince;
 
-
 /**
  * Created by Harman on 3/12/17.
  */

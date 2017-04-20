@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.Array;
 import com.hj.daggeroftime.DaggerOfTime;
 import com.hj.daggeroftime.Screens.PlayScreen;
 
-
 /**
  * Created by Harman on 2/26/17.
  */

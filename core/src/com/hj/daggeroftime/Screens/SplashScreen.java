@@ -1,13 +1,11 @@
 package com.hj.daggeroftime.Screens;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.hj.daggeroftime.DaggerOfTime;
-
 
 public class SplashScreen implements Screen {
 
