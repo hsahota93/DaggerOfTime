@@ -28,17 +28,20 @@ public class DaggerOfTime extends Game {
     public static final short DOOR_BIT = 512;
 
     public static int maxLives = 2;
+    public static boolean seenStory = false;
 
     public static AssetManager assetManager;
 
     //Creates splash screen
     @Override
     public void create() {
+
         batch = new SpriteBatch();
 
         //Creating an AssetManager and loading assets
         assetManager = new AssetManager();
         assetManager.load("Audio/Music/LevelOneMusic.mp3", Music.class);
+        assetManager.load("Audio/Music/MainMenuMusic.mp3", Music.class);
         assetManager.load("Audio/Sounds/Jump.mp3", Sound.class);
         assetManager.load("Audio/Sounds/Damage.mp3", Sound.class);
         assetManager.load("Audio/Sounds/Click.wav", Sound.class);
@@ -59,6 +62,7 @@ public class DaggerOfTime extends Game {
     //Dispose of resources
     @Override
     public void dispose() {
+
         super.dispose();
         batch.dispose();
         assetManager.dispose();

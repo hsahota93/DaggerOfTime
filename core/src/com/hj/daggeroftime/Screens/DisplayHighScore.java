@@ -35,6 +35,7 @@ import java.util.Iterator;
 public class DisplayHighScore implements Screen {
     private Firebase playerScore;
     private Firebase playerName;
+    private boolean updated;
 
     private Array<String> scoreList;
     private Array<String> nameList;
@@ -49,6 +50,7 @@ public class DisplayHighScore implements Screen {
     private DaggerOfTime game;
 
     public DisplayHighScore(DaggerOfTime game) {
+        updated = false;
         this.game = game;
         tempscoreList = new Array<String>();
         tempNameList = new Array<String>();
@@ -149,6 +151,38 @@ public class DisplayHighScore implements Screen {
 
     }
 
+    public void sortDatabse() {
+        Array<Integer> scoreList = new Array<Integer>();
+        Integer temp1, temp2;
+        int size = tempscoreList.size;
+        int index = 0;
+        int currentIndex = 0;
+
+        if (tempscoreList.size > 0) {
+            for (int j = 1; j < tempscoreList.size; j++) {
+
+                Integer key = Integer.parseInt(tempscoreList.get(j));
+                String str = tempNameList.get(j);
+                Integer i = j - 1;
+                Integer num2 = Integer.parseInt(tempscoreList.get(i));
+
+                while (i > -1 && ((num2).compareTo(key) == 1)) {
+                    tempscoreList.set(i + 1, tempscoreList.get(i));
+                    tempNameList.set(i + 1, tempNameList.get(i));
+                    i--;
+                    if (i > -1)
+                        num2 = Integer.parseInt(tempscoreList.get(i));
+
+                }
+                tempscoreList.set(i + 1, key.toString());
+                tempNameList.set(i + 1, str);
+            }
+
+            updated = true;
+        }
+    }
+
+
     boolean status = false;
 
     @Override
@@ -158,9 +192,11 @@ public class DisplayHighScore implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if (scoreList.size > 0 && nameList.size > 0 && status == false) {
+            sortDatabse();
+
             status = true;
             length = scoreList.size > 10 ? 10 : scoreList.size;
-            for (int i = 0; i < length; i++) {
+            for (int i = scoreList.size - 1; i > scoreList.size - 10; i--) {
                 table.row().pad(10);
                 scoreLabel = new Label(String.format(nameList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
                 table.add(scoreLabel).expandX();

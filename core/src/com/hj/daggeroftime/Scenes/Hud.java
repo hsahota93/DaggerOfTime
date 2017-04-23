@@ -21,7 +21,7 @@ public class Hud implements Disposable {
     private Viewport viewport;
     private Integer worldTimer;
     private float timeCount;
-    public static Integer score;
+    public static Integer score = 0;
     private Integer timeLimit = 120;
     private Label countDownLabel;
     private static Label scoreLabel;

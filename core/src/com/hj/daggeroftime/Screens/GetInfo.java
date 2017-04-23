@@ -31,13 +31,14 @@ public class GetInfo implements Screen {
     private ImageButton goButton;
     private Texture texture;
     private Texture texture2;
-    protected static String name;
+    public static String name = "TEST";
 
     //Testing
     public GetInfo() {
     }
 
     public GetInfo(DaggerOfTime game) {
+
         int padding = 10;
         this.game = game;
         stage = new Stage();
@@ -51,7 +52,6 @@ public class GetInfo implements Screen {
         texture = new Texture("Button/playButton.png");
         Drawable drawable = new TextureRegionDrawable(new TextureRegion(texture));
         button.setColor(Color.BLUE);
-
 
         goButton = new ImageButton(drawable);
 

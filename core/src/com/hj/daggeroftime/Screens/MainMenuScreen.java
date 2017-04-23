@@ -2,6 +2,7 @@ package com.hj.daggeroftime.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -31,10 +32,10 @@ public class MainMenuScreen implements Screen {
     private TextButton quitButton;
     private ImageButton playBtn;
     private static final int buttonWidth = 500;
-
     private static final int buttonHeight = 100;
 
     public MainMenuScreen(DaggerOfTime game) {
+
         int top, right, bottom;
         top = bottom = right = 10;
         int left = 50;
@@ -46,6 +47,7 @@ public class MainMenuScreen implements Screen {
         Texture texture2 = new Texture("Button/playB4.png");
         final Drawable drawable2 = new TextureRegionDrawable(new TextureRegion(texture2));
 
+        DaggerOfTime.assetManager.get("Audio/Music/MainMenuMusic.mp3", Music.class).play();
 
         playBtn = new ImageButton(drawable2);
 
@@ -64,7 +66,7 @@ public class MainMenuScreen implements Screen {
         table.setFillParent(true);
 
         table.row().pad(top, left, bottom, right);
-        table.add(playBtn).expandX().left().width(200);
+//        table.add(playBtn).expandX().left().width(200);
         table.row();
 
         table.row().pad(top, left, bottom, right);
@@ -86,7 +88,7 @@ public class MainMenuScreen implements Screen {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToPlayMode();
-
+                DaggerOfTime.assetManager.get("Audio/Music/MainMenuMusic.mp3", Music.class).stop();
             }
         });
 
@@ -97,6 +99,7 @@ public class MainMenuScreen implements Screen {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 changeToViewHighScores();
+                DaggerOfTime.assetManager.get("Audio/Music/MainMenuMusic.mp3", Music.class).stop();
             }
         });
 
@@ -105,7 +108,6 @@ public class MainMenuScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
-                DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
                 Gdx.app.exit();
             }
         });

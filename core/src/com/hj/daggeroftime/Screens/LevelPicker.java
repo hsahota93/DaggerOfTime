@@ -36,17 +36,20 @@ public class LevelPicker implements Screen {
         levelOneButton = new TextButton("Level One", skin);
         levelTwoButton = new TextButton("Level Two", skin);
         mainMenuButton = new TextButton("Back to Main Menu", skin);
+
         // positioning the buttons on the screen
         levelOneButton.setPosition((Gdx.graphics.getWidth() / 2) - (buttonWidth / 2), (Gdx.graphics.getHeight() / 2));
         levelTwoButton.setPosition((Gdx.graphics.getWidth() / 2) - (buttonWidth / 2), (Gdx.graphics.getHeight() / 2) - (buttonHeight + 10));
         mainMenuButton.setPosition(0, 0);
         mainMenuButton.setColor(Color.GOLD);
         mainMenuButton.pad(10);
+
         // setting the size of the buttons
         levelOneButton.setSize(buttonWidth, buttonHeight);
         levelTwoButton.setSize(buttonWidth, buttonHeight);
 
-        stage.addActor(levelOneButton); // adding to the stage
+        // adding to the stage
+        stage.addActor(levelOneButton);
         stage.addActor(levelTwoButton);
         stage.addActor(mainMenuButton);
 
@@ -56,7 +59,15 @@ public class LevelPicker implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
                 DaggerOfTime.assetManager.get("Audio/Sounds/Click.wav", Sound.class).play();
-                changeScreen2();
+
+                if (DaggerOfTime.seenStory) {
+
+                    changeScreen("Levels/level1.tmx");
+                } else {
+
+                    changeScreen2();
+                    DaggerOfTime.seenStory = true;
+                }
             }
         });
 
@@ -78,7 +89,6 @@ public class LevelPicker implements Screen {
             }
         });
     }
-
 
     /* @param level: name of the sprite sheet
     *   Set the screen to the 'PlayScreen'
