@@ -30,7 +30,6 @@ public class GetInfo implements Screen {
     private TextButton button;
     private ImageButton goButton;
     private Texture texture;
-    private Texture texture2;
     public static String name = "TEST";
 
     //Testing
@@ -121,7 +120,6 @@ public class GetInfo implements Screen {
     public void hide() {
 
     }
-
 
     @Override
     public void dispose() {

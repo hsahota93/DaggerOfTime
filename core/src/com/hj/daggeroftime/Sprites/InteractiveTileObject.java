@@ -36,23 +36,29 @@ public abstract class InteractiveTileObject {
         this.map = screen.getMap();
         this.bounds = bounds;
 
+        //Creating the body def and fixture def, Creating the shape
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape polygonShape = new PolygonShape();
 
+        //Defining the type of body (Static) and seting its position
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set((bounds.getX() + bounds.getWidth() / 2) / DaggerOfTime.PPM,
                 (bounds.getY() + bounds.getHeight() / 2) / DaggerOfTime.PPM);
 
+        //Telling the world to create the body
         body = world.createBody(bodyDef);
 
+        //Setting the bounds of the shape
         polygonShape.setAsBox((bounds.getWidth() / 2) / DaggerOfTime.PPM,
                 (bounds.getHeight() / 2) / DaggerOfTime.PPM);
+
         fixtureDef.shape = polygonShape;
         fixtureDef.isSensor = sensor;
         fixture = body.createFixture(fixtureDef);
     }
 
+    //Creates any circle/ellipse TileObject in the world (i.e Coins)
     public InteractiveTileObject(PlayScreen screen, Ellipse ellipse, boolean sensor) {
 
         this.world = screen.getWorld();

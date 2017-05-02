@@ -35,7 +35,7 @@ import java.util.Iterator;
 public class DisplayHighScore implements Screen {
     private Firebase playerScore;
     private Firebase playerName;
-    private boolean updated;
+    boolean updated;
 
     private Array<String> scoreList;
     private Array<String> nameList;
@@ -48,9 +48,10 @@ public class DisplayHighScore implements Screen {
 
     Table table;
     private DaggerOfTime game;
+    boolean status = false;
 
     public DisplayHighScore(DaggerOfTime game) {
-        updated = false;
+
         this.game = game;
         tempscoreList = new Array<String>();
         tempNameList = new Array<String>();
@@ -61,7 +62,7 @@ public class DisplayHighScore implements Screen {
         scoreList = displayScore();
         nameList = displayPlayer();
         stage = new Stage();
-        //TODO make the list to wait until it get the data
+        //TODO make the list wait until it get the data
         table = new Table(); // creating table to keep items inside the stage organized
         table.top();
         Texture texture = new Texture("table.jfif");
@@ -142,7 +143,7 @@ public class DisplayHighScore implements Screen {
                 System.out.println("Error");
             }
         });
-
+        System.out.println(tempNameList);
         return tempNameList;
     }
 
@@ -152,11 +153,6 @@ public class DisplayHighScore implements Screen {
     }
 
     public void sortDatabse() {
-        Array<Integer> scoreList = new Array<Integer>();
-        Integer temp1, temp2;
-        int size = tempscoreList.size;
-        int index = 0;
-        int currentIndex = 0;
 
         if (tempscoreList.size > 0) {
             for (int j = 1; j < tempscoreList.size; j++) {
@@ -182,12 +178,9 @@ public class DisplayHighScore implements Screen {
         }
     }
 
-
-    boolean status = false;
-
     @Override
     public void render(float delta) {
-        int length;
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -195,7 +188,6 @@ public class DisplayHighScore implements Screen {
             sortDatabse();
 
             status = true;
-            length = scoreList.size > 10 ? 10 : scoreList.size;
             for (int i = scoreList.size - 1; i > scoreList.size - 10; i--) {
                 table.row().pad(10);
                 scoreLabel = new Label(String.format(nameList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
@@ -203,14 +195,11 @@ public class DisplayHighScore implements Screen {
                 scoreLabel = new Label(String.format(scoreList.get(i)), new Label.LabelStyle(new BitmapFont(), Color.GOLD));
                 table.add(scoreLabel).expandX();
                 table.row();
-
             }
         }
 
         stage.act(delta);
         stage.draw();
-
-
     }
 
     @Override

@@ -14,25 +14,25 @@ import com.hj.daggeroftime.Screens.PlayScreen;
  * Created by jacob on 4/9/2017.
  */
 public class Dragon extends Enemy {
+
     private float stateTime;
     private Animation dragonAnimation;
     private Array<TextureRegion> frames;
     public static Array<FireBreath> fireBreathsArray;
     private FireBreath fireBreath;
-    private float xPosition, yPosition;
     private PlayScreen screen;
     private float resetTimer = 0;
 
     public Dragon(PlayScreen screen, float x, float y, World world) {
+
         super(screen, x, y, world);
-        this.xPosition = x;
-        this.yPosition = y;
         this.screen = screen;
 
         //Array to store FireBreath
         fireBreathsArray = new Array<FireBreath>();
         frames = new Array<TextureRegion>();
         TextureRegion temp;
+
         for (int i = 0; i < 2; i++)
             for (int j = 0; j < 3; j++) {
                 temp = new TextureRegion(screen.getDragonAtlas().findRegion("dragon1"), j * 140, i * 90, 140, 90);
@@ -55,6 +55,7 @@ public class Dragon extends Enemy {
         resetTimer += dt;
 
         if (resetTimer > 5) {
+
             fireBreath = new FireBreath(world, screen, (b2body.getPosition().x) - (20 / DaggerOfTime.PPM),
                     (b2body.getPosition().y) + (10 / DaggerOfTime.PPM));
             fireBreathsArray.add(fireBreath);

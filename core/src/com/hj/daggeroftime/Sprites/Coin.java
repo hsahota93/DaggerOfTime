@@ -15,9 +15,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 public class Coin extends InteractiveTileObject {
 
     protected World world;
-    protected TiledMap map;
     protected Body body;
-    protected Ellipse bounds;
 
     private final int coinGraphicLayer = 3;
 

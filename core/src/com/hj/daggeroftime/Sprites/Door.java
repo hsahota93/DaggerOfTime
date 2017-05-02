@@ -15,9 +15,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 public class Door extends InteractiveTileObject {
 
     protected World world;
-    protected TiledMap map;
     protected Body body;
-    protected Ellipse bounds;
 
     public Door(PlayScreen screen, Rectangle bounds, boolean sensor) {
 

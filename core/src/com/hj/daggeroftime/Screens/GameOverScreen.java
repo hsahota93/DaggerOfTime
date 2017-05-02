@@ -27,17 +27,14 @@ import java.util.Iterator;
  */
 
 public class GameOverScreen implements Screen {
-    private Firebase mref;
-    private Array<String> nameList;
-    private Array<Integer> scoreList;
+
     private Viewport viewport;
     private Stage stage;
-    private Hud hud;
     private Game game;
-    private Firebase playerName;
 
 
     public GameOverScreen(Game game) {
+
         this.game = game;
         viewport = new FitViewport(DaggerOfTime.screenWidth, DaggerOfTime.screenHeight, new OrthographicCamera());
         stage = new Stage(viewport, ((DaggerOfTime) game).batch);
@@ -56,7 +53,6 @@ public class GameOverScreen implements Screen {
         table.add(playAgainLabel).expandX().padTop(10f);
 
         stage.addActor(table);
-
     }
 
     @Override

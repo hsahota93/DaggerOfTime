@@ -16,9 +16,7 @@ import com.hj.daggeroftime.Screens.PlayScreen;
 public class Key extends InteractiveTileObject {
 
     protected World world;
-    protected TiledMap map;
     protected Body body;
-    protected Ellipse bounds;
 
     private final int keyGraphicLayer = 2;
 
@@ -31,7 +29,7 @@ public class Key extends InteractiveTileObject {
 
     @Override
     public void onCollision() {
-        
+
         setCategoryFilter(DaggerOfTime.DESTROYED_BIT);
         getCell(keyGraphicLayer).setTile(null);
     }

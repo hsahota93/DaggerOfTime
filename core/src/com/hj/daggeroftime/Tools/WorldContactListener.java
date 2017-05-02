@@ -29,49 +29,49 @@ public class WorldContactListener implements ContactListener {
             //If prince collides with a hazard
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.HAZARD_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).hit(100);
+                    ((Prince) fixA.getUserData()).hit(100);
                 } else {
 
-                    ((Prince)fixB.getUserData()).hit(100);
+                    ((Prince) fixB.getUserData()).hit(100);
                 }
                 break;
 
             //If prince collides with coin
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.COIN_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.COIN_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.COIN_BIT) {
 
-                    ((Coin)fixA.getUserData()).onCollision();
+                    ((Coin) fixA.getUserData()).onCollision();
                 } else {
 
-                    ((Coin)fixB.getUserData()).onCollision();
+                    ((Coin) fixB.getUserData()).onCollision();
                 }
                 break;
 
             //If prince collides with an enemy
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.ENEMY_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).hit(25);
+                    ((Prince) fixA.getUserData()).hit(25);
                 } else {
 
-                    ((Prince)fixB.getUserData()).hit(25);
+                    ((Prince) fixB.getUserData()).hit(25);
                 }
                 break;
 
             //If the Prince collides with firebreath (fireballs)
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.FIRE_BREATH_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).hit(25);
+                    ((Prince) fixA.getUserData()).hit(25);
                     //((FireBreath)fixB.getUserData()).onCollision();
                 } else {
 
-                    ((Prince)fixB.getUserData()).hit(25);
+                    ((Prince) fixB.getUserData()).hit(25);
                     //((FireBreath)fixA.getUserData()).onCollision();
                 }
 
@@ -80,36 +80,36 @@ public class WorldContactListener implements ContactListener {
 
                 if (fixA.getFilterData().categoryBits == DaggerOfTime.FIRE_BREATH_BIT) {
 
-                    ((FireBreath)fixA.getUserData()).onCollision();
+                    ((FireBreath) fixA.getUserData()).onCollision();
                 } else {
 
-                    ((FireBreath)fixB.getUserData()).onCollision();
+                    ((FireBreath) fixB.getUserData()).onCollision();
                 }
                 break;
 
             //If the Prince collides with a Key
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.KEY_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).obtainKey();
-                    ((Key)fixB.getUserData()).onCollision();
+                    ((Prince) fixA.getUserData()).obtainKey();
+                    ((Key) fixB.getUserData()).onCollision();
                 } else {
 
-                    ((Prince)fixB.getUserData()).obtainKey();
-                    ((Key)fixA.getUserData()).onCollision();
+                    ((Prince) fixB.getUserData()).obtainKey();
+                    ((Key) fixA.getUserData()).onCollision();
                 }
                 break;
 
             //If the Prince collides with the door
             case DaggerOfTime.PRINCE_BIT | DaggerOfTime.DOOR_BIT:
 
-                if(fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
+                if (fixA.getFilterData().categoryBits == DaggerOfTime.PRINCE_BIT) {
 
-                    ((Prince)fixA.getUserData()).setReachedDoor();
+                    ((Prince) fixA.getUserData()).setReachedDoor();
                 } else {
 
-                    ((Prince)fixB.getUserData()).setReachedDoor();
+                    ((Prince) fixB.getUserData()).setReachedDoor();
                 }
                 break;
         }

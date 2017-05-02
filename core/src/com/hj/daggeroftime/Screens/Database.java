@@ -17,13 +17,10 @@ import java.util.Iterator;
  */
 
 public class Database {
+
     private Firebase mref;
     private Array<String> nameList;
     private Array<Integer> scoreList;
-    private Viewport viewport;
-    private Stage stage;
-    private Hud hud;
-    private Game game;
     private Firebase playerName;
 
     public Database() {
@@ -33,7 +30,7 @@ public class Database {
         mref = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerScore");
         playerName = new Firebase("https://daggeroftime-ddc38.firebaseio.com/scoreStore/playerName");
         addDataTODataBase();
-        //displayScore();
+        displayScore();
     }
 
     public void addDataTODataBase() {

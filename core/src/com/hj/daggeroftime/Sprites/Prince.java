@@ -31,14 +31,11 @@ public class Prince extends Sprite {
     private TextureRegion princeStand;
     private TextureRegion princeDead;
     private Animation princeRun;
-    private Animation princeJump;
     private boolean runningRight;
     private float stateTimer;
     private TextureRegion region;
     private int health = 100;
     private PlayScreen screen;
-
-    private boolean princeIsDead;
     private boolean hasKey;
     private boolean reachedDoor;
 
@@ -73,7 +70,7 @@ public class Prince extends Sprite {
 
     public void update(float dt) {
 
-        if(currentState != State.DEAD) {
+        if (currentState != State.DEAD) {
 
             //Putting the center of the sprite in the center of the circle
             setPosition(b2body.getPosition().x - getWidth() / 2,
@@ -90,7 +87,7 @@ public class Prince extends Sprite {
         switch (currentState) {
 
             case JUMPING:
-                region = princeStand; //(TextureRegion) princeJump.getKeyFrame(stateTimer);
+                region = princeStand;
                 break;
             case RUNNING:
                 region = (TextureRegion) princeRun.getKeyFrame(stateTimer, true);
@@ -116,10 +113,6 @@ public class Prince extends Sprite {
         prevState = currentState;
 
         return region;
-    }
-
-    public float getStateTimer() {
-        return stateTimer;
     }
 
     public State getState() {
@@ -192,7 +185,6 @@ public class Prince extends Sprite {
         //Also stop music
         if (health < 1) {
 
-            princeIsDead = true;
             currentState = State.DEAD;
             region.setRegion(princeDead);
             screen.clearPrince();
